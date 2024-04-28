@@ -2,6 +2,8 @@ import { searchArticles } from "@/lib/newt";
 import Link from "next/link";
 import { format } from "date-fns";
 
+export const runtime = 'edge';
+
 export default async function Page({
   searchParams: { q },
 }: {
