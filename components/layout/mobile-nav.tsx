@@ -13,7 +13,7 @@ import Link from "next/link";
 const navItems = [
   { label: "会社情報", href: "/company-info", icon: <Building2 /> },
   { label: "コンサルタント紹介", href: "/staffs", icon: <Users /> },
-  { label: "メディア", href: "/articles", icon: <Newspaper /> },
+  { label: "メディア", href: "/medium", icon: <Newspaper /> },
   { label: "お問い合わせ", href: "/inquiry", icon: <MailQuestion /> },
 ];
 

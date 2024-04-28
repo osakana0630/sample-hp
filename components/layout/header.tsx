@@ -8,7 +8,7 @@ import MobileNav from "@/components/layout/mobile-nav";
 const navItems = [
   { label: "会社概要", href: "/company-info" },
   { label: "コンサルタント紹介", href: "/staffs" },
-  { label: "メディア", href: "/articles" },
+  { label: "メディア", href: "/medium" },
   { label: "お問い合わせ", href: "/inquiry" },
 ];
 
