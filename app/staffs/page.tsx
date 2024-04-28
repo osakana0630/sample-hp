@@ -1,8 +1,6 @@
-import Image from "next/image";
 import { getStaffs } from "@/lib/newt";
-import Link from "next/link";
-import { trimString } from "@/lib/utils";
 import BasicLayout from "@/components/layout/basic-layout";
+import { StaffItem } from "@/components/staff-item";
 
 export default async function Page() {
   const staffs = await getStaffs();
@@ -17,28 +15,7 @@ export default async function Page() {
         </h2>
         <ul className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {staffs.map((staff) => (
-            <li
-              key={staff._id}
-              className="relative rounded-lg border p-4 hover:bg-accent"
-            >
-              <div className="aspect-square overflow-hidden border rounded-lg bg-muted mb-4 relative">
-                <Image
-                  src={staff.profileImage.src}
-                  alt={staff.fullName}
-                  fill
-                  className="object-cover object-center"
-                />
-              </div>
-              <h3>
-                <Link href={`staffs/${staff._id}`}>
-                  {staff.fullName}
-                  <span className="absolute inset-0" />
-                </Link>
-              </h3>
-              <p className="text-sm text-muted-foreground">
-                {trimString(staff.career, 88)}
-              </p>
-            </li>
+            <StaffItem key={staff._id} staff={staff} />
           ))}
         </ul>
       </div>

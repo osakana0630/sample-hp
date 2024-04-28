@@ -5,6 +5,7 @@ import { cache } from "react";
 import type { Article } from "@/types/article";
 import { Staff } from "@/types/staff";
 import { Category } from "@/types/category";
+import { News } from "@/types/news";
 
 const client = createClient({
   spaceUid: process.env.NEWT_SPACE_UID + "",
@@ -66,11 +67,13 @@ export const getArticleBySlug = cache(async (slug: string) => {
   return article;
 });
 
-export const getStaffs = cache(async () => {
+export const getStaffs = cache(async (skip?: number, limit?: number) => {
   const { items } = await client.getContents<Staff>({
     appUid: "blog",
     modelUid: "staff",
     query: {
+      skip,
+      limit,
       select: [
         "_id",
         "fullName",
@@ -104,6 +107,25 @@ export const getArticlesByCategory = cache(async (category: string) => {
       categories: {
         in: [category],
       },
+    },
+  });
+  return items;
+});
+
+export const getNews = cache(async () => {
+  const { items } = await client.getContents<News>({
+    appUid: "blog",
+    modelUid: "news",
+    query: {
+      select: [
+        "_id",
+        "title",
+        "slug",
+        "body",
+        "_sys.createdAt",
+        "_sys.updatedAt",
+      ],
+      order: ["-priority", "_sys.createdAt"],
     },
   });
   return items;

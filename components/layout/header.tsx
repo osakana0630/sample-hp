@@ -22,7 +22,7 @@ export function Header() {
 
       {/* ロゴ */}
       <Button variant="ghost">
-        <Link href="/">企業名</Link>
+        <Link href="/">株式会社〇〇</Link>
       </Button>
       <div className="flex-1" />
       {/* 検索バー */}
