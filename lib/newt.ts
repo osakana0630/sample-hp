@@ -68,6 +68,26 @@ export const getArticleBySlug = cache(async (slug: string) => {
   return article;
 });
 
+export const getStaff = cache(async (id: string) => {
+  const item = await client.getFirstContent<Staff>({
+    appUid: "blog",
+    modelUid: "staff",
+    query: {
+      id,
+      select: [
+        "_id",
+        "fullName",
+        "career",
+        "biography",
+        "profileImage",
+        "_sys.createdAt",
+        "_sys.updatedAt",
+      ],
+    },
+  });
+  return item;
+});
+
 export const getStaffs = cache(async (skip?: number, limit?: number) => {
   const { items } = await client.getContents<Staff>({
     appUid: "blog",
