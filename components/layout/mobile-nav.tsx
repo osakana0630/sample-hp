@@ -11,10 +11,10 @@ import { Users, MailQuestion, Newspaper, Building2, Menu } from "lucide-react";
 import Link from "next/link";
 
 const navItems = [
-  { label: "会社情報", href: "/", icon: Building2 },
-  { label: "コンサルタント紹介", href: "/staffs", icon: Users },
-  { label: "メディア", href: "/articles", icon: Newspaper },
-  { label: "お問い合わせ", href: "/inquiry", icon: MailQuestion },
+  { label: "会社情報", href: "/company-info", icon: <Building2 /> },
+  { label: "コンサルタント紹介", href: "/staffs", icon: <Users /> },
+  { label: "メディア", href: "/articles", icon: <Newspaper /> },
+  { label: "お問い合わせ", href: "/inquiry", icon: <MailQuestion /> },
 ];
 
 export default function MobileNav() {
@@ -34,7 +34,10 @@ export default function MobileNav() {
               className="justify-start"
               asChild
             >
-              <Link href={item.href}>{item.label}</Link>
+              <Link href={item.href}>
+                <span className="mr-5">{item.icon}</span>
+                {item.label}
+              </Link>
             </Button>
           ))}
         </div>
