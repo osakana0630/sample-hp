@@ -15,6 +15,7 @@ import { NewsItem } from "@/components/news-item";
 import { StaffItem } from "@/components/staff-item";
 import { CATEGORIES } from "@/constants/category";
 import { BUSINESSES } from "@/constants/business";
+import { format } from "date-fns";
 
 export const metadata: Metadata = {
   title: "株式会社〇〇のコーポレートサイト",
@@ -37,6 +38,7 @@ export default async function Home() {
     getArticlesByCategory(jobSeekerInterviewCategory?._id || ""),
     getArticlesByCategory(companyInterviewCategory?._id || ""),
   ]);
+  // console.log({ jobSeekerInterviews });
 
   return (
     <BasicLayout pageTitle="ホーム画面" bgImageSrc="/images/hero.png">

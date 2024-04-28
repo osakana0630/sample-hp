@@ -6,4 +6,7 @@ export type Article = {
   slug: string;
   body: string;
   categories: Category[];
+  coverImage: {
+    src: string;
+  };
 } & Content;

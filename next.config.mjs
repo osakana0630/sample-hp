@@ -12,6 +12,11 @@ const nextConfig = {
                 hostname: 'imai.assets.newt.so',
                 port: '',
             },
+            {
+                protocol: 'https',
+                hostname: 'storage.googleapis.com',
+                port: '',
+            },
         ],
     },
 };

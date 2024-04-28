@@ -47,7 +47,11 @@ export function Header() {
         <ul className="flex gap-3">
           {navItems.map((item) => (
             <li key={item.label}>
-              <Button variant="ghost">
+              <Button
+                variant={
+                  item.label === "お問い合わせ" ? "destructive" : "ghost"
+                }
+              >
                 <Link href={item.href}>{item.label}</Link>
               </Button>
             </li>
