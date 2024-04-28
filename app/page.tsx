@@ -1,40 +1,43 @@
 import Link from "next/link";
-import { getArticles, getCategories, getNews, getStaffs } from "@/lib/newt";
+import {
+  getArticles,
+  getArticlesByCategory,
+  getCategories,
+  getNews,
+  getStaffs,
+} from "@/lib/newt";
 import type { Metadata } from "next";
-import { format } from "date-fns";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { ArticleItem } from "@/components/article-item";
 import BasicLayout from "@/components/layout/basic-layout";
 import { NewsItem } from "@/components/news-item";
 import { StaffItem } from "@/components/staff-item";
+import { CATEGORIES } from "@/constants/category";
+import { BUSINESSES } from "@/constants/business";
 
 export const metadata: Metadata = {
   title: "株式会社〇〇のコーポレートサイト",
   description: "株式会社〇〇のコーポレートサイトです。",
 };
 
-const BUSINESSES = [
-  {
-    label: "営業コンサル/営業代行",
-    description:
-      "営業戦略の設計から実行まで、企業のフェーズやニーズに応じて支援をいたします。\nスタートアップ/ベンチャー企業の支援を最も得意としております。\nインサイドセールスとして顧客のニーズの収集からアポイントの獲得、フィールドセールスとして商談の実施まで柔軟に対応いたしますので、ご相談ください。",
-    image: "/images/business1.png",
-  },
-  {
-    label: "人材紹介サービス",
-    description:
-      "20-30代を中心に、エージェントとしてキャリ構築の支援をいたします。\n全ての人の可能性を最大限高めるべく、これまでのキャリアの棚卸し、これからのキャリア像の言語化を伴走します。\n企業とのマッチングは個人の能力だけでなく、業界の特性や傾向を理解することが大切です。業界経験のあるエージェントが万全の支援をいたします。\n入社までの支援をすることはもちろん、入社後に活躍いただけるようご支援いたします。",
-    image: "/images/business2.png",
-  },
-] as const;
-
 export default async function Home() {
-  const [news, articles, staffs] = await Promise.all([
+  const [news, categories, staffs] = await Promise.all([
     getNews(),
-    getArticles(),
+    getCategories(),
     getStaffs(0, 9),
   ]);
+  const jobSeekerInterviewCategory = categories.find(
+    (category) => category.slug === CATEGORIES["jobSeekerInterview"],
+  );
+  const companyInterviewCategory = categories.find(
+    (category) => category.slug === CATEGORIES["companyInterview"],
+  );
+  const [jobSeekerInterviews, companyInterviews] = await Promise.all([
+    getArticlesByCategory(jobSeekerInterviewCategory?._id || ""),
+    getArticlesByCategory(companyInterviewCategory?._id || ""),
+  ]);
+
   return (
     <BasicLayout pageTitle="ホーム画面" bgImageSrc="/images/hero.png">
       {/* 事業紹介 */}
@@ -93,24 +96,34 @@ export default async function Home() {
       </section>
 
       {/* メディア */}
-      <section className="container py-10 grid grid-cols-2 gap-6">
+      <section className="container py-10 grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* 求職者様インタビュー */}
         <div>
           <h2 className="font-bold text-3xl mb-6">求職者様インタビュー</h2>
-          <ul className="space-y-2">
-            {articles.map((article) => (
+          <ul className="space-y-2 mb-6">
+            {jobSeekerInterviews.map((article) => (
               <ArticleItem key={article._id} article={article} />
             ))}
           </ul>
+          <div className="text-right">
+            <Button variant="default" asChild>
+              <Link href={"/staffs"}>一覧へ</Link>
+            </Button>
+          </div>
         </div>
         {/* 紹介企業様インタビュー */}
         <div>
           <h2 className="font-bold text-3xl mb-6">紹介企業様インタビュー</h2>
-          <ul className="space-y-2 col-span-2">
-            {articles.map((article) => (
+          <ul className="space-y-2 mb-6">
+            {companyInterviews.map((article) => (
               <ArticleItem key={article._id} article={article} />
             ))}
           </ul>
+          <div className="text-right">
+            <Button variant="default" asChild>
+              <Link href={"/staffs"}>一覧へ</Link>
+            </Button>
+          </div>
         </div>
       </section>
     </BasicLayout>
