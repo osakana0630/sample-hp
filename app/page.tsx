@@ -6,18 +6,25 @@ import Image from "next/image";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { ArticleItem } from "@/components/article-item";
+import BasicLayout from "@/components/layout/basic-layout";
 
 export const metadata: Metadata = {
-  title: "Newt・Next.jsブログ",
-  description: "NewtとNext.jsを利用したブログです",
+  title: "株式会社〇〇のコーポレートサイト",
+  description: "株式会社〇〇のコーポレートサイトです。",
 };
 
 export default async function Home() {
   const [articles, staffs] = await Promise.all([getArticles(), getStaffs()]);
   return (
-    <main>
+    <BasicLayout pageTitle="ホーム画面" bgImageSrc="/images/hero.png">
+      {/* 事業紹介 */}
       <section className="container py-10">
-        <h2 className="font-bold text-3xl mb-6">スタッフ一覧</h2>
+        <h2 className="font-bold text-3xl mb-6">事業について</h2>
+      </section>
+
+      {/* コンサルタント紹介*/}
+      <section className="container py-10">
+        <h2 className="font-bold text-3xl mb-6">コンサルタント紹介</h2>
         <ul className="grid grid-cols-5 gap-6">
           {staffs.map((staff) => (
             <li
@@ -46,6 +53,7 @@ export default async function Home() {
         </ul>
       </section>
 
+      {/* 企業からのお知らせ */}
       <section className="container">
         <h2 className="font-bold text-3xl mb-6">企業からのお知らせ</h2>
         <div className="grid gap-6 grid-cols-3">
@@ -68,6 +76,12 @@ export default async function Home() {
           </div>
         </div>
       </section>
-    </main>
+      {/* メディア */}
+      <section className="container py-10">
+        {/* 求職者様インタビュー */}
+
+        {/* 紹介企業様インタビュー */}
+      </section>
+    </BasicLayout>
   );
 }
