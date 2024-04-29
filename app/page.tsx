@@ -70,7 +70,7 @@ export default async function Home() {
       {/* コンサルタント紹介*/}
       <section className="container py-10">
         <h2 className="font-bold text-3xl mb-6">コンサルタント紹介</h2>
-        <ul className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+        <ul className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
           {staffs.map((staff) => (
             <StaffItem key={staff._id} staff={staff} />
           ))}
