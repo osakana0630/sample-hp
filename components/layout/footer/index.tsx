@@ -38,18 +38,9 @@ const navSubItems = [
 export function Footer() {
   return (
     <footer className="border-t sticky top-full bg-muted py-6">
-      <div className="container flex items-start">
-        <div className="flex flex-col gap-6">
-          <div>
-            <p className="text-lg">株式会社〇〇</p>
-            <dl className="text-sm text-muted-foreground">
-              <dd>〒000-0000 〇〇県〇〇市〇〇町0-0-0</dd>
-            </dl>
-          </div>
-        </div>
-
+      <div className="container flex items-start flex-col md:flex-row gap-6 mb-3">
+        <p className="text-lg">株式会社〇〇</p>
         <div className="flex-1" />
-
         <nav className="flex gap-4">
           <ul className="space-y-2">
             {navMainItems.map((item) => (
