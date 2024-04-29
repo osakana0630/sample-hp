@@ -17,17 +17,18 @@ export default function Page() {
         {/* 代表挨拶 */}
         <section>
           <h2 className="font-semibold text-2xl mb-6 text-center">代表挨拶</h2>
-          <div className="rounded-lg border p-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <div className="py-4">
+            <div className="grid md:grid-cols-3 gap-6">
               <div className="aspect-square overflow-hidden border rounded-lg bg-muted relative">
                 <Image
                   src={"/images/ceo.png"}
                   alt={"ceo"}
                   fill
-                  className="object-cover object-center"
+                  className="object-fit object-center"
                 />
               </div>
-              <div>
+
+              <div className="md:col-span-2">
                 <h3 className="text-xl font-semibold mb-3">
                   全ての人/組織の可能性を最大化させる。
                 </h3>
