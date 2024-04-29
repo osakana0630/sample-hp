@@ -1,6 +1,6 @@
 import { getStaffs } from "@/lib/newt";
 import BasicLayout from "@/components/layout/basic-layout";
-import { StaffItem } from "@/components/staff-item";
+import { StaffItem } from "@/components/staff-list/staff-item";
 
 export default async function Page() {
   const staffs = await getStaffs();

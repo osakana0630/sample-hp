@@ -1,4 +1,4 @@
-import { NewsItem } from "@/components/news-item";
+import { NewsItem } from "@/components/news-list/news-item";
 import { News } from "@/types/news";
 
 type Props = {
