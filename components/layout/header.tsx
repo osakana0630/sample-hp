@@ -16,7 +16,6 @@ const navItems = [
 
 export function Header() {
   const pathname = usePathname();
-
   return (
     <header className="h-16 container border-b flex items-center gap-4">
       {/* SPメニュー */}
