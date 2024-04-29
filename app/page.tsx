@@ -42,13 +42,13 @@ export default async function Home() {
       {/* 事業紹介 */}
       <section className="container py-10">
         <h2 className="font-bold text-3xl mb-6">事業について</h2>
-        <ul className="gap-6 space-y-2">
+        <ul className="space-y-6">
           {BUSINESSES.map((business) => (
             <li
               key={business.label}
               className="flex flex-col lg:flex-row justify-between rounded-lg border p-4 gap-6"
             >
-              <div className="aspect-video h-60 lg:h-52 overflow-hidden border rounded-lg bg-muted relative">
+              <div className="aspect-square h-[450px] lg:h-52 overflow-hidden border rounded-lg bg-muted relative">
                 <Image
                   src={business.image}
                   alt={business.label}
