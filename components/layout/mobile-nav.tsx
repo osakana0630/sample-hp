@@ -1,11 +1,4 @@
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { Users, MailQuestion, Newspaper, Building2, Menu } from "lucide-react";
 import Link from "next/link";
@@ -20,7 +13,7 @@ const navItems = [
 export default function MobileNav() {
   return (
     <Sheet>
-      <SheetTrigger>
+      <SheetTrigger asChild>
         <Button size="icon">
           <Menu size={20} />
         </Button>
