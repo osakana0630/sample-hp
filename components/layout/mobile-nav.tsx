@@ -1,9 +1,17 @@
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
-import { Users, MailQuestion, Newspaper, Building2, Menu } from "lucide-react";
+import {
+  Users,
+  MailQuestion,
+  Newspaper,
+  Building2,
+  Menu,
+  Home,
+} from "lucide-react";
 import Link from "next/link";
 
 const navItems = [
+  { label: "ホーム", href: "/", icon: <Home /> },
   { label: "会社情報", href: "/company-info", icon: <Building2 /> },
   { label: "コンサルタント紹介", href: "/staffs", icon: <Users /> },
   { label: "メディア", href: "/medium", icon: <Newspaper /> },
