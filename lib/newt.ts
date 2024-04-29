@@ -25,20 +25,6 @@ export const getArticles = cache(async () => {
   return items;
 });
 
-export const searchArticles = cache(async (keyword: string) => {
-  const { items } = await client.getContents<Article>({
-    appUid: process.env.APP_UID || "",
-    modelUid: "article",
-    query: {
-      title: {
-        match: keyword,
-      },
-      order: ["-priority", "_sys.createdAt"],
-    },
-  });
-  return items;
-});
-
 export const getArticleById = cache(async (id: string) => {
   return await client.getContent<Article>({
     appUid: process.env.APP_UID || "",

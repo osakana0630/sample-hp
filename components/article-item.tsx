@@ -10,7 +10,7 @@ export function ArticleItem({ article }: ArticleItemProps) {
   return (
     <div
       key={article._id}
-      className="relative mx-auto p-4 border rounded-lg hover:bg-accent duration-100"
+      className="relative mx-auto p-4 border rounded-lg hover:bg-accent hover:shadow-lg duration-100"
     >
       <div className="grid gap-8">
         <div className="flex flex-col gap-4 md:flex-row lg:gap-6">

@@ -14,6 +14,7 @@ import { NewsItem } from "@/components/news-item";
 import { StaffItem } from "@/components/staff-item";
 import { CATEGORIES } from "@/constants/category";
 import { BUSINESSES } from "@/constants/business";
+import { Heading } from "@/components/heading";
 
 export const metadata: Metadata = {
   title: "株式会社〇〇のコーポレートサイト",
@@ -41,22 +42,22 @@ export default async function Home() {
     <BasicLayout bgImageSrc="/images/hero.jpg" isHome>
       {/* 事業紹介 */}
       <section className="container py-10">
-        <h2 className="font-bold text-3xl mb-6">事業について</h2>
+        <Heading label="サービス紹介" labelEn="Service" />
         <ul className="space-y-6">
           {BUSINESSES.map((business) => (
             <li
               key={business.label}
-              className="flex flex-col lg:flex-row justify-between rounded-lg border p-4 gap-6"
+              className="grid grid-cols-1 md:grid-cols-3 p-4 gap-6 rounded-lg"
             >
-              <div className="aspect-square h-[450px] lg:h-52 overflow-hidden border rounded-lg bg-muted relative">
+              <div className="relative aspect-video w-full self-start overflow-hidden rounded-lg border">
                 <Image
                   src={business.image}
                   alt={business.label}
                   fill
-                  className="object-cover object-center"
+                  className="object-contain object-center"
                 />
               </div>
-              <div className="flex-1">
+              <div className="md:col-span-2">
                 <h3 className="text-xl font-semibold mb-3">{business.label}</h3>
                 <p className="text-sm text-muted-foreground leading-8 whitespace-pre-wrap">
                   {business.description}
@@ -69,7 +70,7 @@ export default async function Home() {
 
       {/* コンサルタント紹介*/}
       <section className="container py-10">
-        <h2 className="font-bold text-3xl mb-6">コンサルタント紹介</h2>
+        <Heading label="コンサルタント紹介" labelEn="Consultants" />
         <ul className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
           {staffs.map((staff) => (
             <StaffItem key={staff._id} staff={staff} />
@@ -84,7 +85,7 @@ export default async function Home() {
 
       {/* 企業からのお知らせ */}
       <section className="container">
-        <h2 className="font-bold text-3xl mb-6">お知らせ</h2>
+        <Heading label="お知らせ" labelEn="News" />
         <div className="grid grid-cols-1">
           <ul className="space-y-2 col-span-2">
             {news.map((news) => (
@@ -95,33 +96,36 @@ export default async function Home() {
       </section>
 
       {/* メディア */}
-      <section className="container py-10 grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* 求職者様インタビュー */}
-        <div>
-          <h2 className="font-bold text-3xl mb-6">求職者様インタビュー</h2>
-          <ul className="space-y-2 mb-6">
-            {jobSeekerInterviews.map((article) => (
-              <ArticleItem key={article._id} article={article} />
-            ))}
-          </ul>
-          <div className="text-right">
-            <Button variant="default" asChild>
-              <Link href={"/staffs"}>一覧へ</Link>
-            </Button>
+      <section className="container py-10">
+        <Heading label="メディア" labelEn="media" />
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {/* 求職者様インタビュー */}
+          <div>
+            <Heading label="求職者様インタビュー" labelEn="" />
+            <ul className="space-y-2 mb-6">
+              {jobSeekerInterviews.map((article) => (
+                <ArticleItem key={article._id} article={article} />
+              ))}
+            </ul>
+            <div className="text-right">
+              <Button variant="default" asChild>
+                <Link href={"/staffs"}>一覧へ</Link>
+              </Button>
+            </div>
           </div>
-        </div>
-        {/* 紹介企業様インタビュー */}
-        <div>
-          <h2 className="font-bold text-3xl mb-6">紹介企業様インタビュー</h2>
-          <ul className="space-y-2 mb-6">
-            {companyInterviews.map((article) => (
-              <ArticleItem key={article._id} article={article} />
-            ))}
-          </ul>
-          <div className="text-right">
-            <Button variant="default" asChild>
-              <Link href={"/staffs"}>一覧へ</Link>
-            </Button>
+          {/* 紹介企業様インタビュー */}
+          <div>
+            <Heading label="紹介企業様インタビュー" labelEn="" />
+            <ul className="space-y-2 mb-6">
+              {companyInterviews.map((article) => (
+                <ArticleItem key={article._id} article={article} />
+              ))}
+            </ul>
+            <div className="text-right">
+              <Button variant="default" asChild>
+                <Link href={"/staffs"}>一覧へ</Link>
+              </Button>
+            </div>
           </div>
         </div>
       </section>

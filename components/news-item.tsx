@@ -9,7 +9,7 @@ export function NewsItem({ news }: NewsItemProps) {
   return (
     <li
       key={news._id}
-      className="relative rounded-lg border p-4 hover:bg-accent"
+      className="relative rounded-lg border p-4 hover:bg-accent hover:shadow-sm duration-100"
     >
       <h3>
         <Link href={`news/${news._id}`}>

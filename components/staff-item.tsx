@@ -8,7 +8,7 @@ type StaffItemProps = {
 };
 export function StaffItem({ staff }: StaffItemProps) {
   return (
-    <div className="relative rounded-lg border p-4 hover:bg-accent">
+    <div className="relative rounded-lg border p-4 hover:bg-accent hover:shadow-lg">
       <div className="aspect-square overflow-hidden border rounded-lg bg-muted mb-4 relative">
         <Image
           src={staff.profileImage.src}

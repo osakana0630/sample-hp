@@ -1,58 +1,50 @@
+"use client";
+
+import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { redirect } from "next/navigation";
-import { Input } from "@/components/ui/input";
-import { Search } from "lucide-react";
 import MobileNav from "@/components/layout/mobile-nav";
+import { Building2, MailQuestion, Newspaper, Users } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 const navItems = [
-  { label: "会社概要", href: "/company-info" },
-  { label: "コンサルタント紹介", href: "/staffs" },
-  { label: "メディア", href: "/medium" },
-  { label: "お問い合わせ", href: "/inquiry" },
+  { label: "Company", href: "/company-info", icon: <Building2 size={18} /> },
+  { label: "Consultant", href: "/staffs", icon: <Users size={18} /> },
+  { label: "Media", href: "/medium", icon: <Newspaper size={18} /> },
+  { label: "Contact", href: "/contact", icon: <MailQuestion size={18} /> },
 ];
 
 export function Header() {
+  const pathname = usePathname();
+
   return (
     <header className="h-16 container border-b flex items-center gap-4">
       {/* SPメニュー */}
       <div className="lg:hidden">
         <MobileNav />
       </div>
-
       {/* ロゴ */}
       <Button variant="ghost">
         <Link href="/">株式会社〇〇</Link>
       </Button>
       <div className="flex-1" />
-      {/* 検索バー */}
-      {/*<form*/}
-      {/*  className="flex gap-2"*/}
-      {/*  action={async (data: FormData) => {*/}
-      {/*    "use server";*/}
-
-      {/*    const keyword = data.get("keyword") as string;*/}
-      {/*    const q = new URLSearchParams({ q: keyword });*/}
-      {/*    redirect(`/search?${q.toString()}`);*/}
-      {/*  }}*/}
-      {/*>*/}
-      {/*  <Input autoComplete="off" name="keyword" className="flex-1" />*/}
-      {/*  <Button size="icon" type="submit">*/}
-      {/*    <Search size={20} />*/}
-      {/*  </Button>*/}
-      {/*</form>*/}
-
       {/*  PCナビゲーション */}
       <div className="hidden lg:block">
         <ul className="flex gap-3">
           {navItems.map((item) => (
             <li key={item.label}>
               <Button
-                variant={
-                  item.label === "お問い合わせ" ? "destructive" : "ghost"
-                }
+                variant={item.label === "Contact" ? "destructive" : "link"}
+                asChild
+                className={cn(
+                  pathname === item.href ? "text-destructive" : "",
+                  "text-md hover:no-underline hover:text-muted",
+                )}
               >
-                <Link href={item.href}>{item.label}</Link>
+                <Link href={item.href}>
+                  <span className="mr-2">{item.icon}</span>
+                  {item.label}
+                </Link>
               </Button>
             </li>
           ))}

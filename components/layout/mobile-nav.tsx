@@ -11,11 +11,11 @@ import {
 import Link from "next/link";
 
 const navItems = [
-  { label: "ホーム", href: "/", icon: <Home /> },
-  { label: "会社情報", href: "/company-info", icon: <Building2 /> },
-  { label: "コンサルタント紹介", href: "/staffs", icon: <Users /> },
-  { label: "メディア", href: "/medium", icon: <Newspaper /> },
-  { label: "お問い合わせ", href: "/inquiry", icon: <MailQuestion /> },
+  { label: "Home", href: "/", icon: <Home /> },
+  { label: "Company", href: "/company-info", icon: <Building2 /> },
+  { label: "Consultant", href: "/staffs", icon: <Users /> },
+  { label: "Media", href: "/medium", icon: <Newspaper /> },
+  { label: "Contact", href: "/contact", icon: <MailQuestion /> },
 ];
 
 export default function MobileNav() {
