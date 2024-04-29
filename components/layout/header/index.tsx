@@ -25,7 +25,7 @@ export function Header() {
         </div>
         {/* ロゴ */}
         <Button variant="ghost">
-          <Link href="/public">株式会社〇〇</Link>
+          <Link href="/">株式会社〇〇</Link>
         </Button>
         <div className="flex-1" />
         {/*  PCナビゲーション */}
