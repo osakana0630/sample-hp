@@ -41,13 +41,23 @@ export default async function Home() {
     <BasicLayout bgImageSrc="/images/hero.jpg" isHome>
       {/* 事業紹介 */}
       <section className="container py-10">
-        <Heading label="サービス紹介" labelEn="Service" />
+        <Heading
+          className="mb-6"
+          label="サービス紹介"
+          labelEn="Service"
+          component="h2"
+        />
         <ServiceList />
       </section>
 
       {/* コンサルタント紹介*/}
       <section className="container py-10">
-        <Heading label="コンサルタント紹介" labelEn="Consultants" />
+        <Heading
+          className="mb-6"
+          label="コンサルタント紹介"
+          labelEn="Consultants"
+          component="h2"
+        />
         <div className="mb-6">
           <StaffList staffs={staffs} />
         </div>
@@ -60,17 +70,32 @@ export default async function Home() {
 
       {/* 企業からのお知らせ */}
       <section className="container">
-        <Heading label="お知らせ" labelEn="News" />
+        <Heading
+          className="mb-6"
+          label="お知らせ"
+          labelEn="News"
+          component="h2"
+        />
         <NewsList newsList={news} />
       </section>
 
       {/* メディア */}
       <section className="container py-10">
-        <Heading label="メディア" labelEn="media" />
+        <Heading
+          className="mb-6"
+          label="メディア"
+          labelEn="media"
+          component="h2"
+        />
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* 求職者様インタビュー */}
           <div>
-            <Heading label="求職者様インタビュー" labelEn="" />
+            <Heading
+              className="mb-6"
+              label="求職者様インタビュー"
+              labelEn=""
+              component="h2"
+            />
             <div className="mb-6">
               <ArticleList articles={jobSeekerInterviews} />
             </div>
@@ -82,7 +107,12 @@ export default async function Home() {
           </div>
           {/* 紹介企業様インタビュー */}
           <div>
-            <Heading label="紹介企業様インタビュー" labelEn="" />
+            <Heading
+              className="mb-6"
+              label="紹介企業様インタビュー"
+              labelEn=""
+              component="h2"
+            />
             <div className="mb-6">
               <ArticleList articles={companyInterviews} />
             </div>

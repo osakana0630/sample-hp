@@ -4,17 +4,26 @@ import { cn } from "@/lib/utils";
 type Props = {
   label: string;
   labelEn: string;
+  component?: "h1" | "h2";
+  className?: string;
 };
-export function Heading({ label, labelEn }: Props) {
+export function Heading({
+  label,
+  labelEn,
+  className,
+  component = "h2",
+}: Props) {
+  const Component = component;
   return (
-    <h2
+    <Component
       className={cn(
         `before:${delaGothicOne.className}`,
-        "font-semibold text-xl mb-6 before:content-[attr(data-label-en)] before:block before:text-4xl before:mb-3 before:font-serif",
+        className,
+        "font-semibold text-lg md:text-xl before:content-[attr(data-label-en)] before:block before:text-3xl before:lg:text-4xl before:font-serif",
       )}
       data-label-en={labelEn || ""}
     >
       {label}
-    </h2>
+    </Component>
   );
 }
