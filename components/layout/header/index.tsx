@@ -1,18 +1,11 @@
 "use client";
 
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
 import MobileNav from "@/components/layout/header/mobile-nav";
-import { Building2, MailQuestion, Newspaper, Users } from "lucide-react";
+import { headerNavs } from "@/constants/nav-link";
 import { cn } from "@/lib/utils";
-
-const navItems = [
-  { label: "Company", href: "/company-info", icon: <Building2 size={18} /> },
-  { label: "Consultant", href: "/staffs", icon: <Users size={18} /> },
-  { label: "Media", href: "/medium", icon: <Newspaper size={18} /> },
-  { label: "Contact", href: "/contact", icon: <MailQuestion size={18} /> },
-];
 
 export function Header() {
   const pathname = usePathname();
@@ -31,7 +24,7 @@ export function Header() {
         {/*  PCナビゲーション */}
         <div className="hidden lg:block">
           <ul className="flex gap-3">
-            {navItems.map((item) => (
+            {headerNavs.map((item) => (
               <li key={item.label}>
                 <Button
                   variant={item.label === "Contact" ? "destructive" : "link"}
@@ -42,7 +35,7 @@ export function Header() {
                   )}
                 >
                   <Link href={item.href}>
-                    <span className="mr-2">{item.icon}</span>
+                    <item.icon className="mr-2" size={18} />
                     {item.label}
                   </Link>
                 </Button>

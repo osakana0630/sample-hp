@@ -1,39 +1,6 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-
-const navMainItems = [
-  {
-    href: "/",
-    label: "Home",
-  },
-  {
-    href: "/company-info",
-    label: "Company",
-  },
-  {
-    href: "/staffs",
-    label: "Consultant",
-  },
-  {
-    href: "/medium",
-    label: "Media",
-  },
-  {
-    href: "/contact",
-    label: "Contact",
-  },
-];
-
-const navSubItems = [
-  {
-    href: "/privacy-policy",
-    label: "Privacy Policy",
-  },
-  {
-    href: "/sitemap.xml",
-    label: "Site Map",
-  },
-];
+import { footerNavs, footerSubNavs } from "@/constants/nav-link";
 
 export function Footer() {
   return (
@@ -43,7 +10,7 @@ export function Footer() {
         <div className="flex-1" />
         <nav className="flex gap-4">
           <ul className="space-y-2">
-            {navMainItems.map((item) => (
+            {footerNavs.map((item) => (
               <li key={item.label}>
                 <Button variant="link" asChild>
                   <Link href={item.href}>{item.label}</Link>
@@ -52,7 +19,7 @@ export function Footer() {
             ))}
           </ul>
           <ul className="space-y-2">
-            {navSubItems.map((item) => (
+            {footerSubNavs.map((item) => (
               <li key={item.label}>
                 <Button variant="link" asChild>
                   <Link href={item.href}>{item.label}</Link>
