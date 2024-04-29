@@ -3,6 +3,7 @@ import BasicLayout from "@/components/layout/basic-layout";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 
+export const runtime = "edge";
 export default async function Page({
   searchParams: { id },
 }: {
