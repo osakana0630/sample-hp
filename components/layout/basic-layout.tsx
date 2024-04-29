@@ -2,20 +2,23 @@ type Props = {
   pageTitle?: string;
   leadText?: string;
   bgImageSrc?: string;
+  isHome?: boolean;
   children: React.ReactNode;
 };
 export default function BasicLayout({
-  children,
   pageTitle,
   leadText,
   bgImageSrc,
+  isHome = false,
+  children,
 }: Props) {
   return (
     <>
       {/* TODO: 条件分岐を見直したい */}
       {(pageTitle || leadText || bgImageSrc) && (
         <div
-          className={`bg-muted w-full h-[200px] md:h-[300px] lg:h-[500px] flex flex-col justify-center items-center text-center`}
+          data-is-home={isHome}
+          className={`bg-muted w-full h-[300px] lg:data-[is-home=true]:h-[500px] flex flex-col justify-center items-center text-center`}
           style={{
             backgroundImage: `url(${bgImageSrc})`,
             backgroundSize: "cover",
