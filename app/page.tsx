@@ -41,7 +41,7 @@ export default async function Home() {
   // console.log({ jobSeekerInterviews });
 
   return (
-    <BasicLayout pageTitle="ホーム画面" bgImageSrc="/images/hero.png">
+    <BasicLayout bgImageSrc="/images/hero.png">
       {/* 事業紹介 */}
       <section className="container py-10">
         <h2 className="font-bold text-3xl mb-6">事業について</h2>
