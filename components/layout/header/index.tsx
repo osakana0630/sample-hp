@@ -3,7 +3,7 @@
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import MobileNav from "@/components/layout/mobile-nav";
+import MobileNav from "@/components/layout/header/mobile-nav";
 import { Building2, MailQuestion, Newspaper, Users } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -25,7 +25,7 @@ export function Header() {
         </div>
         {/* ロゴ */}
         <Button variant="ghost">
-          <Link href="/">株式会社〇〇</Link>
+          <Link href="/public">株式会社〇〇</Link>
         </Button>
         <div className="flex-1" />
         {/*  PCナビゲーション */}
