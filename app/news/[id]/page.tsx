@@ -1,4 +1,4 @@
-import { getNewsList, getNews } from "@/lib/newt";
+import { getNewsList, getNewsById } from "@/lib/newt";
 import BasicLayout from "@/components/layout/basic-layout";
 import { notFound } from "next/navigation";
 
@@ -13,11 +13,11 @@ export const dynamicParams = false;
 
 // export const runtime = "edge";
 export default async function Page({
-  searchParams: { id },
+  params: { id },
 }: {
-  searchParams: { id: string };
+  params: { id: string };
 }) {
-  const news = await getNews(id);
+  const news = await getNewsById(id);
 
   if (!news) {
     notFound();

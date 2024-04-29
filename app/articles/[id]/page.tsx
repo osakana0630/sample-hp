@@ -19,7 +19,7 @@ export default async function Page({
 }) {
   const article = await getArticleById(id);
 
-  if (!article) {
+  if (article === null) {
     notFound();
   }
 

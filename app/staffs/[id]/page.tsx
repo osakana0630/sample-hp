@@ -1,17 +1,24 @@
-import { getStaff } from "@/lib/newt";
+import { getStaffs, getStaffById } from "@/lib/newt";
 import BasicLayout from "@/components/layout/basic-layout";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 
-export const runtime = "edge";
+export async function generateStaticParams() {
+  const staffs = await getStaffs();
+  return staffs.map((staff) => ({
+    id: staff._id,
+  }));
+}
+export const dynamicParams = false;
+
 export default async function Page({
-  searchParams: { id },
+  params: { id },
 }: {
-  searchParams: {
+  params: {
     id: string;
   };
 }) {
-  const staff = await getStaff(id);
+  const staff = await getStaffById(id);
 
   if (staff === null) {
     notFound();

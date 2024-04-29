@@ -8,15 +8,15 @@ import { Category } from "@/types/category";
 import { News } from "@/types/news";
 
 const client = createClient({
-  spaceUid: process.env.NEWT_SPACE_UID + "",
-  token: process.env.NEWT_CDN_API_TOKEN + "",
+  spaceUid: process.env.NEWT_SPACE_UID || "",
+  token: process.env.NEWT_CDN_API_TOKEN || "",
   apiType: "cdn",
 });
 
 // NewtのCDN APIでは認証に Authorization ヘッダを利用していますが、Next.jsの fetch() は Authorization ヘッダを利用する場合はキャッシュされないため、ここではReactの cache() を利用
 export const getArticles = cache(async () => {
   const { items } = await client.getContents<Article>({
-    appUid: "blog",
+    appUid: process.env.APP_UID || "",
     modelUid: "article",
     query: {
       order: ["-priority", "_sys.createdAt"],
@@ -27,20 +27,12 @@ export const getArticles = cache(async () => {
 
 export const searchArticles = cache(async (keyword: string) => {
   const { items } = await client.getContents<Article>({
-    appUid: "blog",
+    appUid: process.env.APP_UID || "",
     modelUid: "article",
     query: {
       title: {
         match: keyword,
       },
-      select: [
-        "_id",
-        "title",
-        "slug",
-        "body",
-        "_sys.createdAt",
-        "_sys.updatedAt",
-      ],
       order: ["-priority", "_sys.createdAt"],
     },
   });
@@ -48,20 +40,16 @@ export const searchArticles = cache(async (keyword: string) => {
 });
 
 export const getArticleById = cache(async (id: string) => {
-  const article = await client.getFirstContent<Article>({
-    appUid: "blog",
+  return await client.getContent<Article>({
+    appUid: process.env.APP_UID || "",
     modelUid: "article",
-    query: {
-      id,
-      select: ["_id", "title", "slug", "body", "coverImage", "categories"],
-    },
+    contentId: id,
   });
-  return article;
 });
 
 export const getArticlesByCategory = cache(async (category: string) => {
   const { items } = await client.getContents<Article>({
-    appUid: "blog",
+    appUid: process.env.APP_UID || "",
     modelUid: "article",
     query: {
       categories: {
@@ -72,93 +60,49 @@ export const getArticlesByCategory = cache(async (category: string) => {
   return items;
 });
 
-export const getStaff = cache(async (id: string) => {
-  const item = await client.getFirstContent<Staff>({
-    appUid: "blog",
-    modelUid: "staff",
-    query: {
-      id,
-      select: [
-        "_id",
-        "fullName",
-        "career",
-        "biography",
-        "profileImage",
-        "_sys.createdAt",
-        "_sys.updatedAt",
-      ],
-    },
-  });
-  return item;
-});
-
 export const getStaffs = cache(async (skip?: number, limit?: number) => {
   const { items } = await client.getContents<Staff>({
-    appUid: "blog",
+    appUid: process.env.APP_UID || "",
     modelUid: "staff",
     query: {
       skip,
       limit,
-      select: [
-        "_id",
-        "fullName",
-        "career",
-        "biography",
-        "profileImage",
-        "_sys.createdAt",
-        "_sys.updatedAt",
-      ],
     },
   });
   return items;
 });
 
+export const getStaffById = cache(async (id: string) => {
+  return await client.getContent<Staff>({
+    appUid: process.env.APP_UID || "",
+    modelUid: "staff",
+    contentId: id,
+  });
+});
+
 export const getCategories = cache(async () => {
   const { items } = await client.getContents<Category>({
-    appUid: "blog",
+    appUid: process.env.APP_UID || "",
     modelUid: "category",
-    query: {
-      select: ["_id", "name", "slug"],
-    },
   });
   return items;
 });
 
 export const getNewsList = cache(async () => {
   const { items } = await client.getContents<News>({
-    appUid: "blog",
+    appUid: process.env.APP_UID || "",
     modelUid: "news",
     query: {
-      select: [
-        "_id",
-        "title",
-        "slug",
-        "body",
-        "_sys.createdAt",
-        "_sys.updatedAt",
-      ],
       order: ["-priority", "_sys.createdAt"],
     },
   });
   return items;
 });
 
-export const getNews = cache(async (id: string) => {
-  const item = await client.getFirstContent<News>({
-    appUid: "blog",
+export const getNewsById = cache(async (id: string) => {
+  return await client.getContent<News>({
+    appUid: process.env.APP_UID || "",
     modelUid: "news",
-    query: {
-      id,
-      select: [
-        "_id",
-        "title",
-        "slug",
-        "body",
-        "_sys.createdAt",
-        "_sys.updatedAt",
-      ],
-      order: ["-priority", "_sys.createdAt"],
-    },
+    contentId: id,
   });
-  return item;
 });
