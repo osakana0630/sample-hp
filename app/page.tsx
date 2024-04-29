@@ -1,6 +1,6 @@
 import Link from "next/link";
 import {
-  getArticlesByCategory,
+  getArticlesByCategoryIds,
   getCategories,
   getNewsList,
   getStaffs,
@@ -33,8 +33,13 @@ export default async function Home() {
     (category) => category.slug === CATEGORIES["companyInterview"],
   );
   const [jobSeekerInterviews, companyInterviews] = await Promise.all([
-    getArticlesByCategory(jobSeekerInterviewCategory?._id || ""),
-    getArticlesByCategory(companyInterviewCategory?._id || ""),
+    getArticlesByCategoryIds(
+      (jobSeekerInterviewCategory?._id && [jobSeekerInterviewCategory?._id]) ||
+        [],
+    ),
+    getArticlesByCategoryIds(
+      (companyInterviewCategory?._id && [companyInterviewCategory?._id]) || [],
+    ),
   ]);
 
   return (

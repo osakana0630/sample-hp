@@ -6,7 +6,7 @@ type Props = {
 };
 export function ArticleList({ articles }: Props) {
   return (
-    <ul className="space-y-2 mb-6">
+    <ul className="space-y-2">
       {articles.map((article) => (
         <ArticleItem key={article._id} article={article} />
       ))}
