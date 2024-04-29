@@ -11,12 +11,16 @@ export default function BasicLayout({
   bgImageSrc,
 }: Props) {
   return (
-    <div>
+    <>
       {/* TODO: 条件分岐を見直したい */}
       {(pageTitle || leadText || bgImageSrc) && (
         <div
-          className={`bg-muted w-full h-72 flex flex-col justify-center items-center text-center`}
-          style={{ backgroundImage: `url(${bgImageSrc})` }}
+          className={`bg-muted w-full h-[200px] md:h-[300px] lg:h-[500px] flex flex-col justify-center items-center text-center`}
+          style={{
+            backgroundImage: `url(${bgImageSrc})`,
+            backgroundSize: "cover",
+            backgroundPosition: "bottom",
+          }}
         >
           <h1 className="font-semibold text-3xl mb-6">{pageTitle}</h1>
           <p className="text-sm text-muted-foreground whitespace-pre-wrap">
@@ -25,6 +29,6 @@ export default function BasicLayout({
         </div>
       )}
       <div className="py-10">{children}</div>
-    </div>
+    </>
   );
 }
