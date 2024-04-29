@@ -3,7 +3,7 @@ import {
   getArticles,
   getArticlesByCategory,
   getCategories,
-  getNews,
+  getNewsList,
   getStaffs,
 } from "@/lib/newt";
 import type { Metadata } from "next";
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 
 export default async function Home() {
   const [news, categories, staffs] = await Promise.all([
-    getNews(),
+    getNewsList(),
     getCategories(),
     getStaffs(0, 9),
   ]);
@@ -38,7 +38,6 @@ export default async function Home() {
     getArticlesByCategory(jobSeekerInterviewCategory?._id || ""),
     getArticlesByCategory(companyInterviewCategory?._id || ""),
   ]);
-  // console.log({ jobSeekerInterviews });
 
   return (
     <BasicLayout bgImageSrc="/images/hero.png">
@@ -87,7 +86,7 @@ export default async function Home() {
 
       {/* 企業からのお知らせ */}
       <section className="container">
-        <h2 className="font-bold text-3xl mb-6">企業からのお知らせ</h2>
+        <h2 className="font-bold text-3xl mb-6">お知らせ</h2>
         <div className="grid grid-cols-1">
           <ul className="space-y-2 col-span-2">
             {news.map((news) => (

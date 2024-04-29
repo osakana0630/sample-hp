@@ -47,16 +47,29 @@ export const searchArticles = cache(async (keyword: string) => {
   return items;
 });
 
-export const getArticleBySlug = cache(async (slug: string) => {
+export const getArticleById = cache(async (id: string) => {
   const article = await client.getFirstContent<Article>({
     appUid: "blog",
     modelUid: "article",
     query: {
-      slug,
+      id,
       select: ["_id", "title", "slug", "body", "coverImage", "categories"],
     },
   });
   return article;
+});
+
+export const getArticlesByCategory = cache(async (category: string) => {
+  const { items } = await client.getContents<Article>({
+    appUid: "blog",
+    modelUid: "article",
+    query: {
+      categories: {
+        in: [category],
+      },
+    },
+  });
+  return items;
 });
 
 export const getStaff = cache(async (id: string) => {
@@ -111,20 +124,7 @@ export const getCategories = cache(async () => {
   return items;
 });
 
-export const getArticlesByCategory = cache(async (category: string) => {
-  const { items } = await client.getContents<Article>({
-    appUid: "blog",
-    modelUid: "article",
-    query: {
-      categories: {
-        in: [category],
-      },
-    },
-  });
-  return items;
-});
-
-export const getNews = cache(async () => {
+export const getNewsList = cache(async () => {
   const { items } = await client.getContents<News>({
     appUid: "blog",
     modelUid: "news",
@@ -141,4 +141,24 @@ export const getNews = cache(async () => {
     },
   });
   return items;
+});
+
+export const getNews = cache(async (id: string) => {
+  const item = await client.getFirstContent<News>({
+    appUid: "blog",
+    modelUid: "news",
+    query: {
+      id,
+      select: [
+        "_id",
+        "title",
+        "slug",
+        "body",
+        "_sys.createdAt",
+        "_sys.updatedAt",
+      ],
+      order: ["-priority", "_sys.createdAt"],
+    },
+  });
+  return item;
 });
