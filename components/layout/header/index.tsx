@@ -30,7 +30,9 @@ export function Header() {
                   variant={item.label === "Contact" ? "destructive" : "link"}
                   asChild
                   className={cn(
-                    pathname === item.href ? "text-destructive" : "",
+                    pathname === item.href && item.label !== "Contact"
+                      ? "text-destructive"
+                      : "",
                     "text-md hover:no-underline hover:text-muted",
                   )}
                 >
