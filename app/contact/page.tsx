@@ -3,10 +3,15 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import BasicLayout from "@/components/layout/basic-layout";
+import { Heading } from "@/components/heading";
 
 export default async function Page() {
   return (
-    <BasicLayout pageTitle="お問い合わせ">
+    <BasicLayout
+      pageTitle={
+        <Heading component="h1" label="お問い合わせ" labelEn="Contact Us" />
+      }
+    >
       <div className="container max-w-2xl">
         <form
           method="post"
