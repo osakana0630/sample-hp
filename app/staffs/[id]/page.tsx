@@ -2,6 +2,7 @@ import { getStaffs, getStaffById } from "@/lib/newt";
 import BasicLayout from "@/components/layout/basic-layout";
 import { notFound } from "next/navigation";
 import Image from "next/image";
+import { Heading } from "@/components/heading";
 
 export async function generateStaticParams() {
   const staffs = await getStaffs();
@@ -25,7 +26,15 @@ export default async function Page({
   }
 
   return (
-    <BasicLayout pageTitle="コンサルタント詳細">
+    <BasicLayout
+      pageTitle={
+        <Heading
+          component="h1"
+          label="コンサルタント詳細"
+          labelEn="Consultant detail"
+        />
+      }
+    >
       <div className="container">
         <div className="aspect-square w-40 overflow-hidden border rounded-lg bg-muted mb-4 relative">
           <Image

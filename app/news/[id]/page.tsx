@@ -1,6 +1,7 @@
 import { getNewsList, getNewsById } from "@/lib/newt";
 import BasicLayout from "@/components/layout/basic-layout";
 import { notFound } from "next/navigation";
+import { Heading } from "@/components/heading";
 
 export async function generateStaticParams() {
   const newsList = await getNewsList();
@@ -24,7 +25,9 @@ export default async function Page({
   }
 
   return (
-    <BasicLayout pageTitle="お知らせ">
+    <BasicLayout
+      pageTitle={<Heading component="h1" label="お知らせ" labelEn="News" />}
+    >
       <div className="prose container">
         <h1>{news.title}</h1>
         <div dangerouslySetInnerHTML={{ __html: news.body }} />

@@ -9,7 +9,7 @@ export default async function Page() {
   return (
     <BasicLayout
       pageTitle={
-        <Heading component="h1" label="お問い合わせ" labelEn="Contact Us" />
+        <Heading component="h1" label="お問い合わせ" labelEn="Contact" />
       }
     >
       <div className="container max-w-2xl">
