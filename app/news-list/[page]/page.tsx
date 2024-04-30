@@ -24,6 +24,8 @@ export const generateStaticParams = async () => {
   return paths;
 };
 
+export const dynamicParams = false;
+
 type Props = {
   params: {
     page: string;
