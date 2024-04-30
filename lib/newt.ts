@@ -6,6 +6,7 @@ import type { Article } from "@/types/article";
 import { Staff } from "@/types/staff";
 import { Category } from "@/types/category";
 import { News } from "@/types/news";
+import { Tag } from "@/types/tag";
 
 const client = createClient({
   spaceUid: process.env.NEWT_SPACE_UID || "",
@@ -99,6 +100,8 @@ export const getCategoryBySlug = cache(async (slug: string) => {
   });
 });
 
+// ----------------------------------------------------------------------------
+
 export const getNewsList = cache(async () => {
   const { items } = await client.getContents<News>({
     appUid: process.env.APP_UID || "",
@@ -117,3 +120,24 @@ export const getNewsById = cache(async (id: string) => {
     contentId: id,
   });
 });
+
+// ----------------------------------------------------------------------------
+export const getTags = cache(async () => {
+  const { items } = await client.getContents<Tag>({
+    appUid: process.env.APP_UID || "",
+    modelUid: "tag",
+  });
+  return items;
+});
+
+export const getTagBySlug = cache(async (slug: string) => {
+  return await client.getFirstContent<Category>({
+    appUid: process.env.APP_UID || "",
+    modelUid: "tag",
+    query: {
+      slug,
+    },
+  });
+});
+
+// ----------------------------------------------------------------------------
