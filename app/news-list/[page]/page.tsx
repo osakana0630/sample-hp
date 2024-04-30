@@ -18,7 +18,7 @@ import { Pagination } from "@/components/custom-pagination";
 export const generateStaticParams = async () => {
   const { total } = await getNewsList();
 
-  const paths = range(2, Math.ceil(total / NEWS_PER_PAGE)).map((num) => ({
+  const paths = range(1, Math.ceil(total / NEWS_PER_PAGE)).map((num) => ({
     page: `${num}`, //stringにしなければいけない
   }));
   return paths;
