@@ -1,6 +1,5 @@
 import { getArticles, getArticleBySlug } from "@/lib/newt";
 import { notFound } from "next/navigation";
-import BasicLayout from "@/components/layout/basic-layout";
 import { Heading } from "@/components/heading";
 import { MediaLayout } from "@/components/layout/media-layout";
 
