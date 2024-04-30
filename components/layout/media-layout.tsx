@@ -5,6 +5,7 @@ import { getArticles, getCategories, getTags } from "@/lib/newt";
 import Link from "next/link";
 import { ArticleList } from "@/components/article-list";
 import { paths } from "@/routes";
+import { TrendingArticleList } from "@/components/trending-article-list";
 
 type Props = {
   pageTitle?: string | React.ReactNode;
@@ -71,7 +72,7 @@ export async function MediaLayout({
           <section>
             <h2 className="text-md font-semibold">よく読まれている記事</h2>
             {/* TODO レスポンシブ対応 */}
-            <ArticleList articles={slicedArticles} />
+            <TrendingArticleList articles={slicedArticles} />
           </section>
 
           <section>
