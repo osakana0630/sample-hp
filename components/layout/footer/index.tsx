@@ -1,12 +1,13 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { footerNavs, footerSubNavs } from "@/constants/nav-link";
+import { config } from "@/config";
 
 export function Footer() {
   return (
     <footer className="border-t sticky top-full bg-muted py-6">
       <div className="container flex items-start flex-col md:flex-row gap-6 mb-3">
-        <p className="text-lg">株式会社〇〇</p>
+        <p className="text-lg">{config.companyName}</p>
         <div className="flex-1" />
         <nav className="flex gap-4">
           <ul className="space-y-2">
