@@ -1,13 +1,9 @@
-import BasicLayout from "@/components/layout/basic-layout";
 import { Heading } from "@/components/heading";
-import { getArticles, getCategories } from "@/lib/newt";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
+import { getArticles } from "@/lib/newt";
 import { MediaLayout } from "@/components/layout/media-layout";
 import { ArticleList } from "@/components/article-list";
 
 export default async function Page() {
-  const categories = await getCategories();
   const latestArticles = await getArticles();
 
   return (
