@@ -3,6 +3,8 @@ import { searchArticles } from "@/lib/newt";
 import { MediaLayout } from "@/components/layout/media-layout";
 import { ArticleList } from "@/components/article-list";
 
+export const runtime = "edge";
+
 type Props = {
   searchParams: {
     q: string;
