@@ -7,6 +7,8 @@ import { Staff } from "@/types/staff";
 import { Category } from "@/types/category";
 import { News } from "@/types/news";
 import { Tag } from "@/types/tag";
+import { Page } from "@/types/pagination";
+import { NEWS_PER_PAGE } from "@/constants/pagination";
 
 const client = createClient({
   spaceUid: process.env.NEWT_SPACE_UID || "",
@@ -145,15 +147,16 @@ export const getCategoryBySlug = cache(async (slug: string) => {
 
 // ----------------------------------------------------------------------------
 
-export const getNewsList = cache(async () => {
-  const { items } = await client.getContents<News>({
+export const getNewsList = cache(async (page?: Page) => {
+  const { items, total } = await client.getContents<News>({
     appUid: process.env.APP_UID || "",
     modelUid: "news",
     query: {
-      order: ["-priority", "_sys.createdAt"],
+      order: ["-priority", "-_sys.createdAt"],
+      ...buildPaginationParam(page, NEWS_PER_PAGE),
     },
   });
-  return items;
+  return { news: items, total };
 });
 
 export const getNewsById = cache(async (id: string) => {
@@ -184,3 +187,14 @@ export const getTagBySlug = cache(async (slug: string) => {
 });
 
 // ----------------------------------------------------------------------------
+
+// ページネーションに基づいたアイテムのスキップ数を計算する関数
+const buildPaginationParam = (
+  currentPage: number | undefined,
+  itemsPerPage: number,
+): { skip: number; limit: number } | {} => {
+  if (!currentPage) return {};
+  const skip = (currentPage - 1) * itemsPerPage;
+  const limit = itemsPerPage;
+  return { skip, limit };
+};

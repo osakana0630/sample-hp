@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 };
 
 export default async function Home() {
-  const [news, categories, staffs] = await Promise.all([
+  const [{ news }, categories, staffs] = await Promise.all([
     getNewsList(),
     getCategories(),
     getStaffs(0, 9),
@@ -93,7 +93,14 @@ export default async function Home() {
           />
         }
       >
-        <NewsList newsList={news} />
+        <div className="mb-6">
+          <NewsList newsList={news} />
+        </div>
+        <div className="text-center">
+          <Button variant="default" asChild>
+            <Link href={paths.newsList(1)}>お知らせ一覧へ</Link>
+          </Button>
+        </div>
       </Section>
 
       {/* メディア */}

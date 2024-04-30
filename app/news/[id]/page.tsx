@@ -4,15 +4,14 @@ import { notFound } from "next/navigation";
 import { Heading } from "@/components/heading";
 
 export async function generateStaticParams() {
-  const newsList = await getNewsList();
-  return newsList.map((news) => ({
-    id: news._id,
+  const { news } = await getNewsList();
+  return news.map((newsItem) => ({
+    id: newsItem._id,
   }));
 }
 
 export const dynamicParams = false;
 
-// export const runtime = "edge";
 export default async function Page({
   params: { id },
 }: {

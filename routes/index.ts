@@ -13,6 +13,7 @@ export const paths = {
     list: "/news",
     detail: (id: string) => `/news/${id}`,
   },
+  newsList: (page: number) => `/news-list/${page}`,
   medium: {
     list: "/medium",
     detail: (articleSlug: string) => `/medium/${articleSlug}`,
