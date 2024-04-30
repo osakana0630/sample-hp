@@ -14,6 +14,8 @@ export async function generateStaticParams() {
     tagSlug: tag.slug,
   }));
 }
+export const dynamicParams = false;
+
 export default async function Page({ params: { tagSlug } }: Props) {
   const tag = await getTagBySlug(tagSlug);
   if (!tag) notFound();
