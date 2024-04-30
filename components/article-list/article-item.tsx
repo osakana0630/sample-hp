@@ -61,7 +61,12 @@ export function ArticleItem({ article }: ArticleItemProps) {
             {/*ハッシュタグ*/}
             <div className="z-10">
               {article.tags.map((tag) => (
-                <Button key={tag._id} variant="link" asChild className="p-0">
+                <Button
+                  key={tag._id}
+                  variant="link"
+                  asChild
+                  className="p-0 mr-2"
+                >
                   <Link
                     href={paths.medium.tags.detail(tag.slug)}
                     className="h-auto"
