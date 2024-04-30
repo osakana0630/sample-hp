@@ -3,6 +3,9 @@ import { format } from "date-fns";
 import { Article } from "@/types/article";
 import Image from "next/image";
 import { paths } from "@/routes";
+import { Tag } from "@/components/ui/tag";
+import { HashTag } from "@/components/ui/hash-tag";
+import { Button } from "@/components/ui/button";
 
 type ArticleItemProps = {
   article: Article;
@@ -15,7 +18,7 @@ export function ArticleItem({ article }: ArticleItemProps) {
     >
       <div className="grid gap-8">
         <div className="flex flex-col gap-4 md:flex-row lg:gap-6">
-          <div className="group relative h-56 w-full shrink-0 self-start overflow-hidden rounded-lg bg-gray-100 shadow-lg md:h-24 md:w-24 lg:h-40 lg:w-40">
+          <div className="group relative h-56 w-full shrink-0 self-start overflow-hidden rounded-lg bg-gray-100 shadow-lg md:h-40 md:w-40">
             <Image
               src={article.coverImage.src}
               alt={article.title}
@@ -25,25 +28,47 @@ export function ArticleItem({ article }: ArticleItemProps) {
           </div>
 
           <div className="flex flex-col gap-2">
-            <time className="text-sm text-gray-400">
+            <time className="text-sm text-muted-foreground">
               {format(new Date(article._sys.createdAt), "yyyy年MM月dd日")}
             </time>
 
-            <h3 className="text-xl font-bold text-gray-800">
+            <h3 className="text-xl font-bold">
               <Link href={paths.medium.detail(article.slug)}>
                 {article.title}
                 <span className="absolute inset-0" />
               </Link>
             </h3>
 
-            <div>
+            {/* カテゴリタグ */}
+            <div className="z-10">
               {article.categories.map((category) => (
-                <span
+                <Button
                   key={category._id}
-                  className="text-xs text-muted-foreground bg-muted border rounded-lg inline-block p-1"
+                  variant="ghost"
+                  asChild
+                  className="p-0"
                 >
-                  {category.name}
-                </span>
+                  <Link
+                    href={paths.medium.categories.detail(category.slug)}
+                    className="h-auto"
+                  >
+                    <Tag name={category.name} />
+                  </Link>
+                </Button>
+              ))}
+            </div>
+
+            {/*ハッシュタグ*/}
+            <div className="z-10">
+              {article.tags.map((tag) => (
+                <Button key={tag._id} variant="link" asChild className="p-0">
+                  <Link
+                    href={paths.medium.tags.detail(tag.slug)}
+                    className="h-auto"
+                  >
+                    <HashTag key={tag._id} name={tag.name} />
+                  </Link>
+                </Button>
               ))}
             </div>
           </div>
