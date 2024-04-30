@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { Search } from "lucide-react";
 import { getArticles, getCategories, getTags } from "@/lib/newt";
 import Link from "next/link";
-import { ArticleList } from "@/components/article-list";
 import { paths } from "@/routes";
 import { TrendingArticleList } from "@/components/trending-article-list";
 
@@ -27,7 +26,6 @@ export async function MediaLayout({
   ]);
   // 最新の5件の記事を取得 TODO: 本来はページネーションを実装する
   const slicedArticles = articles.slice(0, 3);
-  console.log({ tags });
 
   return (
     <>
