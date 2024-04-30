@@ -107,7 +107,13 @@ export default async function Home() {
             </div>
             <div className="text-right">
               <Button variant="default" asChild>
-                <Link href={paths.staffs.list}>一覧へ</Link>
+                <Link
+                  href={paths.medium.categories.detail(
+                    CATEGORIES["jobSeekerInterview"],
+                  )}
+                >
+                  一覧へ
+                </Link>
               </Button>
             </div>
           </div>
@@ -124,7 +130,13 @@ export default async function Home() {
             </div>
             <div className="text-right">
               <Button variant="default" asChild>
-                <Link href={paths.staffs.list}>一覧へ</Link>
+                <Link
+                  href={paths.medium.categories.detail(
+                    CATEGORIES["companyInterview"],
+                  )}
+                >
+                  一覧へ
+                </Link>
               </Button>
             </div>
           </div>
