@@ -3,7 +3,14 @@ import { getArticles } from "@/lib/newt";
 import { MediaLayout } from "@/components/layout/media-layout";
 import { ArticleList } from "@/components/article-list";
 
-export default async function Page() {
+type Props = {
+  searchParams?: {
+    q?: string;
+  };
+};
+
+export default async function Page({ searchParams }: Props) {
+  const q = searchParams?.q;
   const latestArticles = await getArticles();
 
   return (

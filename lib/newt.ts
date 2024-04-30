@@ -87,6 +87,20 @@ export const getArticlesByTagIds = cache(async (tagIds: string[]) => {
   return items;
 });
 
+export const searchArticles = cache(async (keyword: string) => {
+  const { items } = await client.getContents<Article>({
+    appUid: "blog",
+    modelUid: "article",
+    query: {
+      title: {
+        match: keyword,
+      },
+      order: ["-priority", "_sys.createdAt"],
+    },
+  });
+  return items;
+});
+
 // ----------------------------------------------------------------------------
 
 export const getStaffs = cache(async (skip?: number, limit?: number) => {

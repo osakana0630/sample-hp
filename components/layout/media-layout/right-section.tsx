@@ -1,10 +1,9 @@
-import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Search } from "lucide-react";
 import { TrendingArticleList } from "@/components/trending-article-list";
 import Link from "next/link";
 import { paths } from "@/routes";
 import { getArticles, getCategories, getTags } from "@/lib/newt";
+import { SearchBox } from "@/components/search-box";
 
 export async function RightSection() {
   const [articles, categories, tags] = await Promise.all([
@@ -18,12 +17,7 @@ export async function RightSection() {
   return (
     <>
       <Section>
-        <div className="flex gap-1">
-          <Input />
-          <Button size="icon">
-            <Search size={20} />
-          </Button>
-        </div>
+        <SearchBox />
       </Section>
 
       <Section title="よく読まれている記事">

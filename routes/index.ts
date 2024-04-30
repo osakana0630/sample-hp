@@ -4,6 +4,7 @@ export const paths = {
   contact: "/contact",
   privacyPolicy: "/privacy-policy",
   siteMap: "/sitemap",
+  search: "/search",
   staffs: {
     list: "/staffs",
     detail: (id: string) => `/staffs/${id}`,
