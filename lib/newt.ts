@@ -36,6 +36,16 @@ export const getArticleById = cache(async (id: string) => {
   });
 });
 
+export const getArticleBySlug = cache(async (slug: string) => {
+  return await client.getFirstContent<Article>({
+    appUid: process.env.APP_UID || "",
+    modelUid: "article",
+    query: {
+      slug,
+    },
+  });
+});
+
 export const getArticlesByCategoryIds = cache(async (categoryIds: string[]) => {
   const { items } = await client.getContents<Article>({
     appUid: process.env.APP_UID || "",

@@ -1,23 +1,23 @@
-import { getArticleById, getArticles } from "@/lib/newt";
+import { getArticles, getArticleBySlug } from "@/lib/newt";
 import { notFound } from "next/navigation";
 import BasicLayout from "@/components/layout/basic-layout";
 
 export async function generateStaticParams() {
   const articles = await getArticles();
   return articles.map((article) => ({
-    id: article._id,
+    articleSlug: article.slug,
   }));
 }
 export const dynamicParams = false;
 
 type Props = {
   params: {
-    articleId: string;
+    articleSlug: string;
   };
 };
 
-export default async function Page({ params: { articleId } }: Props) {
-  const article = await getArticleById(articleId);
+export default async function Page({ params: { articleSlug } }: Props) {
+  const article = await getArticleBySlug(articleSlug);
   if (article === null) notFound();
 
   return (
