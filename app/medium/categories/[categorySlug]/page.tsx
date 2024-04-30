@@ -3,10 +3,10 @@ import {
   getCategories,
   getCategoryBySlug,
 } from "@/lib/newt";
-import Link from "next/link";
-import { format } from "date-fns";
 import { notFound } from "next/navigation";
-import { paths } from "@/routes";
+import { MediaLayout } from "@/components/layout/media-layout";
+import { Heading } from "@/components/heading";
+import { ArticleList } from "@/components/article-list";
 
 export async function generateStaticParams() {
   const categories = await getCategories();
@@ -24,42 +24,31 @@ export default async function Page({ params: { categorySlug } }: Props) {
   // カテゴリスラッグからカテゴリを取得し、IDを特定したい
   // https://developers.newt.so/apis/cdn#tag/contents_general/Queries/%E6%B3%A8%E6%84%8F
   const category = await getCategoryBySlug(categorySlug);
-  if (category === null) {
-    notFound();
-  }
+  if (!category) notFound();
+
   const articles = await getArticlesByCategoryIds([category._id]);
+  const hasArticles = articles.length > 0;
 
   return (
-    <div className="container max-w-2xl py-10">
-      <h1 className="mb-6 font-bold text-2xl">「{categorySlug}」の記事一覧</h1>
-      <ul className="space-y-2">
-        {articles.map((article) => (
-          <li
-            key={article._id}
-            className="relative rounded-lg border p-4 hover:bg-accent"
-          >
-            <h3>
-              <Link href={paths.medium.detail(article.slug)}>
-                {article.title}
-                <span className="absolute inset-0" />
-              </Link>
-            </h3>
-            <time className="text-sm text-muted-foreground">
-              {format(new Date(article._sys.createdAt), "yyyy年MM月dd日")}
-            </time>
-            <div>
-              {article.categories.map((category) => (
-                <span
-                  key={category._id}
-                  className="p-1 bg-muted border rounded-lg"
-                >
-                  {category.name}
-                </span>
-              ))}
-            </div>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <MediaLayout
+      pageTitle={
+        <Heading
+          component="h1"
+          label={`「${category.name}」`}
+          labelEn="Media"
+        />
+      }
+    >
+      <section>
+        <h1 className="mb-6 font-bold text-2xl">
+          「{category.name}」の記事一覧
+        </h1>
+        {hasArticles ? (
+          <ArticleList articles={articles} />
+        ) : (
+          <p>記事が見つかりませんでした。</p>
+        )}
+      </section>
+    </MediaLayout>
   );
 }

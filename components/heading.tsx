@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 
 type Props = {
   label: string;
-  labelEn: string;
+  labelEn?: string;
   component?: "h1" | "h2";
   className?: string;
 };
