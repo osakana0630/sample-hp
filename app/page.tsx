@@ -25,7 +25,7 @@ export const metadata: Metadata = {
 
 export default async function Home() {
   const [{ news }, categories, staffs] = await Promise.all([
-    getNewsList(),
+    getNewsList(1),
     getCategories(),
     getStaffs(0, 9),
   ]);
