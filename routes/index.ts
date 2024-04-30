@@ -14,7 +14,7 @@ export const paths = {
   },
   medium: {
     list: "/medium",
-    detail: (id: string) => `/medium/${id}`,
+    detail: (articleSlug: string) => `/medium/${articleSlug}`,
     tags: {
       list: "/medium/tags",
       detail: (tagSlug: string) => `/medium/tags/${tagSlug}`,

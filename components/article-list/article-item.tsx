@@ -2,6 +2,7 @@ import Link from "next/link";
 import { format } from "date-fns";
 import { Article } from "@/types/article";
 import Image from "next/image";
+import { paths } from "@/routes";
 
 type ArticleItemProps = {
   article: Article;
@@ -29,7 +30,7 @@ export function ArticleItem({ article }: ArticleItemProps) {
             </time>
 
             <h3 className="text-xl font-bold text-gray-800">
-              <Link href={`/medium/${article._id}`}>
+              <Link href={paths.medium.detail(article.slug)}>
                 {article.title}
                 <span className="absolute inset-0" />
               </Link>
