@@ -7,7 +7,7 @@ import {
 } from "@/lib/newt";
 import type { Metadata } from "next";
 import { Button } from "@/components/ui/button";
-import BasicLayout from "@/components/layout/basic-layout";
+import { BasicLayout } from "@/components/layouts/basic-layout";
 import { CATEGORIES } from "@/constants/category";
 import { Heading } from "@/components/heading";
 import { ServiceList } from "@/components/service-list";

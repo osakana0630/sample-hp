@@ -1,4 +1,4 @@
-import { MediaLayout } from "@/components/layout/media-layout";
+import { MediaLayout } from "@/components/layouts/media-layout";
 import { getArticlesByTagIds, getTagBySlug, getTags } from "@/lib/newt";
 import { notFound } from "next/navigation";
 import { ArticleList } from "@/components/article-list";

@@ -1,6 +1,6 @@
 import { Heading } from "@/components/heading";
 import { searchArticles } from "@/lib/newt";
-import { MediaLayout } from "@/components/layout/media-layout";
+import { MediaLayout } from "@/components/layouts/media-layout";
 import { ArticleList } from "@/components/article-list";
 
 export const runtime = "edge";

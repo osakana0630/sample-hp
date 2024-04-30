@@ -1,4 +1,4 @@
-import { RightSection } from "@/components/layout/media-layout/right-section";
+import { RightSection } from "@/components/layouts/media-layout/right-section";
 
 type Props = {
   pageTitle?: string | React.ReactNode;

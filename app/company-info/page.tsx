@@ -1,4 +1,4 @@
-import BasicLayout from "@/components/layout/basic-layout";
+import { BasicLayout } from "@/components/layouts/basic-layout";
 import Image from "next/image";
 import {
   Table,

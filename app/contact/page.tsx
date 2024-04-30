@@ -2,7 +2,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import BasicLayout from "@/components/layout/basic-layout";
+import BasicLayout from "@/components/layouts/basic-layout";
 import { Heading } from "@/components/heading";
 
 export default async function Page() {

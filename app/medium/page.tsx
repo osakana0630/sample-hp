@@ -1,6 +1,6 @@
 import { Heading } from "@/components/heading";
 import { getArticles } from "@/lib/newt";
-import { MediaLayout } from "@/components/layout/media-layout";
+import { MediaLayout } from "@/components/layouts/media-layout";
 import { ArticleList } from "@/components/article-list";
 
 export default async function Page() {

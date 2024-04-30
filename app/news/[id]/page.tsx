@@ -1,5 +1,5 @@
 import { getNewsList, getNewsById } from "@/lib/newt";
-import BasicLayout from "@/components/layout/basic-layout";
+import { BasicLayout } from "@/components/layouts/basic-layout";
 import { notFound } from "next/navigation";
 import { Heading } from "@/components/heading";
 

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import MobileNav from "@/components/layout/header/mobile-nav";
+import MobileNav from "@/components/layouts/header/mobile-nav";
 import { headerNavs } from "@/constants/nav-link";
 import { cn } from "@/lib/utils";
 import { config } from "@/config";

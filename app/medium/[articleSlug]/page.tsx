@@ -1,7 +1,7 @@
 import { getArticles, getArticleBySlug } from "@/lib/newt";
 import { notFound } from "next/navigation";
 import { Heading } from "@/components/heading";
-import { MediaLayout } from "@/components/layout/media-layout";
+import { MediaLayout } from "@/components/layouts/media-layout";
 
 export async function generateStaticParams() {
   const articles = await getArticles();

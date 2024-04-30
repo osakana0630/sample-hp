@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { cn } from "@/lib/utils";
-import { Header } from "@/components/layout/header";
-import { Footer } from "@/components/layout/footer";
+import { Header } from "@/components/layouts/header";
+import { Footer } from "@/components/layouts/footer";
 import { inter } from "@/lib/font";
 import { ScrollTopButton } from "@/components/scroll-top-button";
 

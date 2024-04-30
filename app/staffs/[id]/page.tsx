@@ -1,5 +1,5 @@
 import { getStaffs, getStaffById } from "@/lib/newt";
-import BasicLayout from "@/components/layout/basic-layout";
+import { BasicLayout } from "@/components/layouts/basic-layout";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import { Heading } from "@/components/heading";

@@ -5,7 +5,7 @@ type Props = {
   isHome?: boolean;
   children: React.ReactNode;
 };
-export default function BasicLayout({
+export function BasicLayout({
   pageTitle,
   leadText,
   bgImageSrc,
