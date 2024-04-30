@@ -15,10 +15,12 @@ import { StaffList } from "@/components/staff-list";
 import { NewsList } from "@/components/news-list";
 import { ArticleList } from "@/components/article-list";
 import { paths } from "@/routes";
+import { config } from "@/config";
 
+// TODO add metadata
 export const metadata: Metadata = {
-  title: "株式会社〇〇のコーポレートサイト",
-  description: "株式会社〇〇のコーポレートサイトです。",
+  title: `${config.companyName}のコーポレートサイト`,
+  description: `${config.companyName}のコーポレートサイトです。`,
 };
 
 export default async function Home() {
