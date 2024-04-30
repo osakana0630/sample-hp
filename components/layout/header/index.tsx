@@ -6,20 +6,18 @@ import { Button } from "@/components/ui/button";
 import MobileNav from "@/components/layout/header/mobile-nav";
 import { headerNavs } from "@/constants/nav-link";
 import { cn } from "@/lib/utils";
+import { config } from "@/config";
 
 export function Header() {
   const pathname = usePathname();
   return (
     <header className="h-16 border-b shadow-lg">
       <div className="container h-full flex items-center gap-4">
-        {/* SPメニュー */}
-        <div className="lg:hidden">
-          <MobileNav />
-        </div>
         {/* ロゴ */}
-        <Button variant="ghost">
-          <Link href="/">株式会社〇〇</Link>
+        <Button variant="ghost" className="text-xl md:text-2xl font-bold">
+          <Link href="/">{config.companyName}</Link>
         </Button>
+
         <div className="flex-1" />
         {/*  PCナビゲーション */}
         <div className="hidden lg:block">
@@ -44,6 +42,11 @@ export function Header() {
               </li>
             ))}
           </ul>
+        </div>
+
+        {/* SPメニュー */}
+        <div className="lg:hidden">
+          <MobileNav />
         </div>
       </div>
     </header>
