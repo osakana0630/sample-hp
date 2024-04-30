@@ -29,7 +29,7 @@ export function Footer() {
           </ul>
         </nav>
       </div>
-      <p className="container text-xs text-muted-foreground my-auto">
+      <p className="text-center text-xs text-muted-foreground">
         &copy;〇〇Inc. All rights reserved
       </p>
     </footer>
