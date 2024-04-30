@@ -14,8 +14,6 @@ export default async function Page({ searchParams }: Props) {
   const articles = await searchArticles(q);
   const hasArticles = articles.length > 0;
 
-  console.log("メディア検索結果画面です。", q);
-
   return (
     <MediaLayout
       pageTitle={<Heading component="h1" label="メディア" labelEn="Media" />}
