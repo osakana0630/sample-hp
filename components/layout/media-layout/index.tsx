@@ -58,23 +58,20 @@ export async function MediaLayout({
         {/*TODO コンポーネント化する */}
         <div className="flex flex-col container py-8 w-full lg:w-[30%] gap-6">
           {/* TODO 検索機能 */}
-          <section>
+          <Section>
             <div className="flex gap-1">
               <Input />
               <Button size="icon">
                 <Search size={20} />
               </Button>
             </div>
-          </section>
+          </Section>
 
-          <section>
-            <h2 className="text-md font-semibold">よく読まれている記事</h2>
-            {/* TODO レスポンシブ対応 */}
+          <Section title="よく読まれている記事">
             <TrendingArticleList articles={slicedArticles} />
-          </section>
+          </Section>
 
-          <section>
-            <h2 className="text-md font-semibold">カテゴリ一覧</h2>
+          <Section title="カテゴリ一覧">
             <ul>
               {categories.map((category) => (
                 <li
@@ -89,15 +86,13 @@ export async function MediaLayout({
                 </li>
               ))}
             </ul>
-          </section>
+          </Section>
 
-          <section>
-            <h2 className="text-md font-semibold">タグ一覧</h2>
+          <Section title="タグ一覧">
             <ul className="flex flex-wrap gap-1">
               {tags.map((tag) => (
                 <li key={tag._id} className="text-sm text-muted-foreground">
                   <Button variant="ghost" asChild size="sm">
-                    {/* TODO: href */}
                     <Link href={paths.medium.tags.detail(tag.slug)}>
                       <span className="text-sm">#{tag.name}</span>
                     </Link>
@@ -105,9 +100,22 @@ export async function MediaLayout({
                 </li>
               ))}
             </ul>
-          </section>
+          </Section>
         </div>
       </div>
     </>
+  );
+}
+
+type SectionProps = {
+  title?: string;
+  children: React.ReactNode;
+};
+function Section({ title, children }: SectionProps) {
+  return (
+    <section>
+      {title && <h2 className="text-md font-semibold mb-3">{title}</h2>}
+      {children}
+    </section>
   );
 }
