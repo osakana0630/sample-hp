@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { inter } from "@/lib/font";
+import { ScrollTopButton } from "@/components/scroll-top-button";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -21,6 +22,7 @@ export default function RootLayout({
         <Header />
         <main>{children}</main>
         <Footer />
+        <ScrollTopButton />
       </body>
     </html>
   );
