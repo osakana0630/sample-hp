@@ -7,7 +7,7 @@ export function ServiceList() {
       {BUSINESSES.map((business) => (
         <li
           key={business.label}
-          className="grid grid-cols-1 md:grid-cols-3 py-4 gap-6 rounded-lg"
+          className="grid grid-cols-1 md:grid-cols-3 gap-6 rounded-lg"
         >
           <div className="relative aspect-video w-full self-start overflow-hidden rounded-lg border">
             <Image

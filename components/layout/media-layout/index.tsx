@@ -43,7 +43,7 @@ export function MediaLayout({
         <div className="container py-8 w-full lg:w-[70%]">{children}</div>
 
         {/* 右側のセクション */}
-        <div className="flex flex-col container py-8 w-full lg:w-[30%] gap-6">
+        <div className="container flex flex-col py-8 w-full lg:w-[30%] gap-6">
           <RightSection />
         </div>
       </div>

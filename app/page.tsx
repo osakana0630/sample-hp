@@ -46,24 +46,30 @@ export default async function Home() {
   return (
     <BasicLayout bgImageSrc="/images/hero.jpg" isHome>
       {/* 事業紹介 */}
-      <section className="container py-10">
-        <Heading
-          className="mb-6"
-          label="サービス紹介"
-          labelEn="Service"
-          component="h2"
-        />
+      <Section
+        heading={
+          <Heading
+            className="mb-6"
+            label="サービス紹介"
+            labelEn="Service"
+            component="h2"
+          />
+        }
+      >
         <ServiceList />
-      </section>
+      </Section>
 
       {/* コンサルタント紹介*/}
-      <section className="container py-10">
-        <Heading
-          className="mb-6"
-          label="コンサルタント紹介"
-          labelEn="Consultants"
-          component="h2"
-        />
+      <Section
+        heading={
+          <Heading
+            className="mb-6"
+            label="コンサルタント紹介"
+            labelEn="Consultants"
+            component="h2"
+          />
+        }
+      >
         <div className="mb-6">
           <StaffList staffs={staffs} />
         </div>
@@ -72,27 +78,33 @@ export default async function Home() {
             <Link href={paths.staffs.list}>コンサルタント一覧へ</Link>
           </Button>
         </div>
-      </section>
+      </Section>
 
       {/* 企業からのお知らせ */}
-      <section className="container">
-        <Heading
-          className="mb-6"
-          label="お知らせ"
-          labelEn="News"
-          component="h2"
-        />
+      <Section
+        heading={
+          <Heading
+            className="mb-6"
+            label="お知らせ"
+            labelEn="News"
+            component="h2"
+          />
+        }
+      >
         <NewsList newsList={news} />
-      </section>
+      </Section>
 
       {/* メディア */}
-      <section className="container py-10">
-        <Heading
-          className="mb-6"
-          label="メディア"
-          labelEn="media"
-          component="h2"
-        />
+      <Section
+        heading={
+          <Heading
+            className="mb-6"
+            label="メディア"
+            labelEn="media"
+            component="h2"
+          />
+        }
+      >
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* 求職者様インタビュー */}
           <div>
@@ -141,7 +153,20 @@ export default async function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </Section>
     </BasicLayout>
+  );
+}
+
+type SectionProps = {
+  heading: React.ReactNode;
+  children: React.ReactNode;
+};
+function Section({ heading, children }: SectionProps) {
+  return (
+    <section>
+      {heading}
+      {children}
+    </section>
   );
 }

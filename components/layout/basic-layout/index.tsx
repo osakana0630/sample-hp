@@ -38,7 +38,7 @@ export default function BasicLayout({
           </p>
         </div>
       )}
-      <div className="py-10">{children}</div>
+      <div className="container flex flex-col gap-12 py-10">{children}</div>
     </>
   );
 }
