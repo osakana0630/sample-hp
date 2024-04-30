@@ -1,10 +1,4 @@
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { Search } from "lucide-react";
-import { getArticles, getCategories, getTags } from "@/lib/newt";
-import Link from "next/link";
-import { paths } from "@/routes";
-import { TrendingArticleList } from "@/components/trending-article-list";
+import { RightSection } from "@/components/layout/media-layout/right-section";
 
 type Props = {
   pageTitle?: string | React.ReactNode;
@@ -13,20 +7,12 @@ type Props = {
   children: React.ReactNode;
 };
 
-export async function MediaLayout({
+export function MediaLayout({
   pageTitle,
   leadText,
   bgImageSrc,
   children,
 }: Props) {
-  const [articles, categories, tags] = await Promise.all([
-    getArticles(),
-    getCategories(),
-    getTags(),
-  ]);
-  // 最新の5件の記事を取得 TODO: 本来はページネーションを実装する
-  const slicedArticles = articles.slice(0, 3);
-
   return (
     <>
       {(pageTitle || leadText || bgImageSrc) && (
@@ -53,69 +39,14 @@ export async function MediaLayout({
       )}
 
       <div className="flex flex-col lg:flex-row lg:justify-between">
+        {/* メインセクション */}
         <div className="container py-8 w-full lg:w-[70%]">{children}</div>
 
-        {/*TODO コンポーネント化する */}
+        {/* 右側のセクション */}
         <div className="flex flex-col container py-8 w-full lg:w-[30%] gap-6">
-          {/* TODO 検索機能 */}
-          <Section>
-            <div className="flex gap-1">
-              <Input />
-              <Button size="icon">
-                <Search size={20} />
-              </Button>
-            </div>
-          </Section>
-
-          <Section title="よく読まれている記事">
-            <TrendingArticleList articles={slicedArticles} />
-          </Section>
-
-          <Section title="カテゴリ一覧">
-            <ul>
-              {categories.map((category) => (
-                <li
-                  key={category._id}
-                  className="text-sm text-muted-foreground"
-                >
-                  <Button variant="ghost" asChild size="sm">
-                    <Link href={paths.medium.categories.detail(category.slug)}>
-                      <span className="text-sm">{category.name}</span>
-                    </Link>
-                  </Button>
-                </li>
-              ))}
-            </ul>
-          </Section>
-
-          <Section title="タグ一覧">
-            <ul className="flex flex-wrap gap-1">
-              {tags.map((tag) => (
-                <li key={tag._id} className="text-sm text-muted-foreground">
-                  <Button variant="ghost" asChild size="sm">
-                    <Link href={paths.medium.tags.detail(tag.slug)}>
-                      <span className="text-sm">#{tag.name}</span>
-                    </Link>
-                  </Button>
-                </li>
-              ))}
-            </ul>
-          </Section>
+          <RightSection />
         </div>
       </div>
     </>
-  );
-}
-
-type SectionProps = {
-  title?: string;
-  children: React.ReactNode;
-};
-function Section({ title, children }: SectionProps) {
-  return (
-    <section>
-      {title && <h2 className="text-md font-semibold mb-3">{title}</h2>}
-      {children}
-    </section>
   );
 }
