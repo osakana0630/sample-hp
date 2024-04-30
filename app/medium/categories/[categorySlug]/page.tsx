@@ -6,6 +6,7 @@ import {
 import Link from "next/link";
 import { format } from "date-fns";
 import { notFound } from "next/navigation";
+import { paths } from "@/routes";
 
 export async function generateStaticParams() {
   const categories = await getCategories();
@@ -15,11 +16,10 @@ export async function generateStaticParams() {
 }
 export const dynamicParams = false;
 
-export default async function Page({
-  params: { categorySlug },
-}: {
+type Props = {
   params: { categorySlug: string };
-}) {
+};
+export default async function Page({ params: { categorySlug } }: Props) {
   // 記事の参照先のカテゴリはIDでのみ絞り込み可能という制約のため
   // カテゴリスラッグからカテゴリを取得し、IDを特定したい
   // https://developers.newt.so/apis/cdn#tag/contents_general/Queries/%E6%B3%A8%E6%84%8F
@@ -39,7 +39,7 @@ export default async function Page({
             className="relative rounded-lg border p-4 hover:bg-accent"
           >
             <h3>
-              <Link href={`articles/${article.slug}`}>
+              <Link href={paths.medium.detail(article.slug)}>
                 {article.title}
                 <span className="absolute inset-0" />
               </Link>

@@ -29,7 +29,7 @@ export function ArticleItem({ article }: ArticleItemProps) {
             </time>
 
             <h3 className="text-xl font-bold text-gray-800">
-              <Link href={`articles/${article._id}`}>
+              <Link href={`/medium/${article._id}`}>
                 {article.title}
                 <span className="absolute inset-0" />
               </Link>

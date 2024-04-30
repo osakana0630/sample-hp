@@ -10,18 +10,15 @@ export async function generateStaticParams() {
 }
 export const dynamicParams = false;
 
-export default async function Page({
-  params: { id },
-}: {
+type Props = {
   params: {
-    id: string;
+    articleId: string;
   };
-}) {
-  const article = await getArticleById(id);
+};
 
-  if (article === null) {
-    notFound();
-  }
+export default async function Page({ params: { articleId } }: Props) {
+  const article = await getArticleById(articleId);
+  if (article === null) notFound();
 
   return (
     <BasicLayout pageTitle="">

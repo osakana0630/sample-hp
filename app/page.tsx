@@ -14,6 +14,7 @@ import { ServiceList } from "@/components/service-list";
 import { StaffList } from "@/components/staff-list";
 import { NewsList } from "@/components/news-list";
 import { ArticleList } from "@/components/article-list";
+import { paths } from "@/routes";
 
 export const metadata: Metadata = {
   title: "株式会社〇〇のコーポレートサイト",
@@ -68,7 +69,7 @@ export default async function Home() {
         </div>
         <div className="text-center">
           <Button variant="default" asChild>
-            <Link href={"/staffs"}>コンサルタント一覧へ</Link>
+            <Link href={paths.staffs.list}>コンサルタント一覧へ</Link>
           </Button>
         </div>
       </section>
@@ -106,7 +107,7 @@ export default async function Home() {
             </div>
             <div className="text-right">
               <Button variant="default" asChild>
-                <Link href={"/staffs"}>一覧へ</Link>
+                <Link href={paths.staffs.list}>一覧へ</Link>
               </Button>
             </div>
           </div>
@@ -123,7 +124,7 @@ export default async function Home() {
             </div>
             <div className="text-right">
               <Button variant="default" asChild>
-                <Link href={"/staffs"}>一覧へ</Link>
+                <Link href={paths.staffs.list}>一覧へ</Link>
               </Button>
             </div>
           </div>

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Staff } from "@/types/staff";
 import Image from "next/image";
 import { trimString } from "@/lib/utils";
+import { paths } from "@/routes";
 
 type StaffItemProps = {
   staff: Staff;
@@ -18,7 +19,7 @@ export function StaffItem({ staff }: StaffItemProps) {
         />
       </div>
       <h3>
-        <Link href={`staffs/${staff._id}`}>
+        <Link href={paths.staffs.detail(staff._id)}>
           {staff.fullName}
           <span className="absolute inset-0" />
         </Link>

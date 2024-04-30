@@ -14,6 +14,8 @@ const client = createClient({
   apiType: "cdn",
 });
 
+// ----------------------------------------------------------------------------
+
 // NewtのCDN APIでは認証に Authorization ヘッダを利用していますが、Next.jsの fetch() は Authorization ヘッダを利用する場合はキャッシュされないため、ここではReactの cache() を利用
 export const getArticles = cache(async () => {
   const { items } = await client.getContents<Article>({
@@ -62,6 +64,21 @@ export const getArticlesByCategorySlug = cache(
   },
 );
 
+export const getArticlesByTagIds = cache(async (tagIds: string[]) => {
+  const { items } = await client.getContents<Article>({
+    appUid: process.env.APP_UID || "",
+    modelUid: "article",
+    query: {
+      tags: {
+        in: tagIds,
+      },
+    },
+  });
+  return items;
+});
+
+// ----------------------------------------------------------------------------
+
 export const getStaffs = cache(async (skip?: number, limit?: number) => {
   const { items } = await client.getContents<Staff>({
     appUid: process.env.APP_UID || "",
@@ -81,6 +98,8 @@ export const getStaffById = cache(async (id: string) => {
     contentId: id,
   });
 });
+
+// ----------------------------------------------------------------------------
 
 export const getCategories = cache(async () => {
   const { items } = await client.getContents<Category>({

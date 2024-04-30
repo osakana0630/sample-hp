@@ -1,29 +1,30 @@
 import { Building2, Home, MailQuestion, Newspaper, Users } from "lucide-react";
+import { paths } from "@/routes";
 
 export const headerNavs = [
-  { label: "Company", href: "/company-info", icon: Building2 },
-  { label: "Consultant", href: "/staffs", icon: Users },
-  { label: "Media", href: "/medium", icon: Newspaper },
-  { label: "Contact", href: "/contact", icon: MailQuestion },
+  { label: "Company", href: paths.companyInfo, icon: Building2 },
+  { label: "Consultant", href: paths.staffs.list, icon: Users },
+  { label: "Media", href: paths.medium.list, icon: Newspaper },
+  { label: "Contact", href: paths.contact, icon: MailQuestion },
 ];
 
 export const mobileSidebarNavs = [
-  { label: "Home", href: "/", icon: Home },
+  { label: "Home", href: paths.home, icon: Home },
   ...headerNavs,
 ];
 
 export const footerNavs = [
-  { label: "Home", href: "/", icon: Home },
+  { label: "Home", href: paths.home, icon: Home },
   ...headerNavs,
 ];
 
 export const footerSubNavs = [
   {
-    href: "/privacy-policy",
+    href: paths.privacyPolicy,
     label: "Privacy Policy",
   },
   {
-    href: "/sitemap.xml",
+    href: paths.siteMap,
     label: "Site Map",
   },
 ];

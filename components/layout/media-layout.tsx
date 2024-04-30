@@ -1,9 +1,10 @@
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Search } from "lucide-react";
-import { getArticles, getCategories } from "@/lib/newt";
+import { getArticles, getCategories, getTags } from "@/lib/newt";
 import Link from "next/link";
 import { ArticleList } from "@/components/article-list";
+import { paths } from "@/routes";
 
 type Props = {
   pageTitle?: string | React.ReactNode;
@@ -18,22 +19,14 @@ export async function MediaLayout({
   bgImageSrc,
   children,
 }: Props) {
-  const [categories, articles] = await Promise.all([
-    getCategories(),
+  const [articles, categories, tags] = await Promise.all([
     getArticles(),
+    getCategories(),
+    getTags(),
   ]);
   // 最新の5件の記事を取得 TODO: 本来はページネーションを実装する
   const slicedArticles = articles.slice(0, 3);
-  const tags = [
-    "React",
-    "Next.js",
-    "JavaScript",
-    "HTML",
-    "CSS",
-    "Go",
-    "Ruby",
-    "Docker",
-  ];
+  console.log({ tags });
 
   return (
     <>
@@ -90,7 +83,7 @@ export async function MediaLayout({
                   className="text-sm text-muted-foreground"
                 >
                   <Button variant="ghost" asChild size="sm">
-                    <Link href={`/medium/${category.slug}`}>
+                    <Link href={paths.medium.categories.detail(category.slug)}>
                       <span className="text-sm">{category.name}</span>
                     </Link>
                   </Button>
@@ -103,11 +96,11 @@ export async function MediaLayout({
             <h2 className="text-md font-semibold">タグ一覧</h2>
             <ul className="flex flex-wrap gap-1">
               {tags.map((tag) => (
-                <li key={tag} className="text-sm text-muted-foreground">
+                <li key={tag._id} className="text-sm text-muted-foreground">
                   <Button variant="ghost" asChild size="sm">
                     {/* TODO: href */}
-                    <Link href={`#`}>
-                      <span className="text-sm">#{tag}</span>
+                    <Link href={paths.medium.tags.detail(tag.slug)}>
+                      <span className="text-sm">#{tag.name}</span>
                     </Link>
                   </Button>
                 </li>
