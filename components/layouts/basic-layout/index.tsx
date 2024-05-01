@@ -40,9 +40,9 @@ export function BasicLayout({
           </p>
         </div>
       )}
-      <div className="container max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg flex flex-col gap-12 py-4">
+      <div className="container max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg  py-4">
         {breadcrumb}
-        {children}
+        <div className="flex flex-col py-8 gap-6">{children}</div>
       </div>
     </>
   );
