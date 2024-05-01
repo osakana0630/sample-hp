@@ -1,14 +1,16 @@
-import { StaffItem } from "@/components/staff-list/staff-item";
-import { Staff } from "@/types/staff";
+import { StaffItem } from '@/components/staff-list/staff-item';
+import { Staff } from '@/types/staff';
 
 type Props = {
   staffs: Staff[];
 };
 export function StaffList({ staffs }: Props) {
   return (
-    <ul className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+    <ul className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
       {staffs.map((staff) => (
-        <StaffItem key={staff._id} staff={staff} />
+        <li key={staff._id}>
+          <StaffItem staff={staff} />
+        </li>
       ))}
     </ul>
   );
