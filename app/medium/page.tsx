@@ -11,7 +11,7 @@ export default async function Page() {
       pageTitle={<Heading component="h1" label="メディア" labelEn="Media" />}
     >
       <section>
-        <h2 className="font-bold text-3xl mb-6">最新の記事</h2>
+        <h2 className="font-semibold text-2xl mb-6">最新の記事</h2>
         <ArticleList articles={latestArticles} />
         {/* TODO pagination */}
       </section>

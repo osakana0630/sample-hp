@@ -27,7 +27,7 @@ export default async function Page({ params: { tagSlug } }: Props) {
       pageTitle={<Heading component="h1" label="メディア" labelEn="Media" />}
     >
       <section>
-        <h2 className="font-bold text-lg md:text-xl mb-6">
+        <h2 className="font-semibold text-2xl mb-6">
           「{tag.name}」の記事一覧
         </h2>
         {hasArticles ? (

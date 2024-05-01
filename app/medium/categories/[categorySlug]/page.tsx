@@ -40,9 +40,9 @@ export default async function Page({ params: { categorySlug } }: Props) {
       }
     >
       <section>
-        <h1 className="mb-6 font-bold text-2xl">
+        <h2 className="font-semibold text-2xl mb-6">
           「{category.name}」の記事一覧
-        </h1>
+        </h2>
         {hasArticles ? (
           <ArticleList articles={articles} />
         ) : (

@@ -15,7 +15,7 @@ export default async function Page() {
         />
       }
     >
-      <section className="">
+      <section>
         <h2 className="font-semibold text-2xl mb-6 text-center">
           コンサルタント一覧
         </h2>
