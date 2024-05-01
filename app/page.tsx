@@ -11,11 +11,11 @@ import { BasicLayout } from "@/components/layouts/basic-layout";
 import { CATEGORIES } from "@/constants/category";
 import { Heading, type HeadingProps } from "@/components/heading";
 import { ServiceList } from "@/components/service-list";
-import { StaffList } from "@/components/staff-list";
 import { NewsList } from "@/components/news-list";
 import { ArticleList } from "@/components/article-list";
 import { paths } from "@/routes";
 import { config } from "@/config";
+import { StaffCarousel } from "@/components/staff-carousel";
 
 // TODO add metadata
 export const metadata: Metadata = {
@@ -57,7 +57,7 @@ export default async function Home() {
         headingProps={{ label: "コンサルタント紹介", labelEn: "Consultants" }}
       >
         <div className="mb-6">
-          <StaffList staffs={staffs} />
+          <StaffCarousel staffs={staffs} />
         </div>
         <div className="text-center">
           <Button variant="default" asChild>
