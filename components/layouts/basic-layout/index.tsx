@@ -20,29 +20,29 @@ export function BasicLayout({
       {(pageTitle || leadText || bgImageSrc) && (
         <div
           data-is-home={isHome}
-          className={`bg-muted w-full h-[150px] data-[is-home=true]:h-[300px] lg:data-[is-home=true]:h-[500px] flex flex-col justify-center items-center text-center p-4`}
+          className={`flex h-[150px] w-full flex-col items-center justify-center bg-muted p-4 text-center data-[is-home=true]:h-[300px] lg:data-[is-home=true]:h-[500px]`}
           style={{
             backgroundImage: `url(${bgImageSrc})`,
-            backgroundSize: "cover",
-            backgroundPosition: "bottom",
+            backgroundSize: 'cover',
+            backgroundPosition: 'bottom',
           }}
         >
-          {pageTitle && typeof pageTitle === "string" ? (
-            <h1 className="font-semibold text-xl md:text-2xl mb-6">
-              {pageTitle}
-            </h1>
+          {pageTitle && typeof pageTitle === 'string' ? (
+            <h1 className="mb-6 text-xl font-semibold md:text-2xl">{pageTitle}</h1>
           ) : (
             pageTitle
           )}
 
-          <p className="text-xs md:text-sm text-muted-foreground whitespace-pre-wrap">
+          <p className="whitespace-pre-wrap text-xs text-muted-foreground md:text-sm">
             {leadText}
           </p>
         </div>
       )}
-      <div className="container max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg py-4">
+      <div className="container max-w-screen-sm py-4 md:max-w-screen-md lg:max-w-screen-lg">
+        {/* パンくずリスト */}
         {breadcrumb}
-        <div className="flex flex-col py-8 gap-6">{children}</div>
+        {/* メインコンテンツセクション */}
+        <div className="flex flex-col gap-16 py-8 md:gap-20">{children}</div>
       </div>
     </>
   );

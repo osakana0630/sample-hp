@@ -1,21 +1,22 @@
-import Link from "next/link";
+import Link from 'next/link';
 import {
   getArticlesByCategoryIds,
   getCategories,
   getNewsList,
   getStaffs,
-} from "@/lib/newt";
-import type { Metadata } from "next";
-import { Button } from "@/components/ui/button";
-import { BasicLayout } from "@/components/layouts/basic-layout";
-import { CATEGORIES } from "@/constants/category";
-import { Heading, type HeadingProps } from "@/components/heading";
-import { ServiceList } from "@/components/service-list";
-import { NewsList } from "@/components/news-list";
-import { ArticleList } from "@/components/article-list";
-import { paths } from "@/routes";
-import { config } from "@/config";
-import { StaffCarousel } from "@/components/staff-carousel";
+} from '@/lib/newt';
+import type { Metadata } from 'next';
+import { Button } from '@/components/ui/button';
+import { BasicLayout } from '@/components/layouts/basic-layout';
+import { CATEGORIES } from '@/constants/category';
+import { Heading, type HeadingProps } from '@/components/heading';
+import { ServiceList } from '@/components/service-list';
+import { NewsList } from '@/components/news-list';
+import { ArticleList } from '@/components/article-list';
+import { paths } from '@/routes';
+import { config } from '@/config';
+import { StaffCarousel } from '@/components/staff-carousel';
+import { ArrowRight } from 'lucide-react';
 
 // TODO add metadata
 export const metadata: Metadata = {
@@ -30,118 +31,114 @@ export default async function Home() {
     getStaffs({ limit: 9 }),
   ]);
   const jobSeekerInterviewCategory = categories.find(
-    (category) => category.slug === CATEGORIES["jobSeekerInterview"],
+    (category) => category.slug === CATEGORIES['jobSeekerInterview']
   );
   const companyInterviewCategory = categories.find(
-    (category) => category.slug === CATEGORIES["companyInterview"],
+    (category) => category.slug === CATEGORIES['companyInterview']
   );
   const [jobSeekerInterviews, companyInterviews] = await Promise.all([
     getArticlesByCategoryIds(
-      (jobSeekerInterviewCategory?._id && [jobSeekerInterviewCategory?._id]) ||
-        [],
+      (jobSeekerInterviewCategory?._id && [jobSeekerInterviewCategory?._id]) || []
     ),
     getArticlesByCategoryIds(
-      (companyInterviewCategory?._id && [companyInterviewCategory?._id]) || [],
+      (companyInterviewCategory?._id && [companyInterviewCategory?._id]) || []
     ),
   ]);
 
   return (
     <BasicLayout bgImageSrc="/images/hero.jpg" isHome>
       {/* 事業紹介 */}
-      <Section headingProps={{ label: "サービス紹介", labelEn: "Service" }}>
+      <Section headingProps={{ label: 'サービス紹介', labelEn: 'Service' }}>
         <ServiceList />
       </Section>
 
       {/* コンサルタント紹介*/}
       <Section
-        headingProps={{ label: "コンサルタント紹介", labelEn: "Consultants" }}
+        headingProps={{ label: 'コンサルタント紹介', labelEn: 'Consultants' }}
+        button={<LinkButton href={paths.staffList(1)} />}
       >
-        <div className="mb-6">
-          <StaffCarousel staffs={staffs} />
-        </div>
-        <div className="text-center">
-          <Button variant="default" asChild>
-            <Link href={paths.staffList(1)}>コンサルタント一覧へ</Link>
-          </Button>
-        </div>
+        <StaffCarousel staffs={staffs} />
       </Section>
 
       {/* 企業からのお知らせ */}
-      <Section headingProps={{ label: "お知らせ", labelEn: "News" }}>
-        <div className="mb-6">
-          <NewsList newsList={news} />
-        </div>
-        <div className="text-center">
-          <Button variant="default" asChild>
-            <Link href={paths.newsList(1)}>お知らせ一覧へ</Link>
-          </Button>
-        </div>
+      <Section
+        headingProps={{ label: 'お知らせ', labelEn: 'News' }}
+        button={<LinkButton href={paths.newsList(1)} />}
+      >
+        <NewsList newsList={news} />
       </Section>
 
       {/* メディア */}
-      <Section headingProps={{ label: "メディア", labelEn: "Media" }}>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <Section headingProps={{ label: 'メディア', labelEn: 'Media' }}>
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
           {/* 求職者様インタビュー */}
-          <div>
-            <Heading
-              className="mb-6"
-              label="求職者様インタビュー"
-              labelEn=""
-              component="h2"
-            />
-            <div className="mb-6">
-              <ArticleList articles={jobSeekerInterviews} />
-            </div>
-            <div className="text-right">
-              <Button variant="default" asChild>
-                <Link
-                  href={paths.medium.categories.detail(
-                    CATEGORIES["jobSeekerInterview"],
-                  )}
-                >
-                  一覧へ
-                </Link>
-              </Button>
-            </div>
-          </div>
+          <Section
+            headingProps={{
+              label: '求職者様インタビュー',
+              labelEn: '',
+              component: 'h3',
+            }}
+            button={
+              <LinkButton
+                href={paths.medium.categories.detail(CATEGORIES['jobSeekerInterview'])}
+              />
+            }
+          >
+            <ArticleList articles={jobSeekerInterviews} />
+          </Section>
           {/* 紹介企業様インタビュー */}
-          <div>
-            <Heading
-              className="mb-6"
-              label="紹介企業様インタビュー"
-              labelEn=""
-              component="h2"
-            />
-            <div className="mb-6">
-              <ArticleList articles={companyInterviews} />
-            </div>
-            <div className="text-right">
-              <Button variant="default" asChild>
-                <Link
-                  href={paths.medium.categories.detail(
-                    CATEGORIES["companyInterview"],
-                  )}
-                >
-                  一覧へ
-                </Link>
-              </Button>
-            </div>
-          </div>
+          <Section
+            headingProps={{
+              label: '紹介企業様インタビュー',
+              labelEn: '',
+              component: 'h3',
+            }}
+            button={
+              <LinkButton
+                href={paths.medium.categories.detail(CATEGORIES['companyInterview'])}
+              />
+            }
+          >
+            <ArticleList articles={companyInterviews} />
+          </Section>
         </div>
       </Section>
     </BasicLayout>
   );
 }
 
+// Note: このページでしか使わないコンポーネントは下記に記載しているが、必要があれば共通化しても良い
+
 type SectionProps = {
-  headingProps: Pick<HeadingProps, "label" | "labelEn">;
+  headingProps: Pick<HeadingProps, 'label' | 'labelEn' | 'component'>;
+  button?: React.ReactNode;
   children: React.ReactNode;
 };
-function Section({ headingProps, children }: SectionProps) {
+
+function Section({ headingProps, button, children }: SectionProps) {
   return (
     <section>
-      <Heading {...headingProps} className="mb-6" component="h2" />
-      {children}
+      <header className="flex items-end justify-between lg:justify-start lg:gap-6">
+        <Heading {...headingProps} component="h2" />
+        {button}
+      </header>
+      <article className="mt-6">{children}</article>
     </section>
+  );
+}
+
+type LinkButtonProps = {
+  label?: string;
+  href: string;
+};
+
+function LinkButton({ href, label = '一覧へ' }: LinkButtonProps) {
+  return (
+    <Button variant="default" asChild size="sm">
+      <Link href={href}>
+        {label}
+        <ArrowRight size={20} className="ml-1" />
+      </Link>
+    </Button>
   );
 }
