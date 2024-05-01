@@ -44,11 +44,11 @@ export function StaffCarousel({ staffs }: Props) {
           loop: true,
         }}
         setApi={setApi}
-        // plugins={[
-        //   Autoplay({
-        //     delay: 2500,
-        //   }),
-        // ]}
+        plugins={[
+          Autoplay({
+            delay: 2500,
+          }),
+        ]}
       >
         <CarouselContent>
           {staffs.map((staff, index) => (
@@ -57,12 +57,8 @@ export function StaffCarousel({ staffs }: Props) {
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious className="" />
-        <CarouselNext className="" />
-        {/*<div className="text-center space-x-4 mt-6">*/}
-        {/*  <CarouselPrevious className="static" />*/}
-        {/*  <CarouselNext className="static" />*/}
-        {/*</div>*/}
+        <CarouselPrevious className="hidden md:inline-flex" />
+        <CarouselNext className="hidden md:inline-flex" />
       </Carousel>
       <p className="text-sm text-muted-foreground tracking-widest">
         {current}/{count}
