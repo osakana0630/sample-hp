@@ -32,7 +32,7 @@ export function ArticleItem({ article }: ArticleItemProps) {
               {format(new Date(article._sys.createdAt), "yyyy年MM月dd日")}
             </time>
 
-            <h3 className="text-xl font-bold">
+            <h3 className="text-xl font-bold line-clamp-2">
               <Link href={paths.medium.detail(article.slug)}>
                 {article.title}
                 <span className="absolute inset-0" />

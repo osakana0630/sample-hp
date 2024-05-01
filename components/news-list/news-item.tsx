@@ -12,7 +12,7 @@ export function NewsItem({ news }: NewsItemProps) {
       key={news._id}
       className="relative rounded-lg border p-4 hover:bg-accent hover:shadow-sm duration-100"
     >
-      <h3>
+      <h3 className="text-sm line-clamp-1">
         <Link href={paths.news.detail(news._id)}>
           {news.title}
           <span className="absolute inset-0" />

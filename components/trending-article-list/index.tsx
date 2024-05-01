@@ -28,7 +28,7 @@ export function TrendingArticleList({ articles }: Props) {
 
               {/* テキスト領域 */}
               <div className="flex flex-col gap-2">
-                <h3 className="text-sm lg:text-md text-muted-foreground">
+                <h3 className="text-sm lg:text-md text-muted-foreground line-clamp-2">
                   <Link href={paths.medium.detail(article.slug)}>
                     {article.title}
                     <span className="absolute inset-0" />
