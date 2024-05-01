@@ -2,6 +2,8 @@ import { getNewsList, getNewsById } from "@/lib/newt";
 import { BasicLayout } from "@/components/layouts/basic-layout";
 import { notFound } from "next/navigation";
 import { Heading } from "@/components/heading";
+import { CustomBreadcrumb } from "@/components/custom-breadcrumb";
+import { paths } from "@/routes";
 
 export async function generateStaticParams() {
   const { news } = await getNewsList();
@@ -26,6 +28,14 @@ export default async function Page({
   return (
     <BasicLayout
       pageTitle={<Heading component="h1" label="お知らせ" labelEn="News" />}
+      breadcrumb={
+        <CustomBreadcrumb
+          links={[
+            { name: "お知らせ", href: paths.newsList(1) },
+            { name: news.title },
+          ]}
+        />
+      }
     >
       <div className="prose container">
         <h1>{news.title}</h1>

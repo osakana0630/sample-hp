@@ -3,6 +3,8 @@ import { BasicLayout } from "@/components/layouts/basic-layout";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import { Heading } from "@/components/heading";
+import { CustomBreadcrumb } from "@/components/custom-breadcrumb";
+import { paths } from "@/routes";
 
 export async function generateStaticParams() {
   const { staffs } = await getStaffs();
@@ -32,6 +34,14 @@ export default async function Page({
           component="h1"
           label="コンサルタント詳細"
           labelEn="Consultant detail"
+        />
+      }
+      breadcrumb={
+        <CustomBreadcrumb
+          links={[
+            { name: "コンサルタント紹介", href: paths.staffList(1) },
+            { name: staff.fullName },
+          ]}
         />
       }
     >
