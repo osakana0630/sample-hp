@@ -6,7 +6,7 @@ type Props = {
 };
 export function StaffList({ staffs }: Props) {
   return (
-    <ul className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+    <ul className="grid gap-6 md:grid-cols-3">
       {staffs.map((staff) => (
         <li key={staff._id}>
           <StaffItem staff={staff} />

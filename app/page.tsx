@@ -17,6 +17,7 @@ import { paths } from '@/routes';
 import { config } from '@/config';
 import { StaffCarousel } from '@/components/staff-carousel';
 import { ArrowRight } from 'lucide-react';
+import { StaffList } from '@/components/staff-list';
 
 // TODO add metadata
 export const metadata: Metadata = {
@@ -28,7 +29,7 @@ export default async function Home() {
   const [{ news }, categories, { staffs }] = await Promise.all([
     getNewsList({ limit: 3 }),
     getCategories(),
-    getStaffs({ limit: 9 }),
+    getStaffs({ limit: 3 }),
   ]);
   const jobSeekerInterviewCategory = categories.find(
     (category) => category.slug === CATEGORIES['jobSeekerInterview']
@@ -57,7 +58,13 @@ export default async function Home() {
         headingProps={{ label: 'コンサルタント紹介', labelEn: 'Consultants' }}
         button={<LinkButton href={paths.staffList(1)} />}
       >
-        <StaffCarousel staffs={staffs} />
+        <div className="md:hidden">
+          <StaffCarousel staffs={staffs} />
+        </div>
+
+        <div className="hidden md:block">
+          <StaffList staffs={staffs} />
+        </div>
       </Section>
 
       {/* 企業からのお知らせ */}

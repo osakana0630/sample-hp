@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import {
   Carousel,
@@ -6,13 +6,13 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "@/components/ui/carousel";
-import { StaffItem } from "@/components/staff-list/staff-item";
-import Autoplay from "embla-carousel-autoplay";
-import { type CarouselApi } from "@/components/ui/carousel";
+} from '@/components/ui/carousel';
+import { StaffItem } from '@/components/staff-list/staff-item';
+import Autoplay from 'embla-carousel-autoplay';
+import { type CarouselApi } from '@/components/ui/carousel';
 
-import { Staff } from "@/types/staff";
-import { useEffect, useState } from "react";
+import { Staff } from '@/types/staff';
+import { useEffect, useState } from 'react';
 
 type Props = {
   staffs: Staff[];
@@ -30,7 +30,7 @@ export function StaffCarousel({ staffs }: Props) {
     setCount(api.scrollSnapList().length);
     setCurrent(api.selectedScrollSnap() + 1);
 
-    api.on("select", () => {
+    api.on('select', () => {
       setCurrent(api.selectedScrollSnap() + 1);
     });
   }, [api]);
@@ -38,9 +38,9 @@ export function StaffCarousel({ staffs }: Props) {
   return (
     <div className="flex flex-col items-center gap-1">
       <Carousel
-        className="w-full mx-auto" //max-w-xs
+        className="mx-auto w-full" //max-w-xs
         opts={{
-          align: "start",
+          align: 'start',
           loop: true,
         }}
         setApi={setApi}
@@ -52,21 +52,15 @@ export function StaffCarousel({ staffs }: Props) {
       >
         <CarouselContent>
           {staffs.map((staff, index) => (
-            <CarouselItem key={index} className="sm:basis-1/2 lg:basis-1/4">
+            <CarouselItem key={index} className="sm:basis-1/2 lg:basis-1/3">
               <StaffItem staff={staff} />
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious
-          className="-left-5 h-14 w-14 shadow-xl"
-          variant="outline"
-        />
-        <CarouselNext
-          className="-right-5 h-14 w-14 shadow-xl"
-          variant="outline"
-        />
+        <CarouselPrevious className="-left-5 h-14 w-14 shadow-xl" variant="outline" />
+        <CarouselNext className="-right-5 h-14 w-14 shadow-xl" variant="outline" />
       </Carousel>
-      <p className="text-sm text-muted-foreground tracking-widest">
+      <p className="text-sm tracking-widest text-muted-foreground">
         {current}/{count}
       </p>
     </div>
