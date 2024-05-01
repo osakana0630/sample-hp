@@ -1,8 +1,8 @@
-import Link from "next/link";
-import { Menu } from "lucide-react";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Button } from "@/components/ui/button";
-import { mobileSidebarNavs } from "@/constants/nav-link";
+import Link from 'next/link';
+import { Menu } from 'lucide-react';
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { Button } from '@/components/ui/button';
+import { mobileSidebarNavs } from '@/constants/nav-link';
 
 export default function MobileNav() {
   return (
@@ -13,16 +13,16 @@ export default function MobileNav() {
         </Button>
       </SheetTrigger>
       <SheetContent side="left">
-        <div className="flex flex-col">
+        <div className="flex flex-col gap-1">
           {mobileSidebarNavs.map((item) => (
             <Button
               key={item.label}
               variant="ghost"
-              className="justify-start"
+              className="justify-start text-lg"
               asChild
             >
               <Link href={item.href}>
-                <item.icon className="mr-5" size={20} />
+                <item.icon className="mr-3" size={20} />
                 {item.label}
               </Link>
             </Button>

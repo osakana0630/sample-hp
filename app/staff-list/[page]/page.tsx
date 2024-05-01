@@ -1,11 +1,11 @@
-import { BasicLayout } from "@/components/layouts/basic-layout";
-import { getStaffs } from "@/lib/newt";
-import { Heading } from "@/components/heading";
-import { range } from "@/utils";
-import { NEWS_PER_PAGE, STAFFS_PER_PAGE } from "@/constants/pagination";
-import { Pagination } from "@/components/custom-pagination";
-import { StaffItem } from "@/components/staff-list/staff-item";
-import { CustomBreadcrumb } from "@/components/custom-breadcrumb";
+import { BasicLayout } from '@/components/layouts/basic-layout';
+import { getStaffs } from '@/lib/newt';
+import { Heading } from '@/components/heading';
+import { range } from '@/utils';
+import { NEWS_PER_PAGE, STAFFS_PER_PAGE } from '@/constants/pagination';
+import { Pagination } from '@/components/custom-pagination';
+import { StaffItem } from '@/components/staff-list/staff-item';
+import { CustomBreadcrumb } from '@/components/custom-breadcrumb';
 
 /**
  * Note
@@ -39,19 +39,12 @@ export default async function Page({ params }: Props) {
   return (
     <BasicLayout
       pageTitle={
-        <Heading
-          component="h1"
-          label="コンサルタント紹介"
-          labelEn="Consultants"
-        />
+        <Heading component="h1" label="コンサルタント紹介" labelEn="Consultants" />
       }
-      breadcrumb={<CustomBreadcrumb links={[{ name: "コンサルタント紹介" }]} />}
+      breadcrumb={<CustomBreadcrumb links={[{ name: 'コンサルタント紹介' }]} />}
     >
       <section className="space-y-4">
-        <h2 className="font-semibold text-2xl mb-6 text-center">
-          コンサルタント一覧
-        </h2>
-        <ul className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <ul className="grid grid-cols-1 gap-6 md:grid-cols-3 lg:grid-cols-4">
           {staffs.map((staff) => (
             <StaffItem key={staff._id} staff={staff} />
           ))}

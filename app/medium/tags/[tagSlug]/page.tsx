@@ -1,10 +1,10 @@
-import { MediaLayout } from "@/components/layouts/media-layout";
-import { getArticlesByTagIds, getTagBySlug, getTags } from "@/lib/newt";
-import { notFound } from "next/navigation";
-import { ArticleList } from "@/components/article-list";
-import { Heading } from "@/components/heading";
-import { CustomBreadcrumb } from "@/components/custom-breadcrumb";
-import { paths } from "@/routes";
+import { MediaLayout } from '@/components/layouts/media-layout';
+import { getArticlesByTagIds, getTagBySlug, getTags } from '@/lib/newt';
+import { notFound } from 'next/navigation';
+import { ArticleList } from '@/components/article-list';
+import { Heading } from '@/components/heading';
+import { CustomBreadcrumb } from '@/components/custom-breadcrumb';
+import { paths } from '@/routes';
 
 type Props = {
   params: { tagSlug: string };
@@ -30,15 +30,15 @@ export default async function Page({ params: { tagSlug } }: Props) {
       breadcrumb={
         <CustomBreadcrumb
           links={[
-            { name: "メディア", href: paths.medium.list },
-            { name: "タグ" },
+            { name: 'メディア', href: paths.medium.list },
+            { name: 'タグ' },
             { name: tag.name },
           ]}
         />
       }
     >
       <section>
-        <h2 className="font-semibold text-2xl mb-6">
+        <h2 className="mb-6 text-2xl font-semibold md:text-3xl">
           「{tag.name}」の記事一覧
         </h2>
         {hasArticles ? (

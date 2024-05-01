@@ -1,14 +1,10 @@
-import {
-  getArticlesByCategoryIds,
-  getCategories,
-  getCategoryBySlug,
-} from "@/lib/newt";
-import { notFound } from "next/navigation";
-import { MediaLayout } from "@/components/layouts/media-layout";
-import { Heading } from "@/components/heading";
-import { ArticleList } from "@/components/article-list";
-import { CustomBreadcrumb } from "@/components/custom-breadcrumb";
-import { paths } from "@/routes";
+import { getArticlesByCategoryIds, getCategories, getCategoryBySlug } from '@/lib/newt';
+import { notFound } from 'next/navigation';
+import { MediaLayout } from '@/components/layouts/media-layout';
+import { Heading } from '@/components/heading';
+import { ArticleList } from '@/components/article-list';
+import { CustomBreadcrumb } from '@/components/custom-breadcrumb';
+import { paths } from '@/routes';
 
 export async function generateStaticParams() {
   const categories = await getCategories();
@@ -34,25 +30,21 @@ export default async function Page({ params: { categorySlug } }: Props) {
   return (
     <MediaLayout
       pageTitle={
-        <Heading
-          component="h1"
-          label={`「${category.name}」`}
-          labelEn="Media"
-        />
+        <Heading component="h1" label={`「${category.name}」`} labelEn="Media" />
       }
       breadcrumb={
         <CustomBreadcrumb
           links={[
-            { name: "メディア", href: paths.medium.list },
-            { name: "カテゴリ" },
+            { name: 'メディア', href: paths.medium.list },
+            { name: 'カテゴリ' },
             { name: category.name },
           ]}
         />
       }
     >
       <section>
-        <h2 className="font-semibold text-2xl mb-6">
-          「{category.name}」の記事一覧
+        <h2 className="mb-6 text-2xl font-semibold md:text-3xl">
+          「{category.name}」の記事
         </h2>
         {hasArticles ? (
           <ArticleList articles={articles} />

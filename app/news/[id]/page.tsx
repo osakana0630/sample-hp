@@ -31,7 +31,7 @@ export default async function Page({ params: { id } }: { params: { id: string } 
       }
     >
       <section className="prose">
-        <h2 className="mb-6 text-3xl font-bold">{news.title}</h2>
+        <h2 className="mb-6 text-2xl font-semibold md:text-3xl">{news.title}</h2>
         <div dangerouslySetInnerHTML={{ __html: news.body }} />
       </section>
     </BasicLayout>
