@@ -38,7 +38,7 @@ export function MediaLayout({
         </div>
       )}
 
-      <div className="contaier mx-auto flex flex-col lg:flex-row lg:justify-between max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg gap-4">
+      <div className="container mx-auto flex flex-col lg:flex-row lg:justify-between max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg gap-4">
         {/* メインセクション */}
         <div className="py-8 w-full lg:w-[70%]">{children}</div>
 
