@@ -35,7 +35,7 @@ export default async function Page({
         />
       }
     >
-      <div className="container flex flex-col">
+      <div className="flex flex-col">
         <div className="aspect-video overflow-hidden border rounded-lg bg-muted mb-4 relative">
           <Image
             src={staff.profileImage.src}
@@ -50,7 +50,7 @@ export default async function Page({
           <div dangerouslySetInnerHTML={{ __html: staff.biography }} />
         </div>
 
-        <dl className="flex gap-6 border p-4 rounded-lg">
+        <dl className="flex flex-col md:flex-row gap-6 border p-4 rounded-lg">
           <dt className="w-12 font-semibold">経歴</dt>
           <dd className="whitespace-pre-wrap flex-1 text-muted-foreground">
             {staff.career}
