@@ -28,7 +28,7 @@ export function BasicLayout({
           }}
         >
           {pageTitle && typeof pageTitle === "string" ? (
-            <h1 className="font-semibold text-xl md:text-2xl  mb-6">
+            <h1 className="font-semibold text-xl md:text-2xl mb-6">
               {pageTitle}
             </h1>
           ) : (
@@ -40,7 +40,7 @@ export function BasicLayout({
           </p>
         </div>
       )}
-      <div className="container max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg  py-4">
+      <div className="container max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg py-4">
         {breadcrumb}
         <div className="flex flex-col py-8 gap-6">{children}</div>
       </div>
