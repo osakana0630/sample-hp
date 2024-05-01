@@ -25,9 +25,9 @@ export const metadata: Metadata = {
 
 export default async function Home() {
   const [{ news }, categories, staffs] = await Promise.all([
-    getNewsList(1),
+    getNewsList({ limit: 3 }),
     getCategories(),
-    getStaffs(0, 9),
+    getStaffs({ limit: 9 }),
   ]);
   const jobSeekerInterviewCategory = categories.find(
     (category) => category.slug === CATEGORIES["jobSeekerInterview"],

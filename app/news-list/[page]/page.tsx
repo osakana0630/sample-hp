@@ -34,7 +34,7 @@ type Props = {
 
 export default async function Page({ params }: Props) {
   const currentPage = Number(params.page);
-  const { news, total } = await getNewsList(currentPage);
+  const { news, total } = await getNewsList({ page: currentPage });
   return (
     <BasicLayout
       pageTitle={<Heading component="h1" label="お知らせ" labelEn="News" />}

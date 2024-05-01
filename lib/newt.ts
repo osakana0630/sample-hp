@@ -7,8 +7,14 @@ import { Staff } from "@/types/staff";
 import { Category } from "@/types/category";
 import { News } from "@/types/news";
 import { Tag } from "@/types/tag";
-import { Page } from "@/types/pagination";
-import { NEWS_PER_PAGE } from "@/constants/pagination";
+import { PaginationOption } from "@/types/pagination";
+import {
+  ARTICLES_PER_PAGE,
+  CATEGORIES_PER_PAGE,
+  NEWS_PER_PAGE,
+  STAFFS_PER_PAGE,
+  TAGS_PER_PAGE,
+} from "@/constants/pagination";
 
 const client = createClient({
   spaceUid: process.env.NEWT_SPACE_UID || "",
@@ -19,12 +25,13 @@ const client = createClient({
 // ----------------------------------------------------------------------------
 
 // NewtのCDN APIでは認証に Authorization ヘッダを利用していますが、Next.jsの fetch() は Authorization ヘッダを利用する場合はキャッシュされないため、ここではReactの cache() を利用
-export const getArticles = cache(async () => {
+export const getArticles = cache(async (option?: PaginationOption) => {
   const { items } = await client.getContents<Article>({
     appUid: process.env.APP_UID || "",
     modelUid: "article",
     query: {
       order: ["-priority", "-_sys.createdAt"],
+      ...buildPaginationParams(option, ARTICLES_PER_PAGE),
     },
   });
   return items;
@@ -48,70 +55,63 @@ export const getArticleBySlug = cache(async (slug: string) => {
   });
 });
 
-export const getArticlesByCategoryIds = cache(async (categoryIds: string[]) => {
-  const { items } = await client.getContents<Article>({
-    appUid: process.env.APP_UID || "",
-    modelUid: "article",
-    query: {
-      categories: {
-        in: categoryIds,
-      },
-    },
-  });
-  return items;
-});
-
-export const getArticlesByCategorySlug = cache(
-  async (categorySlugs: string[]) => {
+export const getArticlesByCategoryIds = cache(
+  async (categoryIds: string[], option?: PaginationOption) => {
     const { items } = await client.getContents<Article>({
       appUid: process.env.APP_UID || "",
       modelUid: "article",
       query: {
         categories: {
-          in: categorySlugs,
+          in: categoryIds,
         },
+        ...buildPaginationParams(option, ARTICLES_PER_PAGE),
       },
     });
     return items;
   },
 );
 
-export const getArticlesByTagIds = cache(async (tagIds: string[]) => {
-  const { items } = await client.getContents<Article>({
-    appUid: process.env.APP_UID || "",
-    modelUid: "article",
-    query: {
-      tags: {
-        in: tagIds,
+export const getArticlesByTagIds = cache(
+  async (tagIds: string[], option?: PaginationOption) => {
+    const { items } = await client.getContents<Article>({
+      appUid: process.env.APP_UID || "",
+      modelUid: "article",
+      query: {
+        tags: {
+          in: tagIds,
+        },
+        ...buildPaginationParams(option, ARTICLES_PER_PAGE),
       },
-    },
-  });
-  return items;
-});
+    });
+    return items;
+  },
+);
 
-export const searchArticles = cache(async (keyword: string) => {
-  const { items } = await client.getContents<Article>({
-    appUid: "blog",
-    modelUid: "article",
-    query: {
-      title: {
-        match: keyword,
+export const searchArticles = cache(
+  async (keyword: string, option?: PaginationOption) => {
+    const { items } = await client.getContents<Article>({
+      appUid: "blog",
+      modelUid: "article",
+      query: {
+        title: {
+          match: keyword,
+        },
+        ...buildPaginationParams(option, ARTICLES_PER_PAGE),
+        order: ["-priority", "_sys.createdAt"],
       },
-      order: ["-priority", "_sys.createdAt"],
-    },
-  });
-  return items;
-});
+    });
+    return items;
+  },
+);
 
 // ----------------------------------------------------------------------------
 
-export const getStaffs = cache(async (skip?: number, limit?: number) => {
+export const getStaffs = cache(async (option?: PaginationOption) => {
   const { items } = await client.getContents<Staff>({
     appUid: process.env.APP_UID || "",
     modelUid: "staff",
     query: {
-      skip,
-      limit,
+      ...buildPaginationParams(option, STAFFS_PER_PAGE),
     },
   });
   return items;
@@ -127,10 +127,13 @@ export const getStaffById = cache(async (id: string) => {
 
 // ----------------------------------------------------------------------------
 
-export const getCategories = cache(async () => {
+export const getCategories = cache(async (option?: PaginationOption) => {
   const { items } = await client.getContents<Category>({
     appUid: process.env.APP_UID || "",
     modelUid: "category",
+    query: {
+      ...buildPaginationParams(option, CATEGORIES_PER_PAGE),
+    },
   });
   return items;
 });
@@ -147,13 +150,13 @@ export const getCategoryBySlug = cache(async (slug: string) => {
 
 // ----------------------------------------------------------------------------
 
-export const getNewsList = cache(async (page?: Page) => {
+export const getNewsList = cache(async (option?: PaginationOption) => {
   const { items, total } = await client.getContents<News>({
     appUid: process.env.APP_UID || "",
     modelUid: "news",
     query: {
       order: ["-priority", "-_sys.createdAt"],
-      ...buildPaginationParam(page, NEWS_PER_PAGE),
+      ...buildPaginationParams(option, NEWS_PER_PAGE),
     },
   });
   return { news: items, total };
@@ -168,11 +171,15 @@ export const getNewsById = cache(async (id: string) => {
 });
 
 // ----------------------------------------------------------------------------
-export const getTags = cache(async () => {
+export const getTags = cache(async (option?: PaginationOption) => {
   const { items } = await client.getContents<Tag>({
     appUid: process.env.APP_UID || "",
     modelUid: "tag",
+    query: {
+      ...buildPaginationParams(option, TAGS_PER_PAGE),
+    },
   });
+
   return items;
 });
 
@@ -189,12 +196,17 @@ export const getTagBySlug = cache(async (slug: string) => {
 // ----------------------------------------------------------------------------
 
 // ページネーションに基づいたアイテムのスキップ数を計算する関数
-const buildPaginationParam = (
-  currentPage: number | undefined,
+const buildPaginationParams = (
+  paginationOption: PaginationOption | undefined,
   itemsPerPage: number,
 ): { skip: number; limit: number } | {} => {
-  if (!currentPage) return {};
-  const skip = (currentPage - 1) * itemsPerPage;
+  if (!paginationOption) return {};
+
+  if ("limit" in paginationOption) {
+    return { limit: paginationOption.limit };
+  }
+
+  const skip = (paginationOption.page - 1) * itemsPerPage;
   const limit = itemsPerPage;
   return { skip, limit };
 };
