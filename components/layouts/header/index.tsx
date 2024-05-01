@@ -11,8 +11,8 @@ import { config } from "@/config";
 export function Header() {
   const pathname = usePathname();
   return (
-    <header className="h-16 border-b shadow-lg">
-      <div className="container h-full flex items-center gap-4">
+    <header className="w-full h-16 border-b shadow-lg">
+      <div className="container max-w-screen-sm  md:max-w-screen-md lg:max-w-screen-lg h-full flex items-center gap-4">
         {/* ロゴ */}
         <Button variant="ghost" className="text-xl md:text-2xl font-bold">
           <Link href="/">{config.companyName}</Link>

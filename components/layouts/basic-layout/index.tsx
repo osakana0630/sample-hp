@@ -38,7 +38,9 @@ export function BasicLayout({
           </p>
         </div>
       )}
-      <div className="container flex flex-col gap-12 py-10">{children}</div>
+      <div className="container max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg flex flex-col gap-12 py-10">
+        {children}
+      </div>
     </>
   );
 }

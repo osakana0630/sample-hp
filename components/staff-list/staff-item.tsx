@@ -24,8 +24,8 @@ export function StaffItem({ staff }: StaffItemProps) {
           <span className="absolute inset-0" />
         </Link>
       </h3>
-      <p className="text-sm text-muted-foreground">
-        {trimString(staff.career, 88)}
+      <p className="text-sm text-muted-foreground line-clamp-4">
+        {staff.career}
       </p>
     </div>
   );

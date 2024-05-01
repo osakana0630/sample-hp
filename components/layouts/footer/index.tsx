@@ -5,8 +5,8 @@ import { config } from "@/config";
 
 export function Footer() {
   return (
-    <footer className="border-t sticky top-full bg-muted py-6">
-      <div className="container flex items-start flex-col md:flex-row gap-6 mb-3">
+    <footer className="w-full border-t sticky top-full bg-muted py-6">
+      <div className="container max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg flex flex-col md:flex-row justify-center gap-6 mb-3">
         <p className="text-lg">{config.companyName}</p>
         <div className="flex-1" />
         <nav className="flex gap-4">
