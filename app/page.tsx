@@ -77,7 +77,7 @@ export default async function Home() {
 
       {/* メディア */}
       <Section headingProps={{ label: 'メディア', labelEn: 'Media' }}>
-        <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-6">
           {/* 求職者様インタビュー */}
           <Section
             headingProps={{
