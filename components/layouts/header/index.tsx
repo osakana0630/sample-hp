@@ -31,7 +31,7 @@ export function Header() {
                     pathname === item.href && item.label !== "Contact"
                       ? "text-destructive"
                       : "",
-                    "text-md hover:no-underline hover:text-muted",
+                    "text-md hover:no-underline hover:text-muted-foreground",
                   )}
                 >
                   <Link href={item.href}>
