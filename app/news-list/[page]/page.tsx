@@ -6,7 +6,6 @@ import { range } from "@/utils";
 import { NEWS_PER_PAGE } from "@/constants/pagination";
 import { Pagination } from "@/components/custom-pagination";
 import { CustomBreadcrumb } from "@/components/custom-breadcrumb";
-import { paths } from "@/routes";
 
 /**
  * Note

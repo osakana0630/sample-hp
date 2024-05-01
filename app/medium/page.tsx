@@ -3,7 +3,6 @@ import { getArticles } from "@/lib/newt";
 import { MediaLayout } from "@/components/layouts/media-layout";
 import { ArticleList } from "@/components/article-list";
 import { CustomBreadcrumb } from "@/components/custom-breadcrumb";
-import { paths } from "@/routes";
 
 export default async function Page() {
   const latestArticles = await getArticles();
