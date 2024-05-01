@@ -40,6 +40,9 @@ export default async function Page({ params }: Props) {
       pageTitle={<Heading component="h1" label="お知らせ" labelEn="News" />}
     >
       <section className="space-y-4">
+        <h2 className="font-semibold text-2xl mb-6 text-center">
+          お知らせ一覧
+        </h2>
         <NewsList newsList={news} />
         {/* TODO: 不足しているページアイテムの分だけ領域をとりたい */}
         <Pagination
