@@ -1,19 +1,17 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import Link from 'next/link';
 
 import {
   Breadcrumb,
-  BreadcrumbEllipsis,
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
-import { Fragment } from "react";
-import { Slash } from "lucide-react";
+} from '@/components/ui/breadcrumb';
+import { Fragment } from 'react';
+import { Slash } from 'lucide-react';
 
 type Link = { name: string; href?: string; icon?: React.ReactNode };
 
@@ -23,7 +21,7 @@ type Props = {
 
 export function CustomBreadcrumb({ links }: Props) {
   return (
-    <Breadcrumb className="text-sm md:text-md">
+    <Breadcrumb className="md:text-md text-sm">
       <BreadcrumbList>
         <BreadcrumbItem>
           <BreadcrumbLink asChild>

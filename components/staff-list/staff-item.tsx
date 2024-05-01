@@ -1,8 +1,7 @@
-import Link from "next/link";
-import { Staff } from "@/types/staff";
-import Image from "next/image";
-import { trimString } from "@/lib/utils";
-import { paths } from "@/routes";
+import Link from 'next/link';
+import { Staff } from '@/types/staff';
+import Image from 'next/image';
+import { paths } from '@/routes';
 
 type StaffItemProps = {
   staff: Staff;
@@ -10,7 +9,7 @@ type StaffItemProps = {
 export function StaffItem({ staff }: StaffItemProps) {
   return (
     <div className="relative rounded-lg border p-4 hover:bg-accent hover:shadow-lg">
-      <div className="aspect-square overflow-hidden border rounded-lg bg-muted mb-4 relative">
+      <div className="relative mb-4 aspect-square overflow-hidden rounded-lg border bg-muted">
         <Image
           src={staff.profileImage.src}
           alt={staff.fullName}
@@ -24,7 +23,7 @@ export function StaffItem({ staff }: StaffItemProps) {
           <span className="absolute inset-0" />
         </Link>
       </h3>
-      <p className="text-sm text-muted-foreground line-clamp-4 min-h-20">
+      <p className="line-clamp-4 min-h-20 text-sm text-muted-foreground">
         {staff.career}
       </p>
     </div>
