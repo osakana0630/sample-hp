@@ -1,7 +1,7 @@
 import { delaGothicOne } from "@/lib/font";
 import { cn } from "@/lib/utils";
 
-type Props = {
+export type HeadingProps = {
   label: string;
   labelEn?: string;
   component?: "h1" | "h2";
@@ -12,7 +12,7 @@ export function Heading({
   labelEn,
   className,
   component = "h2",
-}: Props) {
+}: HeadingProps) {
   const Component = component;
   return (
     <Component

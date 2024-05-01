@@ -9,7 +9,7 @@ import type { Metadata } from "next";
 import { Button } from "@/components/ui/button";
 import { BasicLayout } from "@/components/layouts/basic-layout";
 import { CATEGORIES } from "@/constants/category";
-import { Heading } from "@/components/heading";
+import { Heading, type HeadingProps } from "@/components/heading";
 import { ServiceList } from "@/components/service-list";
 import { StaffList } from "@/components/staff-list";
 import { NewsList } from "@/components/news-list";
@@ -48,29 +48,13 @@ export default async function Home() {
   return (
     <BasicLayout bgImageSrc="/images/hero.jpg" isHome>
       {/* 事業紹介 */}
-      <Section
-        heading={
-          <Heading
-            className="mb-6"
-            label="サービス紹介"
-            labelEn="Service"
-            component="h2"
-          />
-        }
-      >
+      <Section headingProps={{ label: "サービス紹介", labelEn: "Service" }}>
         <ServiceList />
       </Section>
 
       {/* コンサルタント紹介*/}
       <Section
-        heading={
-          <Heading
-            className="mb-6"
-            label="コンサルタント紹介"
-            labelEn="Consultants"
-            component="h2"
-          />
-        }
+        headingProps={{ label: "コンサルタント紹介", labelEn: "Consultants" }}
       >
         <div className="mb-6">
           <StaffList staffs={staffs} />
@@ -83,16 +67,7 @@ export default async function Home() {
       </Section>
 
       {/* 企業からのお知らせ */}
-      <Section
-        heading={
-          <Heading
-            className="mb-6"
-            label="お知らせ"
-            labelEn="News"
-            component="h2"
-          />
-        }
-      >
+      <Section headingProps={{ label: "お知らせ", labelEn: "News" }}>
         <div className="mb-6">
           <NewsList newsList={news} />
         </div>
@@ -104,16 +79,7 @@ export default async function Home() {
       </Section>
 
       {/* メディア */}
-      <Section
-        heading={
-          <Heading
-            className="mb-6"
-            label="メディア"
-            labelEn="media"
-            component="h2"
-          />
-        }
-      >
+      <Section headingProps={{ label: "メディア", labelEn: "Media" }}>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* 求職者様インタビュー */}
           <div>
@@ -168,13 +134,13 @@ export default async function Home() {
 }
 
 type SectionProps = {
-  heading: React.ReactNode;
+  headingProps: Pick<HeadingProps, "label" | "labelEn">;
   children: React.ReactNode;
 };
-function Section({ heading, children }: SectionProps) {
+function Section({ headingProps, children }: SectionProps) {
   return (
     <section>
-      {heading}
+      <Heading {...headingProps} className="mb-6" component="h2" />
       {children}
     </section>
   );

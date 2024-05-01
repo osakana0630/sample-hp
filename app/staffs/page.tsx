@@ -15,13 +15,16 @@ export default async function Page() {
         />
       }
     >
-      <div className="container relative">
+      <section className="">
+        <h2 className="font-semibold text-2xl mb-6 text-center">
+          コンサルタント一覧
+        </h2>
         <ul className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {staffs.map((staff) => (
             <StaffItem key={staff._id} staff={staff} />
           ))}
         </ul>
-      </div>
+      </section>
     </BasicLayout>
   );
 }
