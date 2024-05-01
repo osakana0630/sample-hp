@@ -57,8 +57,14 @@ export function StaffCarousel({ staffs }: Props) {
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious className="hidden md:inline-flex" />
-        <CarouselNext className="hidden md:inline-flex" />
+        <CarouselPrevious
+          className="-left-5 h-14 w-14 shadow-xl"
+          variant="outline"
+        />
+        <CarouselNext
+          className="-right-5 h-14 w-14 shadow-xl"
+          variant="outline"
+        />
       </Carousel>
       <p className="text-sm text-muted-foreground tracking-widest">
         {current}/{count}
