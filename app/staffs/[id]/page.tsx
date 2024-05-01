@@ -5,7 +5,7 @@ import Image from "next/image";
 import { Heading } from "@/components/heading";
 
 export async function generateStaticParams() {
-  const staffs = await getStaffs();
+  const { staffs } = await getStaffs();
   return staffs.map((staff) => ({
     id: staff._id,
   }));

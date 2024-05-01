@@ -6,11 +6,10 @@ export const paths = {
   siteMap: "/sitemap",
   search: "/search",
   staffs: {
-    list: "/staffs",
     detail: (id: string) => `/staffs/${id}`,
   },
+  staffList: (page: number) => `/staff-list/${page}`,
   news: {
-    list: "/news",
     detail: (id: string) => `/news/${id}`,
   },
   newsList: (page: number) => `/news-list/${page}`,

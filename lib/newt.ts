@@ -107,14 +107,14 @@ export const searchArticles = cache(
 // ----------------------------------------------------------------------------
 
 export const getStaffs = cache(async (option?: PaginationOption) => {
-  const { items } = await client.getContents<Staff>({
+  const { items, total } = await client.getContents<Staff>({
     appUid: process.env.APP_UID || "",
     modelUid: "staff",
     query: {
       ...buildPaginationParams(option, STAFFS_PER_PAGE),
     },
   });
-  return items;
+  return { staffs: items, total };
 });
 
 export const getStaffById = cache(async (id: string) => {
