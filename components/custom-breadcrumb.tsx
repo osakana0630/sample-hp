@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 
 import {
   Breadcrumb,
+  BreadcrumbEllipsis,
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
@@ -12,40 +13,46 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { Fragment } from "react";
+import { Slash } from "lucide-react";
 
-export function CustomBreadcrumb() {
-  const pathname = usePathname();
-  const pathNames = pathname.split("/").filter(Boolean);
-  const isHome = pathNames.length === 0;
-  if (isHome) return null;
+type Link = { name: string; href?: string; icon?: React.ReactNode };
+
+type Props = {
+  links: Link[];
+};
+
+export function CustomBreadcrumb({ links }: Props) {
   return (
-    <Breadcrumb>
+    <Breadcrumb className="text-sm md:text-md">
       <BreadcrumbList>
         <BreadcrumbItem>
           <BreadcrumbLink asChild>
-            <Link href="/">Home</Link>
+            <Link href="/">ホーム</Link>
           </BreadcrumbLink>
         </BreadcrumbItem>
-        <BreadcrumbSeparator />
+        <BreadcrumbSeparator>
+          <Slash />
+        </BreadcrumbSeparator>
 
-        {pathNames.map((pathName, i) => {
-          const href = `/${pathNames.slice(0, i + 1).join("/")}`;
-          const linkName =
-            pathName[0].toUpperCase() + pathName.slice(1, pathName.length);
-          const isLastPath = i === pathNames.length - 1;
+        {links.map((link, i) => {
+          const isLastPath = i === links.length - 1;
 
           return (
-            <Fragment key={pathName}>
-              <BreadcrumbItem>
-                {isLastPath ? (
+            <Fragment key={link.name}>
+              {link.href ? (
+                <BreadcrumbItem>
                   <BreadcrumbLink asChild>
-                    <Link href={href}>{linkName}</Link>
+                    <Link href={link.href}>{link.name}</Link>
                   </BreadcrumbLink>
-                ) : (
-                  <BreadcrumbPage>{linkName}</BreadcrumbPage>
-                )}
-              </BreadcrumbItem>
-              {!isLastPath && <BreadcrumbSeparator />}
+                </BreadcrumbItem>
+              ) : (
+                <BreadcrumbPage>{link.name}</BreadcrumbPage>
+              )}
+              {!isLastPath && (
+                <BreadcrumbSeparator>
+                  <Slash />
+                </BreadcrumbSeparator>
+              )}
             </Fragment>
           );
         })}

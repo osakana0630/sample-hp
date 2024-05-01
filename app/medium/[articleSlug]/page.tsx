@@ -2,6 +2,8 @@ import { getArticles, getArticleBySlug } from "@/lib/newt";
 import { notFound } from "next/navigation";
 import { Heading } from "@/components/heading";
 import { MediaLayout } from "@/components/layouts/media-layout";
+import { CustomBreadcrumb } from "@/components/custom-breadcrumb";
+import { paths } from "@/routes";
 
 export async function generateStaticParams() {
   const articles = await getArticles();
@@ -25,6 +27,14 @@ export default async function Page({ params: { articleSlug } }: Props) {
     <MediaLayout
       pageTitle={
         <Heading component="h1" label="メディア詳細" labelEn="Media" />
+      }
+      breadcrumb={
+        <CustomBreadcrumb
+          links={[
+            { name: "メディア", href: paths.medium.list },
+            { name: article.title },
+          ]}
+        />
       }
     >
       <section className="prose">

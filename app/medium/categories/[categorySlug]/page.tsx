@@ -7,6 +7,8 @@ import { notFound } from "next/navigation";
 import { MediaLayout } from "@/components/layouts/media-layout";
 import { Heading } from "@/components/heading";
 import { ArticleList } from "@/components/article-list";
+import { CustomBreadcrumb } from "@/components/custom-breadcrumb";
+import { paths } from "@/routes";
 
 export async function generateStaticParams() {
   const categories = await getCategories();
@@ -36,6 +38,15 @@ export default async function Page({ params: { categorySlug } }: Props) {
           component="h1"
           label={`「${category.name}」`}
           labelEn="Media"
+        />
+      }
+      breadcrumb={
+        <CustomBreadcrumb
+          links={[
+            { name: "メディア", href: paths.medium.list },
+            { name: "カテゴリ" },
+            { name: category.name },
+          ]}
         />
       }
     >

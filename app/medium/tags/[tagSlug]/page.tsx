@@ -3,6 +3,8 @@ import { getArticlesByTagIds, getTagBySlug, getTags } from "@/lib/newt";
 import { notFound } from "next/navigation";
 import { ArticleList } from "@/components/article-list";
 import { Heading } from "@/components/heading";
+import { CustomBreadcrumb } from "@/components/custom-breadcrumb";
+import { paths } from "@/routes";
 
 type Props = {
   params: { tagSlug: string };
@@ -25,6 +27,15 @@ export default async function Page({ params: { tagSlug } }: Props) {
   return (
     <MediaLayout
       pageTitle={<Heading component="h1" label="メディア" labelEn="Media" />}
+      breadcrumb={
+        <CustomBreadcrumb
+          links={[
+            { name: "メディア", href: paths.medium.list },
+            { name: "タグ" },
+            { name: tag.name },
+          ]}
+        />
+      }
     >
       <section>
         <h2 className="font-semibold text-2xl mb-6">

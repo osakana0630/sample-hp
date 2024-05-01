@@ -1,9 +1,11 @@
 import { RightSection } from "@/components/layouts/media-layout/right-section";
+import { CustomBreadcrumb } from "@/components/custom-breadcrumb";
 
 type Props = {
   pageTitle?: string | React.ReactNode;
   leadText?: string;
   bgImageSrc?: string;
+  breadcrumb?: React.ReactNode;
   children: React.ReactNode;
 };
 
@@ -11,6 +13,7 @@ export function MediaLayout({
   pageTitle,
   leadText,
   bgImageSrc,
+  breadcrumb,
   children,
 }: Props) {
   return (
@@ -25,7 +28,7 @@ export function MediaLayout({
           }}
         >
           {pageTitle && typeof pageTitle === "string" ? (
-            <h1 className="font-semibold text-xl md:text-2xl  mb-6">
+            <h1 className="font-semiboald text-xl md:text-2xl  mb-6">
               {pageTitle}
             </h1>
           ) : (
@@ -38,13 +41,16 @@ export function MediaLayout({
         </div>
       )}
 
-      <div className="container mx-auto flex flex-col lg:flex-row lg:justify-between max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg gap-4">
-        {/* メインセクション */}
-        <div className="py-8 w-full lg:w-[70%]">{children}</div>
+      <div className="container max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg py-4">
+        {breadcrumb}
+        <div className="mx-auto flex flex-col lg:flex-row lg:justify-between gap-6">
+          {/* メインセクション */}
+          <div className="py-8 w-full lg:w-[70%]">{children}</div>
 
-        {/* 右側のセクション */}
-        <div className="flex flex-col py-8 w-full lg:w-[30%] gap-6">
-          <RightSection />
+          {/* 右側のセクション */}
+          <div className="flex flex-col py-8 w-full lg:w-[30%] gap-6">
+            <RightSection />
+          </div>
         </div>
       </div>
     </>
