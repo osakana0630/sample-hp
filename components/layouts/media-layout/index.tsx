@@ -1,5 +1,4 @@
 import { RightSection } from "@/components/layouts/media-layout/right-section";
-import { CustomBreadcrumb } from "@/components/custom-breadcrumb";
 
 type Props = {
   pageTitle?: string | React.ReactNode;

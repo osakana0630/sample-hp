@@ -4,6 +4,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { BasicLayout } from "@/components/layouts/basic-layout";
 import { Heading } from "@/components/heading";
+import { CustomBreadcrumb } from "@/components/custom-breadcrumb";
 
 export default async function Page() {
   return (
@@ -11,8 +12,9 @@ export default async function Page() {
       pageTitle={
         <Heading component="h1" label="お問い合わせ" labelEn="Contact" />
       }
+      breadcrumb={<CustomBreadcrumb links={[{ name: "お問い合わせ" }]} />}
     >
-      <div className="container max-w-2xl">
+      <section>
         <form
           method="post"
           action="https://imai.form.newt.so/v1/b1WwN1BIan"
@@ -77,11 +79,15 @@ export default async function Page() {
             <Textarea id="content" name="content" rows={8} required />
           </div>
 
-          <Button variant="secondary" type="submit">
+          <Button
+            variant="secondary"
+            type="submit"
+            className="mx-auto w-full md:w-1/3"
+          >
             送信
           </Button>
         </form>
-      </div>
+      </section>
     </BasicLayout>
   );
 }

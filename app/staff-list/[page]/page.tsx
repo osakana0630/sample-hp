@@ -5,6 +5,7 @@ import { range } from "@/utils";
 import { NEWS_PER_PAGE, STAFFS_PER_PAGE } from "@/constants/pagination";
 import { Pagination } from "@/components/custom-pagination";
 import { StaffItem } from "@/components/staff-list/staff-item";
+import { CustomBreadcrumb } from "@/components/custom-breadcrumb";
 
 /**
  * Note
@@ -44,6 +45,7 @@ export default async function Page({ params }: Props) {
           labelEn="Consultants"
         />
       }
+      breadcrumb={<CustomBreadcrumb links={[{ name: "コンサルタント紹介" }]} />}
     >
       <section className="space-y-4">
         <h2 className="font-semibold text-2xl mb-6 text-center">

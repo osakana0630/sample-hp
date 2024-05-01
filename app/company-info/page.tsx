@@ -1,15 +1,8 @@
 import { BasicLayout } from "@/components/layouts/basic-layout";
 import Image from "next/image";
-import {
-  Table,
-  TableBody,
-  TableCaption,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
+import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { Heading } from "@/components/heading";
+import { CustomBreadcrumb } from "@/components/custom-breadcrumb";
 
 export default function Page() {
   return (
@@ -21,8 +14,9 @@ export default function Page() {
           labelEn="Company Information"
         />
       }
+      breadcrumb={<CustomBreadcrumb links={[{ name: "会社情報" }]} />}
     >
-      <div className="container flex flex-col gap-12">
+      <div className="flex flex-col gap-12">
         {/* 代表挨拶 */}
         <section>
           <h2 className="font-semibold text-2xl mb-6 text-center">代表挨拶</h2>

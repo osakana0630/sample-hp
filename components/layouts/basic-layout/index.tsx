@@ -3,14 +3,16 @@ type Props = {
   leadText?: string;
   bgImageSrc?: string;
   isHome?: boolean;
+  breadcrumb?: React.ReactNode;
   children: React.ReactNode;
 };
 export function BasicLayout({
   pageTitle,
   leadText,
   bgImageSrc,
-  isHome = false,
+  breadcrumb,
   children,
+  isHome = false,
 }: Props) {
   return (
     <>
@@ -39,6 +41,7 @@ export function BasicLayout({
         </div>
       )}
       <div className="container max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg flex flex-col gap-12 py-10">
+        {breadcrumb}
         {children}
       </div>
     </>
