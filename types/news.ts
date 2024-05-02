@@ -1,4 +1,4 @@
-import type { Content } from "newt-client-js";
+import type { Content } from 'newt-client-js';
 
 export type News = {
   title: string;

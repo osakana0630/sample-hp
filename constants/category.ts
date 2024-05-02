@@ -1,6 +1,6 @@
 export const CATEGORIES = {
-  jobSeekerInterview: "job-seeker-interview",
-  companyInterview: "company-interview",
+  jobSeekerInterview: 'job-seeker-interview',
+  companyInterview: 'company-interview',
 };
 
 // "job-seeker-interview": "求職者インタビュー",

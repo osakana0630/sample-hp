@@ -1,11 +1,11 @@
-import { BasicLayout } from "@/components/layouts/basic-layout";
-import { NewsList } from "@/components/news-list";
-import { getNewsList } from "@/lib/newt";
-import { Heading } from "@/components/heading";
-import { range } from "@/utils";
-import { NEWS_PER_PAGE } from "@/constants/pagination";
-import { Pagination } from "@/components/custom-pagination";
-import { CustomBreadcrumb } from "@/components/custom-breadcrumb";
+import { BasicLayout } from '@/components/layouts/basic-layout';
+import { NewsList } from '@/components/news-list';
+import { getNewsList } from '@/lib/newt';
+import { Heading } from '@/components/heading';
+import { range } from '@/utils';
+import { NEWS_PER_PAGE } from '@/constants/pagination';
+import { Pagination } from '@/components/custom-pagination';
+import { CustomBreadcrumb } from '@/components/custom-breadcrumb';
 
 /**
  * Note
@@ -39,12 +39,10 @@ export default async function Page({ params }: Props) {
   return (
     <BasicLayout
       pageTitle={<Heading component="h1" label="お知らせ" labelEn="News" />}
-      breadcrumb={<CustomBreadcrumb links={[{ name: "お知らせ" }]} />}
+      breadcrumb={<CustomBreadcrumb links={[{ name: 'お知らせ' }]} />}
     >
       <section className="space-y-4">
-        <h2 className="font-semibold text-2xl mb-6 text-center">
-          お知らせ一覧
-        </h2>
+        <h2 className="mb-6 text-center text-2xl font-semibold">お知らせ一覧</h2>
         <NewsList newsList={news} />
         {/* TODO: 不足しているページアイテムの分だけ領域をとりたい */}
         <Pagination

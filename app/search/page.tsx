@@ -1,9 +1,9 @@
-import { Heading } from "@/components/heading";
-import { searchArticles } from "@/lib/newt";
-import { MediaLayout } from "@/components/layouts/media-layout";
-import { ArticleList } from "@/components/article-list";
+import { Heading } from '@/components/heading';
+import { searchArticles } from '@/lib/newt';
+import { MediaLayout } from '@/components/layouts/media-layout';
+import { ArticleList } from '@/components/article-list';
 
-export const runtime = "edge";
+// export const runtime = "edge";
 
 type Props = {
   searchParams: {
@@ -17,11 +17,9 @@ export default async function Page({ searchParams }: Props) {
   const hasArticles = articles.length > 0;
 
   return (
-    <MediaLayout
-      pageTitle={<Heading component="h1" label="メディア" labelEn="Media" />}
-    >
+    <MediaLayout pageTitle={<Heading component="h1" label="メディア" labelEn="Media" />}>
       <section>
-        <h2 className="font-bold text-3xl mb-6">{`「${q}」の検索結果`}</h2>
+        <h2 className="mb-6 text-3xl font-bold">{`「${q}」の検索結果`}</h2>
         {/* TODO pagination */}
         {hasArticles ? (
           <ArticleList articles={articles} />

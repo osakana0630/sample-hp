@@ -1,9 +1,9 @@
-import { Button } from "@/components/ui/button";
-import { TrendingArticleList } from "@/components/trending-article-list";
-import Link from "next/link";
-import { paths } from "@/routes";
-import { getArticles, getCategories, getTags } from "@/lib/newt";
-import { SearchBox } from "@/components/search-box";
+import { Button } from '@/components/ui/button';
+import { TrendingArticleList } from '@/components/trending-article-list';
+import Link from 'next/link';
+import { paths } from '@/routes';
+import { getArticles, getCategories, getTags } from '@/lib/newt';
+import { SearchBox } from '@/components/search-box';
 
 export async function RightSection() {
   const [articles, categories, tags] = await Promise.all([
@@ -62,7 +62,7 @@ type SectionProps = {
 function Section({ title, children }: SectionProps) {
   return (
     <section>
-      {title && <h2 className="text-md font-semibold mb-3">{title}</h2>}
+      {title && <h2 className="text-md mb-3 font-semibold">{title}</h2>}
       {children}
     </section>
   );

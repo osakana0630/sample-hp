@@ -1,12 +1,12 @@
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { footerNavs, footerSubNavs } from "@/constants/nav-link";
-import { config } from "@/config";
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+import { footerNavs, footerSubNavs } from '@/constants/nav-link';
+import { config } from '@/config';
 
 export function Footer() {
   return (
-    <footer className="w-full border-t sticky top-full bg-muted py-6">
-      <div className="container max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg flex flex-col md:flex-row justify-center gap-6 mb-3">
+    <footer className="sticky top-full w-full border-t bg-muted py-6">
+      <div className="container mb-3 flex max-w-screen-sm flex-col justify-center gap-6 md:max-w-screen-md md:flex-row lg:max-w-screen-lg">
         <p className="text-lg">{config.companyName}</p>
         <div className="flex-1" />
         <nav className="flex gap-4">

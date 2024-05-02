@@ -1,20 +1,20 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { Button } from "@/components/ui/button";
-import MobileNav from "@/components/layouts/header/mobile-nav";
-import { headerNavs } from "@/constants/nav-link";
-import { cn } from "@/lib/utils";
-import { config } from "@/config";
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { Button } from '@/components/ui/button';
+import MobileNav from '@/components/layouts/header/mobile-nav';
+import { headerNavs } from '@/constants/nav-link';
+import { cn } from '@/lib/utils';
+import { config } from '@/config';
 
 export function Header() {
   const pathname = usePathname();
   return (
-    <header className="w-full h-16 border-b shadow-lg">
-      <div className="container max-w-screen-sm  md:max-w-screen-md lg:max-w-screen-lg h-full flex items-center gap-4">
+    <header className="h-16 w-full border-b shadow-lg">
+      <div className="container flex  h-full max-w-screen-sm items-center gap-4 md:max-w-screen-md lg:max-w-screen-lg">
         {/* ロゴ */}
-        <Button variant="ghost" className="text-xl md:text-2xl font-bold">
+        <Button variant="ghost" className="text-xl font-bold md:text-2xl">
           <Link href="/">{config.companyName}</Link>
         </Button>
 
@@ -25,13 +25,13 @@ export function Header() {
             {headerNavs.map((item) => (
               <li key={item.label}>
                 <Button
-                  variant={item.label === "Contact" ? "destructive" : "link"}
+                  variant={item.label === 'Contact' ? 'destructive' : 'link'}
                   asChild
                   className={cn(
-                    pathname === item.href && item.label !== "Contact"
-                      ? "text-destructive"
-                      : "",
-                    "text-md hover:no-underline hover:text-muted-foreground",
+                    pathname === item.href && item.label !== 'Contact'
+                      ? 'text-destructive'
+                      : '',
+                    'text-md hover:text-muted-foreground hover:no-underline'
                   )}
                 >
                   <Link href={item.href}>

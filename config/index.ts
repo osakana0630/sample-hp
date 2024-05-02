@@ -3,5 +3,5 @@ type Config = {
 };
 
 export const config: Config = {
-  companyName: process.env.NEXT_PUBLIC_COMPANY_NAME || "",
+  companyName: process.env.NEXT_PUBLIC_COMPANY_NAME || '',
 };

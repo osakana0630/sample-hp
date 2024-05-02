@@ -1,6 +1,6 @@
-import type { Content } from "newt-client-js";
-import { Category } from "@/types/category";
-import { Tag } from "@/types/tag";
+import type { Content } from 'newt-client-js';
+import { Category } from '@/types/category';
+import { Tag } from '@/types/tag';
 
 export type Article = {
   title: string;

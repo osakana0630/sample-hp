@@ -3,7 +3,7 @@ type Props = {
 };
 export function Tag({ name }: Props) {
   return (
-    <span className="text-[11px] inline-flex items-center border rounded-2xl bg-muted px-2 py-1">
+    <span className="inline-flex items-center rounded-2xl border bg-muted px-2 py-1 text-[11px]">
       {name}
     </span>
   );

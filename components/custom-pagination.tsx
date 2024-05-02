@@ -1,4 +1,4 @@
-import { paginate } from "@/lib/paginate";
+import { paginate } from '@/lib/paginate';
 import {
   Pagination as _Pagination,
   PaginationContent,
@@ -7,7 +7,7 @@ import {
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
-} from "@/components/ui/pagination";
+} from '@/components/ui/pagination';
 
 export function Pagination({
   totalItems,
@@ -46,7 +46,7 @@ export function Pagination({
         </PaginationItem>
 
         {pages.map((page, i) => {
-          if (page.type === "dots") {
+          if (page.type === 'dots') {
             return (
               <PaginationItem key={i}>
                 <PaginationEllipsis />

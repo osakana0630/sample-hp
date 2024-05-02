@@ -1,10 +1,10 @@
 export const paths = {
-  home: "/",
-  companyInfo: "/company-info",
-  contact: "/contact",
-  privacyPolicy: "/privacy-policy",
-  siteMap: "/sitemap",
-  search: "/search",
+  home: '/',
+  companyInfo: '/company-info',
+  contact: '/contact',
+  privacyPolicy: '/privacy-policy',
+  siteMap: '/sitemap',
+  search: '/search',
   staffs: {
     detail: (id: string) => `/staffs/${id}`,
   },
@@ -14,14 +14,14 @@ export const paths = {
   },
   newsList: (page: number) => `/news-list/${page}`,
   medium: {
-    list: "/medium",
+    list: '/medium',
     detail: (articleSlug: string) => `/medium/${articleSlug}`,
     tags: {
-      list: "/medium/tags",
+      list: '/medium/tags',
       detail: (tagSlug: string) => `/medium/tags/${tagSlug}`,
     },
     categories: {
-      list: "/medium/categories",
+      list: '/medium/categories',
       detail: (categorySlug: string) => `/medium/categories/${categorySlug}`,
     },
   },
