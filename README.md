@@ -11,6 +11,8 @@
 
 ## 外部ドキュメント一覧
 - [Next.js](https://nextjs.org/docs)
+- [Tailwind CSS](https://tailwindcss.com/docs)
+- [Shadcn/ui](https://ui.shadcn.com/)
 - [Newt（ヘッドレスCMS）](https://www.newt.so/)
 - [Cloudflare Pages](https://pages.cloudflare.com/)
 
@@ -24,6 +26,7 @@
 ### フロント
 - Next.js with app router v14.2.3
 - TypeScript v5
+- Shadcn/ui
 
 ### スタイリング
 - Tailwind CSS v3.4.1
