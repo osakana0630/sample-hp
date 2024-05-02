@@ -3,7 +3,9 @@ import { searchArticles } from '@/lib/newt';
 import { MediaLayout } from '@/components/layouts/media-layout';
 import { ArticleList } from '@/components/article-list';
 
-// export const runtime = "edge";
+// FIXME: cloudflare workers のedgeで動かすaxiosがedgeランタイムに対応していないのでとエラーになる
+//  https://github.com/axios/axios/issues/5523
+export const runtime = 'edge';
 
 type Props = {
   searchParams: {
