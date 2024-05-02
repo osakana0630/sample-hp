@@ -7,9 +7,7 @@ import { CustomBreadcrumb } from '@/components/custom-breadcrumb';
 export default function Page() {
   return (
     <BasicLayout
-      pageTitle={
-        <Heading component="h1" label="会社情報" labelEn="Company Information" />
-      }
+      pageTitle={<Heading component="h1" label="会社情報" labelEn="Company" />}
       breadcrumb={<CustomBreadcrumb links={[{ name: '会社情報' }]} />}
     >
       <div className="flex flex-col gap-12">

@@ -27,7 +27,7 @@ const client = createClient({
 
 // NewtのCDN APIでは認証に Authorization ヘッダを利用していますが、Next.jsの fetch() は Authorization ヘッダを利用する場合はキャッシュされないため、ここではReactの cache() を利用
 export const getArticles = cache(async (option?: PaginationOption) => {
-  const { items } = await client.getContents<Article>({
+  const { items, total } = await client.getContents<Article>({
     appUid: process.env.APP_UID || '',
     modelUid: 'article',
     query: {
@@ -35,7 +35,7 @@ export const getArticles = cache(async (option?: PaginationOption) => {
       ...buildPaginationParams(option, ARTICLES_PER_PAGE),
     },
   });
-  return items;
+  return { articles: items, total };
 });
 
 export const getArticleById = cache(async (id: string) => {
@@ -58,7 +58,7 @@ export const getArticleBySlug = cache(async (slug: string) => {
 
 export const getArticlesByCategoryIds = cache(
   async (categoryIds: string[], option?: PaginationOption) => {
-    const { items } = await client.getContents<Article>({
+    const { items, total } = await client.getContents<Article>({
       appUid: process.env.APP_UID || '',
       modelUid: 'article',
       query: {
@@ -68,7 +68,7 @@ export const getArticlesByCategoryIds = cache(
         ...buildPaginationParams(option, ARTICLES_PER_PAGE),
       },
     });
-    return items;
+    return { articles: items, total };
   }
 );
 
@@ -129,14 +129,14 @@ export const getStaffById = cache(async (id: string) => {
 // ----------------------------------------------------------------------------
 
 export const getCategories = cache(async (option?: PaginationOption) => {
-  const { items } = await client.getContents<Category>({
+  const { items, total } = await client.getContents<Category>({
     appUid: process.env.APP_UID || '',
     modelUid: 'category',
     query: {
       ...buildPaginationParams(option, CATEGORIES_PER_PAGE),
     },
   });
-  return items;
+  return { categories: items, total };
 });
 
 export const getCategoryBySlug = cache(async (slug: string) => {

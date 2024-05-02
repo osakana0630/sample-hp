@@ -26,7 +26,7 @@ export const metadata: Metadata = {
 };
 
 export default async function Home() {
-  const [{ news }, categories, { staffs }] = await Promise.all([
+  const [{ news }, { categories }, { staffs }] = await Promise.all([
     getNewsList({ limit: 3 }),
     getCategories(),
     // 特定の3人のコンサルタントを取得するようにしたい。
@@ -38,14 +38,15 @@ export default async function Home() {
   const companyInterviewCategory = categories.find(
     (category) => category.slug === CATEGORIES['companyInterview']
   );
-  const [jobSeekerInterviews, companyInterviews] = await Promise.all([
-    getArticlesByCategoryIds(
-      (jobSeekerInterviewCategory?._id && [jobSeekerInterviewCategory?._id]) || []
-    ),
-    getArticlesByCategoryIds(
-      (companyInterviewCategory?._id && [companyInterviewCategory?._id]) || []
-    ),
-  ]);
+  const [{ articles: jobSeekerInterviews }, { articles: companyInterviews }] =
+    await Promise.all([
+      getArticlesByCategoryIds(
+        (jobSeekerInterviewCategory?._id && [jobSeekerInterviewCategory?._id]) || []
+      ),
+      getArticlesByCategoryIds(
+        (companyInterviewCategory?._id && [companyInterviewCategory?._id]) || []
+      ),
+    ]);
 
   return (
     <BasicLayout bgImageSrc="/images/hero.jpg" isHome>

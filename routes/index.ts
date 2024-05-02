@@ -13,14 +13,15 @@ export const paths = {
   },
   newsList: (page: number) => `/news-list/${page}`,
   medium: {
-    list: '/medium',
+    list: (page: number) => `/medium/list/${page}`,
     detail: (articleSlug: string) => `/medium/${articleSlug}`,
     tags: {
       list: '/medium/tags',
       detail: (tagSlug: string) => `/medium/tags/${tagSlug}`,
     },
     categories: {
-      list: '/medium/categories',
+      list: (categorySlug: string, page: number) =>
+        `/medium/categories/${categorySlug}/${page}`,
       detail: (categorySlug: string) => `/medium/categories/${categorySlug}`,
     },
     search: '/medium/search',

@@ -44,7 +44,7 @@ export function ArticleItem({ article }: ArticleItemProps) {
               {article.categories.map((category) => (
                 <Button key={category._id} variant="ghost" asChild className="p-0">
                   <Link
-                    href={paths.medium.categories.detail(category.slug)}
+                    href={paths.medium.categories.list(category.slug, 1)}
                     className="h-auto"
                   >
                     <Tag name={category.name} />

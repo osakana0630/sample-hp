@@ -6,7 +6,7 @@ import { CustomBreadcrumb } from '@/components/custom-breadcrumb';
 import { paths } from '@/routes';
 
 export async function generateStaticParams() {
-  const articles = await getArticles();
+  const { articles } = await getArticles();
   return articles.map((article) => ({
     articleSlug: article.slug,
   }));
@@ -28,7 +28,10 @@ export default async function Page({ params: { articleSlug } }: Props) {
       pageTitle={<Heading component="h1" label="メディア詳細" labelEn="Media" />}
       breadcrumb={
         <CustomBreadcrumb
-          links={[{ name: 'メディア', href: paths.medium.list }, { name: article.title }]}
+          links={[
+            { name: 'メディア', href: paths.medium.list(1) },
+            { name: article.title },
+          ]}
         />
       }
     >

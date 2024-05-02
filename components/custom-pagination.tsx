@@ -31,9 +31,6 @@ export function Pagination({
   const searchParams = useSearchParams();
   const q = searchParams.get('q');
 
-  console.log({ pathname });
-  console.log({ q: searchParams.get('q') });
-
   const pageCount = Math.ceil(totalItems / itemsPerPage);
 
   const { pages } = paginate({

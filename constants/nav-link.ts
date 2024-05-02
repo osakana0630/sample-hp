@@ -4,7 +4,7 @@ import { paths } from '@/routes';
 export const headerNavs = [
   { label: 'Company', href: paths.companyInfo, icon: Building2 },
   { label: 'Consultant', href: paths.staffList(1), icon: Users },
-  { label: 'Media', href: paths.medium.list, icon: Newspaper },
+  { label: 'Media', href: paths.medium.list(1), icon: Newspaper },
   { label: 'Contact', href: paths.contact, icon: MailQuestion },
 ];
 

@@ -30,7 +30,7 @@ export default async function Page({ params: { tagSlug } }: Props) {
       breadcrumb={
         <CustomBreadcrumb
           links={[
-            { name: 'メディア', href: paths.medium.list },
+            { name: 'メディア', href: paths.medium.list(1) },
             { name: 'タグ' },
             { name: tag.name },
           ]}

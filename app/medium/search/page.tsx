@@ -8,8 +8,9 @@ import { paths } from '@/routes';
 import { CustomBreadcrumb } from '@/components/custom-breadcrumb';
 import { Suspense } from 'react';
 
-// FIXME: cloudflare workers のedgeで動かすaxiosがedgeランタイムに対応していないのでとエラーになる
+// NOTE: cloudflare workers のedgeで動かすaxiosがedgeランタイムに対応していないのでとエラーになる
 //  https://github.com/axios/axios/issues/5523
+//  対応としては、newtのjsSDKをaxiosからfetchを使用するようにした。fetchはedgeで動作するため。
 export const runtime = 'edge';
 
 type Props = {
@@ -31,7 +32,7 @@ export default async function Page({ searchParams }: Props) {
       breadcrumb={
         <CustomBreadcrumb
           links={[
-            { name: 'メディア', href: paths.medium.list },
+            { name: 'メディア', href: paths.medium.list(1) },
             { name: `「${q}」の検索結果` },
           ]}
         />
@@ -39,7 +40,6 @@ export default async function Page({ searchParams }: Props) {
     >
       <section className="space-y-2">
         <h2 className="mb-6 text-3xl font-bold">{`「${q}」の検索結果`}</h2>
-        {/* TODO pagination */}
         {!hasArticles && <p>記事が見つかりませんでした。</p>}
         {hasArticles && (
           <>

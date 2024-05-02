@@ -6,11 +6,12 @@ import { getArticles, getCategories, getTags } from '@/lib/newt';
 import { SearchBox } from '@/components/search-box';
 
 export async function RightSection() {
-  const [articles, categories, tags] = await Promise.all([
+  const [{ articles }, { categories }, tags] = await Promise.all([
     getArticles(),
     getCategories(),
     getTags(),
   ]);
+  console.log('サイドバー', { categories });
   // 最新の5件の記事を取得 TODO: 本来はページネーションを実装する
   const slicedArticles = articles.slice(0, 3);
 
@@ -29,7 +30,7 @@ export async function RightSection() {
           {categories.map((category) => (
             <li key={category._id} className="text-sm text-muted-foreground">
               <Button variant="ghost" asChild size="sm">
-                <Link href={paths.medium.categories.detail(category.slug)}>
+                <Link href={paths.medium.categories.list(category.slug, 1)}>
                   <span className="text-sm">{category.name}</span>
                 </Link>
               </Button>
