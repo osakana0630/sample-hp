@@ -6,14 +6,11 @@ import { getArticles, getCategories, getTags } from '@/lib/newt';
 import { SearchBox } from '@/components/search-box';
 
 export async function RightSection() {
-  const [{ articles }, { categories }, tags] = await Promise.all([
-    getArticles(),
+  const [{ articles }, { categories }, { tags }] = await Promise.all([
+    getArticles({ limit: 3 }),
     getCategories(),
     getTags(),
   ]);
-  console.log('サイドバー', { categories });
-  // 最新の5件の記事を取得 TODO: 本来はページネーションを実装する
-  const slicedArticles = articles.slice(0, 3);
 
   return (
     <>
@@ -22,7 +19,7 @@ export async function RightSection() {
       </Section>
 
       <Section title="よく読まれている記事">
-        <TrendingArticleList articles={slicedArticles} />
+        <TrendingArticleList articles={articles} />
       </Section>
 
       <Section title="カテゴリ一覧">
@@ -30,7 +27,7 @@ export async function RightSection() {
           {categories.map((category) => (
             <li key={category._id} className="text-sm text-muted-foreground">
               <Button variant="ghost" asChild size="sm">
-                <Link href={paths.medium.categories.list(category.slug, 1)}>
+                <Link href={paths.medium.categories.detail(category.slug, 1)}>
                   <span className="text-sm">{category.name}</span>
                 </Link>
               </Button>
@@ -44,7 +41,7 @@ export async function RightSection() {
           {tags.map((tag) => (
             <li key={tag._id} className="text-sm text-muted-foreground">
               <Button variant="ghost" asChild size="sm">
-                <Link href={paths.medium.tags.detail(tag.slug)}>
+                <Link href={paths.medium.tags.detail(tag.slug, 1)}>
                   <span className="text-sm">#{tag.name}</span>
                 </Link>
               </Button>

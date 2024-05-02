@@ -89,7 +89,7 @@ export default async function Home() {
             }}
             button={
               <LinkButton
-                href={paths.medium.categories.detail(CATEGORIES['jobSeekerInterview'])}
+                href={paths.medium.categories.detail(CATEGORIES['jobSeekerInterview'], 1)}
               />
             }
           >
@@ -104,7 +104,7 @@ export default async function Home() {
             }}
             button={
               <LinkButton
-                href={paths.medium.categories.detail(CATEGORIES['companyInterview'])}
+                href={paths.medium.categories.detail(CATEGORIES['companyInterview'], 1)}
               />
             }
           >

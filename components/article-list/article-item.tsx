@@ -44,7 +44,7 @@ export function ArticleItem({ article }: ArticleItemProps) {
               {article.categories.map((category) => (
                 <Button key={category._id} variant="ghost" asChild className="p-0">
                   <Link
-                    href={paths.medium.categories.list(category.slug, 1)}
+                    href={paths.medium.categories.detail(category.slug, 1)}
                     className="h-auto"
                   >
                     <Tag name={category.name} />
@@ -57,7 +57,7 @@ export function ArticleItem({ article }: ArticleItemProps) {
             <div className="z-10">
               {article.tags.map((tag) => (
                 <Button key={tag._id} variant="link" asChild className="mr-2 p-0">
-                  <Link href={paths.medium.tags.detail(tag.slug)} className="h-auto">
+                  <Link href={paths.medium.tags.detail(tag.slug, 1)} className="h-auto">
                     <HashTag key={tag._id} name={tag.name} />
                   </Link>
                 </Button>

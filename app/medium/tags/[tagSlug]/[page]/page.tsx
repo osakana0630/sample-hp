@@ -1,27 +1,26 @@
-import { getArticlesByCategoryIds, getCategories, getCategoryBySlug } from '@/lib/newt';
-import { notFound } from 'next/navigation';
 import { MediaLayout } from '@/components/layouts/media-layout';
-import { Heading } from '@/components/heading';
+import { getArticlesByTagIds, getTagBySlug, getTags } from '@/lib/newt';
+import { notFound } from 'next/navigation';
 import { ArticleList } from '@/components/article-list';
+import { Heading } from '@/components/heading';
 import { CustomBreadcrumb } from '@/components/custom-breadcrumb';
 import { paths } from '@/routes';
-import { Suspense } from 'react';
 import { Pagination } from '@/components/custom-pagination';
 import { ARTICLES_PER_PAGE } from '@/constants/pagination';
+import { Suspense } from 'react';
 import { range } from '@/utils';
 
-type TotalPerSlug = { categorySlug: string; total: number };
-type Path = { categorySlug: string; page: string };
+type TotalPerSlug = { tagSlug: string; total: number };
+type Path = { tagSlug: string; page: string };
 
 // https://ja.next-community-docs.dev/docs/app-router/api-reference/functions/generate-static-params#%E3%83%9C%E3%83%88%E3%83%A0%E3%82%A2%E3%83%83%E3%83%97%E3%81%A7%E3%83%91%E3%83%A9%E3%83%A1%E3%83%BC%E3%82%BF%E3%82%92%E7%94%9F%E6%88%90%E3%81%99%E3%82%8B
 export async function generateStaticParams() {
-  const { categories } = await getCategories();
-
+  const { tags } = await getTags();
   const totalPerSlug: TotalPerSlug[] = [];
-  for (const category of categories) {
-    const { total } = await getArticlesByCategoryIds([category._id]);
+  for (const tag of tags) {
+    const { total } = await getArticlesByTagIds([tag._id]);
     totalPerSlug.push({
-      categorySlug: category.slug,
+      tagSlug: tag.slug,
       total: total || 1, // 0件の場合は1ページ目を表示するために1を設定
     });
   }
@@ -31,7 +30,7 @@ export async function generateStaticParams() {
     const pageRange = range(1, Math.ceil(item.total / ARTICLES_PER_PAGE));
     for (const num of pageRange) {
       paths.push({
-        categorySlug: item.categorySlug,
+        tagSlug: item.tagSlug,
         page: `${num}`,
       });
     }
@@ -42,41 +41,32 @@ export async function generateStaticParams() {
 export const dynamicParams = false;
 
 type Props = {
-  params: { categorySlug: string; page: string };
+  params: { tagSlug: string; page: string };
 };
-export default async function Page({ params: { categorySlug, page } }: Props) {
-  const currentPage = Number(page) || 1;
-  // 記事の参照先のカテゴリはIDでのみ絞り込み可能という制約のため
-  // カテゴリスラッグからカテゴリを取得し、IDを特定したい
-  // https://developers.newt.so/apis/cdn#tag/contents_general/Queries/%E6%B3%A8%E6%84%8F
-  const category = await getCategoryBySlug(categorySlug);
-  if (!category) notFound();
 
-  const { total } = await getArticlesByCategoryIds([category._id]);
-  const { articles } = await getArticlesByCategoryIds([category._id], {
-    page: currentPage,
-  });
+export default async function Page({ params: { tagSlug, page } }: Props) {
+  const currentPage = Number(page) || 1;
+  const tag = await getTagBySlug(tagSlug);
+  if (!tag) notFound();
+  const { total } = await getArticlesByTagIds([tag._id]);
+  const { articles } = await getArticlesByTagIds([tag._id], { page: currentPage });
   const hasArticles = articles.length > 0;
 
   return (
     <MediaLayout
-      pageTitle={
-        <Heading component="h1" label={`「${category.name}」`} labelEn="Media" />
-      }
+      pageTitle={<Heading component="h1" label="メディア" labelEn="Media" />}
       breadcrumb={
         <CustomBreadcrumb
           links={[
             { name: 'メディア', href: paths.medium.list(1) },
-            { name: 'カテゴリ' },
-            { name: category.name },
+            { name: 'タグ' },
+            { name: tag.name },
           ]}
         />
       }
     >
       <section className="space-y-2">
-        <h2 className="mb-6 text-2xl font-semibold md:text-3xl">
-          「{category.name}」の記事
-        </h2>
+        <h2 className="mb-6 text-2xl font-semibold md:text-3xl">「{tag.name}」の記事</h2>
         {!hasArticles && <p>記事が見つかりませんでした。</p>}
         {hasArticles && (
           <>
@@ -85,7 +75,7 @@ export default async function Page({ params: { categorySlug, page } }: Props) {
               <Pagination
                 totalItems={total}
                 currentPage={currentPage}
-                baseUrl={`/medium/categories/${categorySlug}`}
+                baseUrl={`/medium/tags/${tagSlug}`}
                 itemsPerPage={ARTICLES_PER_PAGE}
                 isSSG
               />

@@ -74,7 +74,7 @@ export const getArticlesByCategoryIds = cache(
 
 export const getArticlesByTagIds = cache(
   async (tagIds: string[], option?: PaginationOption) => {
-    const { items } = await client.getContents<Article>({
+    const { items, total } = await client.getContents<Article>({
       appUid: process.env.APP_UID || '',
       modelUid: 'article',
       query: {
@@ -84,7 +84,7 @@ export const getArticlesByTagIds = cache(
         ...buildPaginationParams(option, ARTICLES_PER_PAGE),
       },
     });
-    return items;
+    return { articles: items, total };
   }
 );
 
@@ -173,7 +173,7 @@ export const getNewsById = cache(async (id: string) => {
 
 // ----------------------------------------------------------------------------
 export const getTags = cache(async (option?: PaginationOption) => {
-  const { items } = await client.getContents<Tag>({
+  const { items, total } = await client.getContents<Tag>({
     appUid: process.env.APP_UID || '',
     modelUid: 'tag',
     query: {
@@ -181,7 +181,7 @@ export const getTags = cache(async (option?: PaginationOption) => {
     },
   });
 
-  return items;
+  return { tags: items, total };
 });
 
 export const getTagBySlug = cache(async (slug: string) => {

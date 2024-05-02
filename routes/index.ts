@@ -16,13 +16,11 @@ export const paths = {
     list: (page: number) => `/medium/list/${page}`,
     detail: (articleSlug: string) => `/medium/${articleSlug}`,
     tags: {
-      list: '/medium/tags',
-      detail: (tagSlug: string) => `/medium/tags/${tagSlug}`,
+      detail: (tagSlug: string, page: number) => `/medium/tags/${tagSlug}/${page}`,
     },
     categories: {
-      list: (categorySlug: string, page: number) =>
+      detail: (categorySlug: string, page: number) =>
         `/medium/categories/${categorySlug}/${page}`,
-      detail: (categorySlug: string) => `/medium/categories/${categorySlug}`,
     },
     search: '/medium/search',
   },
