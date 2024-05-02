@@ -3,7 +3,7 @@ import type { Content } from 'newt-client-js';
 export type Staff = {
   fullName: string;
   englishFullName: string;
-  specialityField: string;
+  specialtyField: string;
   biography: string;
   career: string;
   isTopThreeStaff: boolean;

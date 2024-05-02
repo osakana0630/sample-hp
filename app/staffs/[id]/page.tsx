@@ -5,6 +5,9 @@ import Image from 'next/image';
 import { Heading } from '@/components/heading';
 import { CustomBreadcrumb } from '@/components/custom-breadcrumb';
 import { paths } from '@/routes';
+import { Slash } from 'lucide-react';
+import { Fragment } from 'react';
+import { EMPTY_TEXT } from '@/constants/common';
 
 export async function generateStaticParams() {
   const { staffs } = await getStaffs();
@@ -27,6 +30,17 @@ export default async function Page({
     notFound();
   }
 
+  const profileData = [
+    {
+      label: '得意領域',
+      value: staff.specialtyField,
+    },
+    {
+      label: '経歴',
+      value: staff.career,
+    },
+  ];
+
   return (
     <BasicLayout
       pageTitle={<Heading component="h1" label="コンサルタント" labelEn="Consultant" />}
@@ -39,7 +53,8 @@ export default async function Page({
         />
       }
     >
-      <div className="flex flex-col">
+      <div className="flex flex-col gap-4">
+        {/* コンサルタント画像 */}
         <div className="relative mb-4 aspect-video overflow-hidden rounded-lg border bg-muted">
           <Image
             src={staff.profileImage.src}
@@ -48,17 +63,26 @@ export default async function Page({
             className="object-contain object-center"
           />
         </div>
-        <p className="text-2xl font-semibold">{staff.fullName}</p>
-
+        <h2 className="text-2xl font-semibold">
+          {staff.fullName}
+          <Slash className="mx-2 inline-block" size={20} />
+          <span className="text-xl font-normal">{staff.englishFullName}</span>
+        </h2>
+        {/* 紹介文 */}
         <div className="prose">
           <div dangerouslySetInnerHTML={{ __html: staff.biography }} />
         </div>
 
-        <dl className="flex flex-col gap-6 rounded-lg border p-4 md:flex-row">
-          <dt className="w-12 font-semibold">経歴</dt>
-          <dd className="flex-1 whitespace-pre-wrap text-muted-foreground">
-            {staff.career}
-          </dd>
+        {/* 得意領域/経歴 */}
+        <dl className="rounded-lg border p-4">
+          {profileData.map((data) => (
+            <Fragment key={data.label}>
+              <dt className="w-16 font-semibold">{data.label}</dt>
+              <dd className="mb-3 ml-3 whitespace-pre-wrap text-muted-foreground">
+                {data.value || EMPTY_TEXT}
+              </dd>
+            </Fragment>
+          ))}
         </dl>
       </div>
     </BasicLayout>
