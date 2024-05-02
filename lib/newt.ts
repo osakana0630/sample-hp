@@ -105,6 +105,21 @@ export const searchArticles = cache(
   }
 );
 
+export const getRecommendedArticles = cache(async () => {
+  const { items, total } = await client.getContents<Article>({
+    appUid: process.env.APP_UID || '',
+    modelUid: 'article',
+    query: {
+      isRecommended: true,
+      recommendedOrder: {
+        ne: 0, // 0の記事を除外
+      },
+      order: ['-priority', 'recommendedOrder'],
+    },
+  });
+  return { recommendedArticles: items, total };
+});
+
 // ----------------------------------------------------------------------------
 
 export const getStaffs = cache(async (option?: PaginationOption) => {

@@ -6,7 +6,7 @@ import { Article } from '@/types/article';
 type Props = {
   articles: Article[];
 };
-export function TrendingArticleList({ articles }: Props) {
+export function RecommendedArticleList({ articles }: Props) {
   return (
     <ul className="space-y-2">
       {articles.map((article) => (

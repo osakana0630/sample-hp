@@ -7,6 +7,8 @@ export type Article = {
   slug: string;
   body: string;
   categories: Category[];
+  isRecommended: boolean;
+  recommendedOrder: number;
   tags: Tag[];
   coverImage: {
     src: string;

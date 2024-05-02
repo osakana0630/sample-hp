@@ -1,16 +1,18 @@
 import { Button } from '@/components/ui/button';
-import { TrendingArticleList } from '@/components/trending-article-list';
+import { RecommendedArticleList } from '@/components/recommended-article-list';
 import Link from 'next/link';
 import { paths } from '@/routes';
-import { getArticles, getCategories, getTags } from '@/lib/newt';
+import { getArticles, getCategories, getRecommendedArticles, getTags } from '@/lib/newt';
 import { SearchBox } from '@/components/search-box';
 
 export async function RightSection() {
-  const [{ articles }, { categories }, { tags }] = await Promise.all([
-    getArticles({ limit: 3 }),
-    getCategories(),
-    getTags(),
-  ]);
+  const [{ articles }, { recommendedArticles }, { categories }, { tags }] =
+    await Promise.all([
+      getArticles({ limit: 3 }),
+      getRecommendedArticles(),
+      getCategories(),
+      getTags(),
+    ]);
 
   return (
     <>
@@ -18,8 +20,8 @@ export async function RightSection() {
         <SearchBox />
       </Section>
 
-      <Section title="よく読まれている記事">
-        <TrendingArticleList articles={articles} />
+      <Section title="おすすめ記事">
+        <RecommendedArticleList articles={recommendedArticles} />
       </Section>
 
       <Section title="カテゴリ">
