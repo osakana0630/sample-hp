@@ -26,7 +26,7 @@ export default async function Page({ params: { id } }: { params: { id: string } 
       pageTitle={<Heading component="h1" label="お知らせ" labelEn="News" />}
       breadcrumb={
         <CustomBreadcrumb
-          links={[{ name: 'お知らせ', href: paths.newsList(1) }, { name: news.title }]}
+          links={[{ name: 'お知らせ', href: paths.news.list(1) }, { name: news.title }]}
         />
       }
     >

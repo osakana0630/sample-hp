@@ -74,7 +74,7 @@ export default async function Home() {
       {/* 企業からのお知らせ */}
       <Section
         headingProps={{ label: 'お知らせ', labelEn: 'News' }}
-        button={<LinkButton href={paths.newsList(1)} />}
+        button={<LinkButton href={paths.news.list(1)} />}
       >
         <NewsList newsList={news} />
       </Section>

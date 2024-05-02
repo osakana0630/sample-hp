@@ -10,8 +10,8 @@ export const paths = {
   },
   news: {
     detail: (id: string) => `/news/${id}`,
+    list: (page: number) => `/news/list/${page}`,
   },
-  newsList: (page: number) => `/news-list/${page}`,
   medium: {
     list: (page: number) => `/medium/list/${page}`,
     detail: (articleSlug: string) => `/medium/${articleSlug}`,

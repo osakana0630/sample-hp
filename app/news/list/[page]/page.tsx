@@ -10,10 +10,10 @@ import { Suspense } from 'react';
 
 /**
  * Note
- * Q: newsセグメントが存在するのに、なぜnews-listセグメントを用意したか？
+ * Q: なぜlistセグメントを用意したか？
  * A: 静的レンダリングにおいて、ページネーションを実装すると、現在のページ位置をパスに含めて、ビルド時にページを生成できるようにする必要があるが、
  *    newsセグメントはすでにダイナミックパラメータ（[id]）が配置されているため、ビルド時にエラーが発生する。
- *    そこでnews-listという新たなセグメントを切って、ビルド時にエラーが発生しないようにする。
+ *    そこでlistという新たなセグメントを切って、ビルド時にエラーが発生しないようにする。
  *    他に良い方法があれば採用したい。
  */
 
@@ -50,7 +50,7 @@ export default async function Page({ params }: Props) {
           <Pagination
             totalItems={total}
             itemsPerPage={NEWS_PER_PAGE}
-            baseUrl="/news-list"
+            baseUrl="/news/list"
             currentPage={currentPage}
             delta={2}
           />
