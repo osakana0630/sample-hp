@@ -6,6 +6,8 @@ export type Staff = {
   specialityField: string;
   biography: string;
   career: string;
+  isTopThreeStaff: boolean;
+  topThreeStaffOrder: boolean;
   profileImage: {
     src: string;
   };

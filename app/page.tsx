@@ -3,7 +3,7 @@ import {
   getArticlesByCategoryIds,
   getCategories,
   getNewsList,
-  getStaffs,
+  getTopThreeStaffs,
 } from '@/lib/newt';
 import type { Metadata } from 'next';
 import { Button } from '@/components/ui/button';
@@ -26,11 +26,11 @@ export const metadata: Metadata = {
 };
 
 export default async function Home() {
-  const [{ news }, { categories }, { staffs }] = await Promise.all([
+  const [{ news }, { categories }, staffs] = await Promise.all([
     getNewsList({ limit: 3 }),
     getCategories(),
     // 特定の3人のコンサルタントを取得するようにしたい。
-    getStaffs({ limit: 3 }),
+    getTopThreeStaffs(),
   ]);
   const jobSeekerInterviewCategory = categories.find(
     (category) => category.slug === CATEGORIES['jobSeekerInterview']

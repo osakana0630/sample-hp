@@ -126,6 +126,19 @@ export const getStaffById = cache(async (id: string) => {
   });
 });
 
+export const getTopThreeStaffs = cache(async () => {
+  const { items } = await client.getContents<Staff>({
+    appUid: process.env.APP_UID || '',
+    modelUid: 'staff',
+    query: {
+      limit: 3,
+      isTopThreeStaff: true,
+      order: ['-priority', 'topThreeStaffOrder'],
+    },
+  });
+  return items;
+});
+
 // ----------------------------------------------------------------------------
 
 export const getCategories = cache(async (option?: PaginationOption) => {
