@@ -1,4 +1,5 @@
 import { RightSection } from '@/components/layouts/media-layout/right-section';
+import Image from 'next/image';
 
 type Props = {
   pageTitle?: string | React.ReactNode;
@@ -19,13 +20,18 @@ export function MediaLayout({
     <>
       {(pageTitle || leadText || bgImageSrc) && (
         <div
-          className={`flex h-[150px] w-full flex-col items-center justify-center bg-muted p-4 text-center`}
-          style={{
-            backgroundImage: `url(${bgImageSrc})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'bottom',
-          }}
+          className={`relative flex h-[150px] w-full flex-col items-center justify-center bg-muted p-4 text-center`}
         >
+          {bgImageSrc && (
+            <Image
+              src={bgImageSrc}
+              alt="hero"
+              priority
+              fill
+              className="object-cover object-center md:object-bottom"
+            />
+          )}
+
           {pageTitle && typeof pageTitle === 'string' ? (
             <h1 className="font-semiboald mb-6 text-xl  md:text-2xl">{pageTitle}</h1>
           ) : (

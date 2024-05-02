@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 type Props = {
   pageTitle?: string | React.ReactNode;
   leadText?: string;
@@ -16,17 +18,20 @@ export function BasicLayout({
 }: Props) {
   return (
     <>
-      {/* TODO: 条件分岐を見直したい */}
       {(pageTitle || leadText || bgImageSrc) && (
         <div
           data-is-home={isHome}
-          className={`flex h-[150px] w-full flex-col items-center justify-center bg-muted p-4 text-center data-[is-home=true]:h-[300px] lg:data-[is-home=true]:h-[500px]`}
-          style={{
-            backgroundImage: `url(${bgImageSrc})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'bottom',
-          }}
+          className={`relative flex h-[150px] w-full flex-col items-center justify-center bg-muted p-4 text-center data-[is-home=true]:h-[300px] lg:data-[is-home=true]:h-[500px]`}
         >
+          {bgImageSrc && (
+            <Image
+              src={bgImageSrc}
+              alt="hero"
+              priority
+              fill
+              className="object-cover object-center md:object-bottom"
+            />
+          )}
           {pageTitle && typeof pageTitle === 'string' ? (
             <h1 className="mb-6 text-xl font-semibold md:text-2xl">{pageTitle}</h1>
           ) : (
