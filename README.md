@@ -34,8 +34,6 @@
 ### CMS
 - Newt
 
-Next.js + TypeScript + Tailwind CSS + Newt(Headless CMS)
-
 ## 環境構築手順
 
 ```bash
