@@ -29,9 +29,7 @@ export default async function Page({
 
   return (
     <BasicLayout
-      pageTitle={
-        <Heading component="h1" label="コンサルタント詳細" labelEn="Consultant detail" />
-      }
+      pageTitle={<Heading component="h1" label="コンサルタント" labelEn="Consultant" />}
       breadcrumb={
         <CustomBreadcrumb
           links={[
