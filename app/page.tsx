@@ -18,6 +18,7 @@ import { config } from '@/config';
 import { StaffCarousel } from '@/components/staff-carousel';
 import { ArrowRight } from 'lucide-react';
 import { StaffList } from '@/components/staff-list';
+import { ArticleCarousel } from '@/components/article-carousel';
 
 // TODO add metadata
 export const metadata: Metadata = {
@@ -95,7 +96,13 @@ export default async function Home() {
               />
             }
           >
-            <ArticleList articles={jobSeekerInterviews} />
+            <div className="md:hidden">
+              <ArticleCarousel articles={jobSeekerInterviews} />
+            </div>
+
+            <div className="hidden md:block">
+              <ArticleList articles={jobSeekerInterviews} />
+            </div>
           </Section>
           {/* 紹介企業様インタビュー */}
           <Section
@@ -110,7 +117,13 @@ export default async function Home() {
               />
             }
           >
-            <ArticleList articles={companyInterviews} />
+            <div className="md:hidden">
+              <ArticleCarousel articles={companyInterviews} />
+            </div>
+
+            <div className="hidden md:block">
+              <ArticleList articles={companyInterviews} />
+            </div>
           </Section>
         </div>
       </Section>

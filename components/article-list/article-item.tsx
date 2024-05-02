@@ -28,7 +28,7 @@ export function ArticleItem({ article }: ArticleItemProps) {
           </div>
 
           <div className="flex flex-col gap-2">
-            <time className="text-sm text-muted-foreground">
+            <time className="text-xs text-muted-foreground md:text-sm">
               {format(new Date(article._sys.createdAt), 'yyyy年MM月dd日')}
             </time>
 
