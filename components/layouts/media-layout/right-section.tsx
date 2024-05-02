@@ -22,7 +22,7 @@ export async function RightSection() {
         <TrendingArticleList articles={articles} />
       </Section>
 
-      <Section title="カテゴリ一覧">
+      <Section title="カテゴリ">
         <ul>
           {categories.map((category) => (
             <li key={category._id} className="text-sm text-muted-foreground">
@@ -36,7 +36,7 @@ export async function RightSection() {
         </ul>
       </Section>
 
-      <Section title="タグ一覧">
+      <Section title="タグ">
         <ul className="flex flex-wrap gap-1">
           {tags.map((tag) => (
             <li key={tag._id} className="text-sm text-muted-foreground">
