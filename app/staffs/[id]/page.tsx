@@ -35,7 +35,7 @@ export default async function Page({
       breadcrumb={
         <CustomBreadcrumb
           links={[
-            { name: 'コンサルタント紹介', href: paths.staffList(1) },
+            { name: 'コンサルタント紹介', href: paths.staffs.list(1) },
             { name: staff.fullName },
           ]}
         />

@@ -6,8 +6,8 @@ export const paths = {
   siteMap: '/sitemap',
   staffs: {
     detail: (id: string) => `/staffs/${id}`,
+    list: (page: number) => `/staffs/list/${page}`,
   },
-  staffList: (page: number) => `/staff-list/${page}`,
   news: {
     detail: (id: string) => `/news/${id}`,
   },

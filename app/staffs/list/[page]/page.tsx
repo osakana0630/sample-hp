@@ -10,10 +10,10 @@ import { Suspense } from 'react';
 
 /**
  * Note
- * Q: staffsセグメントが存在するのに、なぜstaff-listセグメントを用意したか？
+ * Q: なぜlistセグメントを用意したか？
  * A: 静的レンダリングにおいて、ページネーションを実装すると、現在のページ位置をパスに含めて、ビルド時にページを生成できるようにする必要があるが、
  *    newsセグメントはすでにダイナミックパラメータ（[id]）が配置されているため、ビルド時にエラーが発生する。
- *    そこでnews-listという新たなセグメントを切って、ビルド時にエラーが発生しないようにする。
+ *    そこでlistという新たなセグメントを切って、ビルド時にエラーが発生しないようにする。
  *    他に良い方法があれば採用したい。
  */
 
@@ -45,7 +45,7 @@ export default async function Page({ params }: Props) {
       breadcrumb={<CustomBreadcrumb links={[{ name: 'コンサルタント紹介' }]} />}
     >
       <section className="space-y-4">
-        <ul className="grid grid-cols-1 gap-6 md:grid-cols-3 lg:grid-cols-4">
+        <ul className="grid grid-cols-1 gap-6 md:grid-cols-3">
           {staffs.map((staff) => (
             <StaffItem key={staff._id} staff={staff} />
           ))}
@@ -55,7 +55,7 @@ export default async function Page({ params }: Props) {
           <Pagination
             totalItems={total}
             itemsPerPage={STAFFS_PER_PAGE}
-            baseUrl="/staff-list"
+            baseUrl="/staffs/list"
             currentPage={currentPage}
             delta={2}
           />

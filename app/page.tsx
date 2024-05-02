@@ -60,7 +60,7 @@ export default async function Home() {
       {/* コンサルタント紹介*/}
       <Section
         headingProps={{ label: 'コンサルタント紹介', labelEn: 'Consultants' }}
-        button={<LinkButton href={paths.staffList(1)} />}
+        button={<LinkButton href={paths.staffs.list(1)} />}
       >
         <div className="md:hidden">
           <StaffCarousel staffs={staffs} />
