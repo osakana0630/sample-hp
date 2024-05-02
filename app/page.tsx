@@ -41,10 +41,12 @@ export default async function Home() {
   const [{ articles: jobSeekerInterviews }, { articles: companyInterviews }] =
     await Promise.all([
       getArticlesByCategoryIds(
-        (jobSeekerInterviewCategory?._id && [jobSeekerInterviewCategory?._id]) || []
+        (jobSeekerInterviewCategory?._id && [jobSeekerInterviewCategory?._id]) || [],
+        { limit: 3 }
       ),
       getArticlesByCategoryIds(
-        (companyInterviewCategory?._id && [companyInterviewCategory?._id]) || []
+        (companyInterviewCategory?._id && [companyInterviewCategory?._id]) || [],
+        { limit: 3 }
       ),
     ]);
 
