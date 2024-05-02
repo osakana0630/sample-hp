@@ -6,6 +6,7 @@ import { NEWS_PER_PAGE, STAFFS_PER_PAGE } from '@/constants/pagination';
 import { Pagination } from '@/components/custom-pagination';
 import { StaffItem } from '@/components/staff-list/staff-item';
 import { CustomBreadcrumb } from '@/components/custom-breadcrumb';
+import { Suspense } from 'react';
 
 /**
  * Note
@@ -50,13 +51,15 @@ export default async function Page({ params }: Props) {
           ))}
         </ul>
         {/* TODO: 不足しているページアイテムの分だけ領域をとりたい */}
-        <Pagination
-          totalItems={total}
-          itemsPerPage={STAFFS_PER_PAGE}
-          baseUrl="/staff-list"
-          currentPage={currentPage}
-          delta={2}
-        />
+        <Suspense>
+          <Pagination
+            totalItems={total}
+            itemsPerPage={STAFFS_PER_PAGE}
+            baseUrl="/staff-list"
+            currentPage={currentPage}
+            delta={2}
+          />
+        </Suspense>
       </section>
     </BasicLayout>
   );

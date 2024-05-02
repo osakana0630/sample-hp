@@ -6,6 +6,7 @@ import { Pagination } from '@/components/custom-pagination';
 import { ARTICLES_PER_PAGE } from '@/constants/pagination';
 import { paths } from '@/routes';
 import { CustomBreadcrumb } from '@/components/custom-breadcrumb';
+import { Suspense } from 'react';
 
 // FIXME: cloudflare workers のedgeで動かすaxiosがedgeランタイムに対応していないのでとエラーになる
 //  https://github.com/axios/axios/issues/5523
@@ -43,13 +44,15 @@ export default async function Page({ searchParams }: Props) {
         {hasArticles && (
           <>
             <ArticleList articles={articles} />
-            <Pagination
-              totalItems={total}
-              currentPage={currentPage}
-              baseUrl={paths.medium.search}
-              itemsPerPage={ARTICLES_PER_PAGE}
-              isSSG={false}
-            />
+            <Suspense>
+              <Pagination
+                totalItems={total}
+                currentPage={currentPage}
+                baseUrl={paths.medium.search}
+                itemsPerPage={ARTICLES_PER_PAGE}
+                isSSG={false}
+              />
+            </Suspense>
           </>
         )}
       </section>

@@ -6,6 +6,7 @@ import { range } from '@/utils';
 import { NEWS_PER_PAGE } from '@/constants/pagination';
 import { Pagination } from '@/components/custom-pagination';
 import { CustomBreadcrumb } from '@/components/custom-breadcrumb';
+import { Suspense } from 'react';
 
 /**
  * Note
@@ -45,13 +46,15 @@ export default async function Page({ params }: Props) {
         <h2 className="mb-6 text-center text-2xl font-semibold">お知らせ一覧</h2>
         <NewsList newsList={news} />
         {/* TODO: 不足しているページアイテムの分だけ領域をとりたい */}
-        <Pagination
-          totalItems={total}
-          itemsPerPage={NEWS_PER_PAGE}
-          baseUrl="/news-list"
-          currentPage={currentPage}
-          delta={2}
-        />
+        <Suspense>
+          <Pagination
+            totalItems={total}
+            itemsPerPage={NEWS_PER_PAGE}
+            baseUrl="/news-list"
+            currentPage={currentPage}
+            delta={2}
+          />
+        </Suspense>
       </section>
     </BasicLayout>
   );
