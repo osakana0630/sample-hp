@@ -13,7 +13,9 @@
 - [Next.js](https://nextjs.org/docs)
 - [Tailwind CSS](https://tailwindcss.com/docs)
 - [Shadcn/ui](https://ui.shadcn.com/)
+- [Lucide React Icons](https://lucide.dev/icons/)
 - [Newt（ヘッドレスCMS）](https://www.newt.so/)
+- [Newt Js Sdk](https://www.newt.so/docs/js-sdk)
 - [Cloudflare Pages](https://pages.cloudflare.com/)
 
 ## システム構成
