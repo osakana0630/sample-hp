@@ -29,6 +29,7 @@ export default async function Home() {
   const [{ news }, categories, { staffs }] = await Promise.all([
     getNewsList({ limit: 3 }),
     getCategories(),
+    // 特定の3人のコンサルタントを取得するようにしたい。
     getStaffs({ limit: 3 }),
   ]);
   const jobSeekerInterviewCategory = categories.find(
