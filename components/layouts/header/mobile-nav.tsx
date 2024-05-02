@@ -20,6 +20,7 @@ export default function MobileNav() {
               variant="ghost"
               className="justify-start text-lg"
               asChild
+              aria-label="メニュー"
             >
               <Link href={item.href}>
                 <item.icon className="mr-3" size={20} />

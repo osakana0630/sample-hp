@@ -14,6 +14,7 @@ export function ScrollTopButton() {
       size="icon"
       className="fixed bottom-3 right-3 z-10"
       onClick={handleClick}
+      aria-label="ページトップへ"
     >
       <ArrowUp size={20} />
     </Button>
