@@ -4,7 +4,6 @@ export const paths = {
   contact: '/contact',
   privacyPolicy: '/privacy-policy',
   siteMap: '/sitemap',
-  search: '/search',
   staffs: {
     detail: (id: string) => `/staffs/${id}`,
   },
@@ -24,5 +23,6 @@ export const paths = {
       list: '/medium/categories',
       detail: (categorySlug: string) => `/medium/categories/${categorySlug}`,
     },
+    search: '/medium/search',
   },
 } as const;

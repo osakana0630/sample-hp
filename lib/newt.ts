@@ -90,7 +90,7 @@ export const getArticlesByTagIds = cache(
 
 export const searchArticles = cache(
   async (keyword: string, option?: PaginationOption) => {
-    const { items } = await client.getContents<Article>({
+    const { items, total } = await client.getContents<Article>({
       appUid: 'blog',
       modelUid: 'article',
       query: {
@@ -101,7 +101,7 @@ export const searchArticles = cache(
         order: ['-priority', '_sys.createdAt'],
       },
     });
-    return items;
+    return { articles: items, total };
   }
 );
 

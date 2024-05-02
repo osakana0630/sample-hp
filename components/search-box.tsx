@@ -14,7 +14,7 @@ export function SearchBox() {
 
   const onSearch = () => {
     const q = new URLSearchParams({ q: searchText }).toString();
-    router.push(`${paths.search}?${q}`);
+    router.push(`${paths.medium.search}?${q}`);
   };
 
   return (
