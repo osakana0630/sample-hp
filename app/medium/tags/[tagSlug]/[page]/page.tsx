@@ -1,7 +1,7 @@
 import { MediaLayout } from '@/components/layouts/media-layout';
 import { getArticlesByTagIds, getTagBySlug, getTags } from '@/lib/newt';
 import { notFound } from 'next/navigation';
-import { ArticleList } from '@/components/article-list';
+import { ArticleList } from '../../../../../components/article/article-list';
 import { Heading } from '@/components/heading';
 import { CustomBreadcrumb } from '@/components/custom-breadcrumb';
 import { paths } from '@/routes';

@@ -2,7 +2,7 @@ import { getArticlesByCategoryIds, getCategories, getCategoryBySlug } from '@/li
 import { notFound } from 'next/navigation';
 import { MediaLayout } from '@/components/layouts/media-layout';
 import { Heading } from '@/components/heading';
-import { ArticleList } from '@/components/article-list';
+import { ArticleList } from '../../../../../components/article/article-list';
 import { CustomBreadcrumb } from '@/components/custom-breadcrumb';
 import { paths } from '@/routes';
 import { Suspense } from 'react';

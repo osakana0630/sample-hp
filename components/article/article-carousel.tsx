@@ -7,17 +7,17 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel';
-import { StaffItem } from '@/components/staff-list/staff-item';
 import Autoplay from 'embla-carousel-autoplay';
 import { type CarouselApi } from '@/components/ui/carousel';
 
-import { Staff } from '@/types/staff';
 import { useEffect, useState } from 'react';
+import { Article } from '@/types/article';
+import { ArticleItem } from '@/components/article/article-list/article-item';
 
 type Props = {
-  staffs: Staff[];
+  articles: Article[];
 };
-export function StaffCarousel({ staffs }: Props) {
+export function ArticleCarousel({ articles }: Props) {
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
   const [count, setCount] = useState(0);
@@ -51,9 +51,9 @@ export function StaffCarousel({ staffs }: Props) {
         ]}
       >
         <CarouselContent>
-          {staffs.map((staff, index) => (
+          {articles.map((article, index) => (
             <CarouselItem key={index} className="sm:basis-1/2 lg:basis-1/3">
-              <StaffItem staff={staff} />
+              <ArticleItem article={article} />
             </CarouselItem>
           ))}
         </CarouselContent>

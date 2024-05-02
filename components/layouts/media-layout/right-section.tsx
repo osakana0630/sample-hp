@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button';
-import { RecommendedArticleList } from '@/components/recommended-article-list';
+import { RecommendedArticleList } from '../../article/recommended-article-list';
 import Link from 'next/link';
 import { paths } from '@/routes';
 import { getArticles, getCategories, getRecommendedArticles, getTags } from '@/lib/newt';

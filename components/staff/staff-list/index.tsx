@@ -1,4 +1,4 @@
-import { StaffItem } from '@/components/staff-list/staff-item';
+import { StaffItem } from '@/components/staff/staff-list/staff-item';
 import { Staff } from '@/types/staff';
 
 type Props = {

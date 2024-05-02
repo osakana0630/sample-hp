@@ -1,5 +1,5 @@
 import { MediaLayout } from '@/components/layouts/media-layout';
-import { ArticleList } from '@/components/article-list';
+import { ArticleList } from '../../../../components/article/article-list';
 import { Heading } from '@/components/heading';
 import { range } from '@/utils';
 import { CustomBreadcrumb } from '@/components/custom-breadcrumb';

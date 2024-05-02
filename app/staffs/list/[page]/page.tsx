@@ -4,7 +4,7 @@ import { Heading } from '@/components/heading';
 import { range } from '@/utils';
 import { NEWS_PER_PAGE, STAFFS_PER_PAGE } from '@/constants/pagination';
 import { Pagination } from '@/components/custom-pagination';
-import { StaffItem } from '@/components/staff-list/staff-item';
+import { StaffItem } from '@/components/staff/staff-list/staff-item';
 import { CustomBreadcrumb } from '@/components/custom-breadcrumb';
 import { Suspense } from 'react';
 

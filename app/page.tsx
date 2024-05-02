@@ -10,15 +10,15 @@ import { Button } from '@/components/ui/button';
 import { BasicLayout } from '@/components/layouts/basic-layout';
 import { CATEGORIES } from '@/constants/category';
 import { Heading, type HeadingProps } from '@/components/heading';
-import { ServiceList } from '@/components/service-list';
-import { NewsList } from '@/components/news-list';
-import { ArticleList } from '@/components/article-list';
+import { ServiceList } from '../components/service/service-list';
+import { NewsList } from '../components/news/news-list';
+import { ArticleList } from '../components/article/article-list';
 import { paths } from '@/routes';
 import { config } from '@/config';
-import { StaffCarousel } from '@/components/staff-carousel';
+import { StaffCarousel } from '@/components/staff/staff-carousel';
 import { ArrowRight } from 'lucide-react';
-import { StaffList } from '@/components/staff-list';
-import { ArticleCarousel } from '@/components/article-carousel';
+import { StaffList } from '../components/staff/staff-list';
+import { ArticleCarousel } from '@/components/article/article-carousel';
 
 // TODO add metadata
 export const metadata: Metadata = {

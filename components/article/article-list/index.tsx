@@ -1,5 +1,5 @@
 import { Article } from '@/types/article';
-import { ArticleItem } from '@/components/article-list/article-item';
+import { ArticleItem } from '@/components/article/article-list/article-item';
 
 type Props = {
   articles: Article[];

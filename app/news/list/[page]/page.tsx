@@ -1,5 +1,5 @@
 import { BasicLayout } from '@/components/layouts/basic-layout';
-import { NewsList } from '@/components/news-list';
+import { NewsList } from '../../../../components/news/news-list';
 import { getNewsList } from '@/lib/newt';
 import { Heading } from '@/components/heading';
 import { range } from '@/utils';
