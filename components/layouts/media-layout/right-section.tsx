@@ -2,17 +2,15 @@ import { Button } from '@/components/ui/button';
 import { RecommendedArticleList } from '../../article/recommended-article-list';
 import Link from 'next/link';
 import { paths } from '@/routes';
-import { getArticles, getCategories, getRecommendedArticles, getTags } from '@/lib/newt';
+import { getCategories, getRecommendedArticles, getTags } from '@/lib/newt';
 import { SearchBox } from '@/components/search-box';
 
 export async function RightSection() {
-  const [{ articles }, { recommendedArticles }, { categories }, { tags }] =
-    await Promise.all([
-      getArticles({ limit: 3 }),
-      getRecommendedArticles(),
-      getCategories(),
-      getTags(),
-    ]);
+  const [{ recommendedArticles }, { categories }, { tags }] = await Promise.all([
+    getRecommendedArticles(),
+    getCategories(),
+    getTags(),
+  ]);
 
   return (
     <>
