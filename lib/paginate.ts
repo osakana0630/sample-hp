@@ -17,6 +17,8 @@ type PageItem =
 
 interface PaginationResult {
   pages: PageItem[];
+  isFirstPage: boolean;
+  isLastPage: boolean;
 }
 
 export const paginate = (options: PaginationOptions): PaginationResult => {
@@ -25,6 +27,8 @@ export const paginate = (options: PaginationOptions): PaginationResult => {
   const pages: PageItem[] = [];
   const rangeStart = Math.max(2, currentPage - delta);
   const rangeEnd = Math.min(pageCount - 1, currentPage + delta);
+  const isFirstPage = currentPage === 1;
+  const isLastPage = currentPage === pageCount;
 
   if (currentPage - delta > 2) {
     pages.push({ type: 'dots' });
@@ -45,5 +49,7 @@ export const paginate = (options: PaginationOptions): PaginationResult => {
 
   return {
     pages,
+    isFirstPage,
+    isLastPage,
   };
 };

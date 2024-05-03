@@ -33,7 +33,7 @@ export function Pagination({
 
   const pageCount = Math.ceil(totalItems / itemsPerPage);
 
-  const { pages } = paginate({
+  const { pages, isFirstPage, isLastPage } = paginate({
     totalItems,
     itemsPerPage,
     currentPage,
@@ -59,9 +59,11 @@ export function Pagination({
   return (
     <_Pagination>
       <PaginationContent>
-        <PaginationItem>
-          <PaginationPrevious href={createURL(currentPage - 1)} />
-        </PaginationItem>
+        {!isFirstPage && (
+          <PaginationItem>
+            <PaginationPrevious href={createURL(currentPage - 1)} />
+          </PaginationItem>
+        )}
 
         {pages.map((page, i) => {
           if (page.type === 'dots') {
@@ -84,9 +86,11 @@ export function Pagination({
           }
         })}
 
-        <PaginationItem>
-          <PaginationNext href={createURL(currentPage + 1)} />
-        </PaginationItem>
+        {!isLastPage && (
+          <PaginationItem>
+            <PaginationNext href={createURL(currentPage + 1)} />
+          </PaginationItem>
+        )}
       </PaginationContent>
     </_Pagination>
   );
