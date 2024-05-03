@@ -91,7 +91,7 @@ export const getArticlesByTagIds = cache(
 export const searchArticles = cache(
   async (keyword: string, option?: PaginationOption) => {
     const { items, total } = await client.getContents<Article>({
-      appUid: 'blog',
+      appUid: process.env.APP_UID || '',
       modelUid: 'article',
       query: {
         title: {

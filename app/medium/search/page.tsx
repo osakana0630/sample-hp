@@ -1,7 +1,7 @@
 import { Heading } from '@/components/heading';
 import { searchArticles } from '@/lib/newt';
 import { MediaLayout } from '@/components/layouts/media-layout';
-import { ArticleList } from '../../../components/article/article-list';
+import { ArticleList } from '@/components/article/article-list';
 import { Pagination } from '@/components/custom-pagination';
 import { ARTICLES_PER_PAGE } from '@/constants/pagination';
 import { paths } from '@/routes';
