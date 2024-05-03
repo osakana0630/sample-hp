@@ -7,13 +7,13 @@ export default function NotFound() {
   return (
     <div className="container mx-auto max-w-screen-2xl py-6 sm:py-8 lg:py-12">
       <div className="flex flex-col items-center">
-        <a
+        <Link
           href={paths.home}
           className="mb-8 inline-flex items-center gap-2.5 text-2xl font-bold text-black md:text-3xl"
-          aria-label="logo"
+          aria-label="ロゴ"
         >
           {config.companyName}
-        </a>
+        </Link>
 
         <p className="mb-4 text-sm font-semibold uppercase text-primary md:text-base">
           404 page
