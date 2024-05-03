@@ -39,7 +39,9 @@ export default async function Page({ searchParams }: Props) {
       }
     >
       <section className="space-y-2">
-        <h2 className="mb-6 text-3xl font-bold">{`「${q}」の検索結果`}</h2>
+        <h2 className="mb-6 text-2xl font-semibold md:text-3xl">
+          {`「${q}」の検索結果`}
+        </h2>
         {!hasArticles && <p>記事が見つかりませんでした。</p>}
         {hasArticles && (
           <>
