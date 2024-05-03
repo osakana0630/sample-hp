@@ -35,6 +35,10 @@ export function ArticleCarousel({ articles }: Props) {
     });
   }, [api]);
 
+  if (!articles.length) {
+    return <p className="text-muted-foreground">記事がありません</p>;
+  }
+
   return (
     <div className="flex flex-col items-center gap-1">
       <Carousel

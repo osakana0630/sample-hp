@@ -7,11 +7,17 @@ type Props = {
 export function ArticleList({ articles }: Props) {
   return (
     <ul className="space-y-2">
-      {articles.map((article) => (
-        <li key={article._id}>
-          <ArticleItem article={article} />
+      {articles.length > 0 ? (
+        articles.map((article) => (
+          <li key={article._id}>
+            <ArticleItem article={article} />
+          </li>
+        ))
+      ) : (
+        <li>
+          <p className="text-muted-foreground">記事がありません</p>
         </li>
-      ))}
+      )}
     </ul>
   );
 }

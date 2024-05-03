@@ -35,6 +35,10 @@ export function StaffCarousel({ staffs }: Props) {
     });
   }, [api]);
 
+  if (!staffs.length) {
+    return <p className="text-muted-foreground">コンサルタントがいません</p>;
+  }
+
   return (
     <div className="flex flex-col items-center gap-1">
       <Carousel
