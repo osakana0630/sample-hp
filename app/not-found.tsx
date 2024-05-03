@@ -8,7 +8,7 @@ export default function NotFound() {
     <div className="container mx-auto max-w-screen-2xl py-6 sm:py-8 lg:py-12">
       <div className="flex flex-col items-center">
         <a
-          href="/"
+          href={paths.home}
           className="mb-8 inline-flex items-center gap-2.5 text-2xl font-bold text-black md:text-3xl"
           aria-label="logo"
         >
