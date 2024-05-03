@@ -12,6 +12,7 @@ export function ServiceList() {
                 src={business.image}
                 alt={business.label}
                 fill
+                priority
                 className="object-contain object-center"
               />
             </div>
