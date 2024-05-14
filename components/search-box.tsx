@@ -13,7 +13,8 @@ export function SearchBox() {
   const [searchText, setSearchText] = useState('');
 
   const onSearch = () => {
-    const q = new URLSearchParams({ q: searchText }).toString();
+    const encodeQ = encodeURIComponent(searchText);
+    const q = new URLSearchParams({ q: encodeQ }).toString();
     router.push(`${paths.medium.search}?${q}`);
   };
 

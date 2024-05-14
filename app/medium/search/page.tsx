@@ -21,7 +21,7 @@ type Props = {
 };
 
 export default async function Page({ searchParams }: Props) {
-  const q = searchParams.q;
+  const q = decodeURIComponent(searchParams.q);
   const currentPage = Number(searchParams.page) || 1;
   const { articles, total } = await searchArticles(q, { page: currentPage });
   const hasArticles = articles.length > 0;
